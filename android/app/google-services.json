@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "137666823081",
+    "project_id": "bigcart-flutter-project",
+    "storage_bucket": "bigcart-flutter-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137666823081:android:d5974e5e637ea0a8f9fab8",
+        "android_client_info": {
+          "package_name": "com.example.big_cart_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCusq9i1Aze0gXb8ShWRLKH3xUCm0HNHNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
