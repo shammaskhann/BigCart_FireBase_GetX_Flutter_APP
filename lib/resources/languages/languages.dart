@@ -33,6 +33,7 @@ class Languages extends Translations {
           'login_failed': 'Login Failed',
           'success': 'Success',
           'password_not_match': 'Password not match',
+          'search_hint_text': 'Search Here',
         },
         'ur_PK': {
           'name': 'نام',
@@ -64,6 +65,7 @@ class Languages extends Translations {
           'login_failed': 'لاگ ان ناکام ہوگیا',
           'success': 'کامیابی',
           'password_not_match': 'پاس ورڈ میچ نہیں ہوتا',
+          'search_hint_text': 'یہاں تلاش کریں',
         }
       };
 }

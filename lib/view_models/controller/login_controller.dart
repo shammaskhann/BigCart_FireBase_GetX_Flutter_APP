@@ -32,6 +32,7 @@ class LoginController extends GetxController {
         .catchError((error) {
       AuthException.authExceptionToast(error.code);
       loading = false.obs;
+      return error;
     });
   }
 }
