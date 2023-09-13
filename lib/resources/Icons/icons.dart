@@ -13,4 +13,5 @@ class AppIcons {
   static const countryIcon = 'assets/Icons/TextfieldIcons/CountryIcon.svg';
   static const filterIcon = 'assets/Icons/TextfieldIcons/FilterIcon.svg';
   static const locationIcon = 'assets/Icons/TextfieldIcons/LocationIcon.svg';
+  static const backButton = 'assets/Icons/CommonIcon/BackButtonIcon.svg';
 }

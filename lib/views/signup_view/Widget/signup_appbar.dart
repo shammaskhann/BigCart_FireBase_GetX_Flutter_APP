@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import '../../../resources/Images/images.dart';
 import '../../../resources/color/colors.dart';
 
-class LoginAppBar extends StatelessWidget {
-  const LoginAppBar({super.key});
+class SignupAppBar extends StatelessWidget {
+  const SignupAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class LoginAppBar extends StatelessWidget {
             Get.back();
           },
           child: Image.asset(
-            AppImages.login,
+            AppImages.signup,
           ),
         ),
         Positioned(
-          top: 40,
+          top: 10,
           left: 15,
           right: 0,
           child: Row(

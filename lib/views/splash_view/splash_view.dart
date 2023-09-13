@@ -20,35 +20,38 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        Image.asset(
-          AppImages.splashBackGround,
-          fit: BoxFit.cover,
-        ),
-        Positioned(
-            top: 80,
-            left: 0,
-            right: 0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  'greeting'.tr,
-                  style: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 40,
-                      fontWeight: FontWeight.w700),
-                  textAlign: TextAlign.center,
-                ),
-                Image.asset(
-                  AppImages.logo,
-                  height: 40,
-                  width: 100,
-                ),
-              ],
-            )),
-      ],
+        body: SizedBox(
+      height: Get.height,
+      width: Get.width,
+      child: Stack(
+        children: [
+          Image.asset(
+            AppImages.splashBackGround,
+          ),
+          Positioned(
+              top: 80,
+              left: 0,
+              right: 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'greeting'.tr,
+                    style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700),
+                    textAlign: TextAlign.center,
+                  ),
+                  Image.asset(
+                    AppImages.logo,
+                    height: 40,
+                    width: 100,
+                  ),
+                ],
+              )),
+        ],
+      ),
     ));
   }
 }
