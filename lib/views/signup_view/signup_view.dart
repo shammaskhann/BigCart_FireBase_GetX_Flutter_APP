@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../resources/Icons/icons.dart';
+import '../../resources/Icons/textfield_icons.dart';
 import '../../resources/Routes/route_name.dart';
 import '../../resources/TextStyle/text_styles.dart';
 import '../../resources/color/colors.dart';
@@ -102,7 +102,7 @@ class SignupScreen extends StatelessWidget {
                                       prefixIcon: Container(
                                         padding: const EdgeInsets.all(15),
                                         child: SvgPicture.asset(
-                                          AppIcons.emailIcon,
+                                          AppTextFeildIcons.emailIcon,
                                           // ignore: deprecated_member_use
                                           color: AppColors.grey,
                                         ),
@@ -153,7 +153,7 @@ class SignupScreen extends StatelessWidget {
                                         prefixIcon: Container(
                                           padding: const EdgeInsets.all(15),
                                           child: SvgPicture.asset(
-                                            AppIcons.passwordLockIcon,
+                                            AppTextFeildIcons.passwordLockIcon,
                                             // ignore: deprecated_member_use
                                             color: AppColors.grey,
                                           ),
@@ -167,7 +167,8 @@ class SignupScreen extends StatelessWidget {
                                                   .toggle();
                                             },
                                             child: SvgPicture.asset(
-                                              AppIcons.passwordVisibleIcon,
+                                              AppTextFeildIcons
+                                                  .passwordVisibleIcon,
                                               // ignore: deprecated_member_use
                                               color: AppColors.grey,
                                             ),
@@ -223,7 +224,7 @@ class SignupScreen extends StatelessWidget {
                                         prefixIcon: Container(
                                           padding: const EdgeInsets.all(15),
                                           child: SvgPicture.asset(
-                                            AppIcons.passwordLockIcon,
+                                            AppTextFeildIcons.passwordLockIcon,
                                             // ignore: deprecated_member_use
                                             color: AppColors.grey,
                                           ),
@@ -237,7 +238,8 @@ class SignupScreen extends StatelessWidget {
                                                   .toggle();
                                             },
                                             child: SvgPicture.asset(
-                                              AppIcons.passwordVisibleIcon,
+                                              AppTextFeildIcons
+                                                  .passwordVisibleIcon,
                                               // ignore: deprecated_member_use
                                               color: AppColors.grey,
                                             ),
