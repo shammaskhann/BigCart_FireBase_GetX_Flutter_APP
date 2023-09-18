@@ -3,6 +3,7 @@ import 'package:big_cart_app/view_models/AuthExceptions/auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpController extends GetxController {
   final RxBool isPasswordNotVisible = true.obs;
@@ -14,6 +15,7 @@ class SignUpController extends GetxController {
   final passwordConfirmFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
   final _auth = FirebaseAuth.instance;
+  final _db = FirebaseFirestore.instance;
 
   void authSignup() async {
     loading.value = true;
@@ -21,9 +23,14 @@ class SignUpController extends GetxController {
         .createUserWithEmailAndPassword(
             email: emailController.value.text,
             password: passwordController.value.text)
-        .then((value) {
+        .then((value) async {
       // This is the success callback
       Utils.snackBar('Success', 'Account Created Successfully');
+      await _db.collection('users').doc(value.user!.uid).set({
+        'email': emailController.value.text,
+        'password': passwordController.value.text,
+        'uid': value.user!.uid,
+      });
       loading.value = false;
       Get.back();
     }).catchError((error) {

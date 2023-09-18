@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../resources/Routes/route_name.dart';
+import '../../../resources/Routes/route_name.dart';
 
 class LoginController extends GetxController {
   RxBool loading = false.obs;

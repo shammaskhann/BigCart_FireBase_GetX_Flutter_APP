@@ -1,13 +1,12 @@
-import 'package:big_cart_app/view_models/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../resources/Icons/textfield_icons.dart';
 import '../../resources/Routes/route_name.dart';
 import '../../resources/TextStyle/text_styles.dart';
 import '../../resources/color/colors.dart';
 import '../../utils/utils.dart';
+import '../../view_models/controller/Authentication/signup_controller.dart';
 import '../../widgets/CustomButon.dart';
 import 'Widget/signup_appbar.dart';
 

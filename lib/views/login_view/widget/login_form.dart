@@ -7,7 +7,7 @@ import '../../../resources/Routes/route_name.dart';
 import '../../../resources/TextStyle/text_styles.dart';
 import '../../../resources/color/colors.dart';
 import '../../../utils/utils.dart';
-import '../../../view_models/controller/login_controller.dart';
+import '../../../view_models/controller/Authentication/login_controller.dart';
 import '../../../widgets/CustomButon.dart';
 
 class LoginForm extends StatelessWidget {
