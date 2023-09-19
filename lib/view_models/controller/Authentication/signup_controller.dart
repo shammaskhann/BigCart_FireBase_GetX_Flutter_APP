@@ -1,3 +1,4 @@
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/view_models/AuthExceptions/auth_exception.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,7 +25,6 @@ class SignUpController extends GetxController {
             email: emailController.value.text,
             password: passwordController.value.text)
         .then((value) async {
-      // This is the success callback
       Utils.snackBar('Success', 'Account Created Successfully');
       await _db.collection('users').doc(value.user!.uid).set({
         'email': emailController.value.text,
@@ -32,7 +32,7 @@ class SignUpController extends GetxController {
         'uid': value.user!.uid,
       });
       loading.value = false;
-      Get.back();
+      Get.offAllNamed(RouteName.loginScreen);
     }).catchError((error) {
       AuthException.authExceptionToast(error.code);
       loading.value = false;

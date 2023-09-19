@@ -1,5 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FeaturedList extends StatelessWidget {
@@ -7,8 +6,11 @@ class FeaturedList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final databaseRef = FirebaseStorage.instance;
-    databaseRef.ref().child('images').listAll().then((value) => print(value));
+    // final databaseRef = FirebaseStorage.instance;
+    // databaseRef.ref().child('images').listAll().then((value) => print(value));
+    DocumentReference inventory = FirebaseFirestore.instance
+        .collection('Inventory')
+        .doc('Featured-Items');
     return GridView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         itemCount: 10,

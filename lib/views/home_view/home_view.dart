@@ -1,8 +1,9 @@
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
-import 'package:big_cart_app/resources/Images/images.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
+import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/views/home_view/main_banner/banner1.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -161,7 +162,11 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 15.0, right: 5),
         child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Utils.snackBar('Success', 'Logged Out Successfully');
+              Get.offAllNamed('/login');
+            },
             backgroundColor: AppColors.primaryColor,
             child: SvgPicture.asset(AppIcons.cartIcon)),
       ),
