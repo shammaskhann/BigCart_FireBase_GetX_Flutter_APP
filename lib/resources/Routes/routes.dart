@@ -1,4 +1,5 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
+import 'package:big_cart_app/views/category_pages/vegetable_view.dart';
 import 'package:big_cart_app/views/login_view/login_view.dart';
 import 'package:big_cart_app/views/signup_view/signup_view.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,11 @@ class AppRoutes {
       GetPage(
           name: RouteName.homeScreen,
           page: () => const HomeScreen(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.vegetableScreen,
+          page: () => const VegetableCategoryView(),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
     ];

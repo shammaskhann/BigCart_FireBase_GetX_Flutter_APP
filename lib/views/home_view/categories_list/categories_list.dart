@@ -1,5 +1,6 @@
 import 'package:big_cart_app/resources/Icons/categories_icon.dart';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,7 +18,9 @@ class CategoriesBar extends StatelessWidget {
         'name': 'Vegetables',
         'icon': AppCategoriesIcon.vegIcon,
         'backgroundColor': AppColors.lightGreenShade,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed((RouteName.vegetableScreen));
+        },
       },
       {
         'name': 'Fruits',
