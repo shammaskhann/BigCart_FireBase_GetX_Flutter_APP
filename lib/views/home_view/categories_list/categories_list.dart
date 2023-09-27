@@ -48,8 +48,8 @@ class CategoriesBar extends StatelessWidget {
       },
     ];
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15.0,
+      padding: const EdgeInsets.only(
+        left: 15.0,
       ),
       child: SizedBox(
         height: 150,

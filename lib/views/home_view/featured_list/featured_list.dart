@@ -1,8 +1,10 @@
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/view_models/controller/Featured-Items/featureitem_controller.dart';
+import 'package:big_cart_app/widgets/ItemCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class FeaturedList extends StatelessWidget {
   const FeaturedList({super.key});
@@ -25,33 +27,10 @@ class FeaturedList extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 0.8),
+                    childAspectRatio: 0.9),
                 itemBuilder: (context, index) {
                   final currentItem = snapshot.data[index];
-                  return Container(
-                    color: AppColors.greyBackGround,
-                    child: Column(
-                      children: [
-                        FutureBuilder(
-                            future: featuredItemController.getFeaturedImage(),
-                            builder: ((context, snapshot) {
-                              print(snapshot
-                                  .data); //output Here: Instance of Future<String>
-                              if (snapshot.hasData) {
-                                return Image.network(
-                                  snapshot.data as String,
-                                  height: 100,
-                                  width: 100,
-                                );
-                              }
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            })),
-                        Text(currentItem['productName']),
-                      ],
-                    ),
-                  );
+                  return ItemCard(item: currentItem);
                 });
           }
           return const Center(

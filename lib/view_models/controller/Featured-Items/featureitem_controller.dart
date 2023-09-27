@@ -23,12 +23,10 @@ class FeaturedItemController {
     }
   }
 
-  Future<String> getFeaturedImage() async {
+  Future<String> getFeaturedImage(String imagePath) async {
     final storage = FirebaseStorage.instance;
     try {
-      final ref = storage
-          .ref('gs://bigcart-flutter-project.appspot.com')
-          .child('avocoado.png');
+      final ref = storage.ref().child(imagePath);
       final String url = await ref.getDownloadURL();
       print(url);
       return url;
