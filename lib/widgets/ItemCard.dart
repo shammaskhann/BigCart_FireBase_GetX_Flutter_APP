@@ -2,6 +2,7 @@ import 'package:big_cart_app/view_models/controller/Cart_Contrller/cart_controll
 import 'package:big_cart_app/view_models/controller/ListingController/Featured-Items/featureitem_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../resources/Icons/common_icons.dart';
@@ -82,44 +83,86 @@ class ItemCard extends StatelessWidget {
                 color: Color(0xFFEBEBEB),
                 thickness: 1,
               ),
-              InkWell(
-                onTap: () {
-                  CartController cartController = CartController();
-                  item['quantity'] = 1;
-                  cartController.addToCart(item);
-                },
-                child: (cartController.isAlreadyInCart(item) == 0)
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            AppIcons.cartIcon,
-                            color: AppColors.primaryColor,
-                            height: 20,
-                            width: 20,
-                          ),
-                          const SizedBox(width: 10),
-                          const Text('Add to cart',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: AppColors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600)),
-                        ],
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(width: 10),
-                          const Text('Added to cart',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  color: AppColors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600)),
-                        ],
+              FutureBuilder(
+                  future: cartController.isAlreadyInCart(item),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return (snapshot.data == false)
+                          ? InkWell(
+                              onTap: () {
+                                CartController cartController =
+                                    CartController();
+                                item['quantity'] = 1;
+                                cartController.addToCart(item);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    AppIcons.cartIcon,
+                                    color: AppColors.primaryColor,
+                                    height: 20,
+                                    width: 20,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  const Text('Add to cart',
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: AppColors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            )
+                          : Obx(
+                              () => Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (cartController.quantity.value > 1) {
+                                        cartController.quantity.value--;
+                                        item['quantity'] =
+                                            cartController.quantity.value;
+                                        cartController.removeFromCart(item);
+                                      }
+                                    },
+                                    child: SvgPicture.asset(
+                                      AppIcons.quantityRemoveIcon,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  const SizedBox(width: 10),
+                                  Text(cartController.quantity.value.toString(),
+                                      style: const TextStyle(
+                                          fontFamily: 'Poppins',
+                                          color: AppColors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600)),
+                                  const SizedBox(width: 10),
+                                  const Spacer(),
+                                  InkWell(
+                                    onTap: () {
+                                      cartController.quantity.value++;
+                                      item['quantity'] =
+                                          cartController.quantity.value;
+                                      cartController.addToCart(item);
+                                    },
+                                    child: SvgPicture.asset(
+                                      AppIcons.quantityAddIcon,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                    }
+                    return Container(
+                      height: 30,
+                      child: const Center(
+                        child: CircularProgressIndicator(),
                       ),
-              ),
+                    );
+                  })
             ],
           ),
           Positioned(

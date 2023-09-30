@@ -21,26 +21,18 @@ class CartController extends GetxController {
     });
   }
 
-  isAlreadyInCart(Map item) {
-    //check from database if item map is already in cart if already in cart return item['quantity'] else return 0
-    cartRef.get().then((value) {
-      if ((value.data() as Map<String, dynamic>)['cart'].contains(item)) {
-        print(item['quantity']);
-        return item['quantity'];
-      } else {
-        print(0);
-        return 0;
+  Future<bool> isAlreadyInCart(Map item) async {
+    List cart = [];
+    bool isAlreadyInCart = false;
+    await cartRef.get().then((value) {
+      cart = (value.data() as Map<String, dynamic>)['cart'];
+    });
+    cart.forEach((element) {
+      if (element['productName'] == item['productName']) {
+        quantity.value = element['quantity'];
+        isAlreadyInCart = true;
       }
     });
-    // cartRef.get().then((value) {
-    //   print(value.data());
-    //   List cart = (value.data() as Map<String, dynamic>)['cart'];
-    //   print(cart);
-    //   if (cart.contains(item)) {
-    //     return item['quantity'];
-    //   } else {
-    //     return 0;
-    //   }
-    // });
+    return isAlreadyInCart;
   }
 }
