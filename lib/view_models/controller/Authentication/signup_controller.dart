@@ -12,6 +12,7 @@ class SignUpController extends GetxController {
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   final passwordConfirmController = TextEditingController().obs;
+  final phoneController = TextEditingController().obs;
   final emailFocusNode = FocusNode().obs;
   final passwordConfirmFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
@@ -29,6 +30,7 @@ class SignUpController extends GetxController {
       await _db.collection('users').doc(value.user!.uid).set({
         'email': emailController.value.text,
         'password': passwordController.value.text,
+        'phoneNumber': phoneController.value.text,
         'uid': value.user!.uid,
       });
       loading.value = false;

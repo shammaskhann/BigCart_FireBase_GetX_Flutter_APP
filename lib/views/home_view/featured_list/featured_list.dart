@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/color/colors.dart';
-import 'package:big_cart_app/view_models/controller/Featured-Items/featureitem_controller.dart';
+import 'package:big_cart_app/view_models/controller/ListingController/Featured-Items/featureitem_controller.dart';
 import 'package:big_cart_app/widgets/ItemCard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -17,17 +17,15 @@ class FeaturedList extends StatelessWidget {
     return FutureBuilder(
         future: featuredItemController.getFeaturedItems(),
         builder: ((context, snapshot) {
-          // imageUrl = featuredItemController.getFeaturedImage() as String;
-          // print(imageUrl); //output Here: Instance of Future<String>
           if (snapshot.hasData) {
             return GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 itemCount: snapshot.data.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
-                    childAspectRatio: 0.9),
+                    childAspectRatio: Get.height / 980),
                 itemBuilder: (context, index) {
                   final currentItem = snapshot.data[index];
                   return ItemCard(item: currentItem);

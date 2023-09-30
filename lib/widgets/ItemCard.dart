@@ -1,10 +1,12 @@
-import 'package:big_cart_app/view_models/controller/Featured-Items/featureitem_controller.dart';
+import 'package:big_cart_app/view_models/controller/Cart_Contrller/cart_controller.dart';
+import 'package:big_cart_app/view_models/controller/ListingController/Featured-Items/featureitem_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../resources/Icons/common_icons.dart';
 import '../resources/color/colors.dart';
+import '../view_models/FireStoreImageServices/imageFetch.dart';
 
 class ItemCard extends StatelessWidget {
   final item;
@@ -12,12 +14,11 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FeaturedItemController featuredItemController = FeaturedItemController();
+    FireStoreImageServices fireStoreImage = FireStoreImageServices();
+    CartController cartController = CartController();
     return Container(
       // margin: const EdgeInsets.only(top: 20, bottom: 20),
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      // height: 250,
-      // width: 200,
       decoration: const BoxDecoration(
         color: AppColors.white,
       ),
@@ -26,16 +27,14 @@ class ItemCard extends StatelessWidget {
           Column(
             children: [
               FutureBuilder(
-                future:
-                    featuredItemController.getFeaturedImage(item['imagePath']),
+                future: fireStoreImage.getImage(item['imagePath']),
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
                     return Stack(
                       children: [
-                        const CircleAvatar(
-                          radius: 50,
-                          backgroundColor: AppColors.lightGreenShade,
-                        ),
+                        CircleAvatar(
+                            radius: 50,
+                            backgroundColor: colorShade(item['colorScheme'])),
                         Positioned(
                           bottom: 0,
                           left: 0,
@@ -66,15 +65,15 @@ class ItemCard extends StatelessWidget {
                       fontSize: 15,
                       fontWeight: FontWeight.w500)),
               Text(
-                item['category'],
+                item['productName'],
                 style: const TextStyle(
                     fontFamily: 'Poppins',
                     color: AppColors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w500),
               ),
-              const Text('dozen',
-                  style: TextStyle(
+              Text(item['weightPer'],
+                  style: const TextStyle(
                       fontFamily: 'Poppins',
                       color: AppColors.grey,
                       fontSize: 15,
@@ -83,23 +82,43 @@ class ItemCard extends StatelessWidget {
                 color: Color(0xFFEBEBEB),
                 thickness: 1,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.cartIcon,
-                    color: AppColors.primaryColor,
-                    height: 20,
-                    width: 20,
-                  ),
-                  const SizedBox(width: 10),
-                  const Text('Add to cart',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          color: AppColors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600)),
-                ],
+              InkWell(
+                onTap: () {
+                  CartController cartController = CartController();
+                  item['quantity'] = 1;
+                  cartController.addToCart(item);
+                },
+                child: (cartController.isAlreadyInCart(item) == 0)
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            AppIcons.cartIcon,
+                            color: AppColors.primaryColor,
+                            height: 20,
+                            width: 20,
+                          ),
+                          const SizedBox(width: 10),
+                          const Text('Add to cart',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: AppColors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(width: 10),
+                          const Text('Added to cart',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  color: AppColors.black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600)),
+                        ],
+                      ),
               ),
             ],
           ),
@@ -116,5 +135,22 @@ class ItemCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+colorShade(String colorScheme) {
+  switch (colorScheme) {
+    case 'green':
+      return AppColors.lightGreenShade;
+    case 'red':
+      return AppColors.lightRedShade;
+    case 'orange':
+      return AppColors.lightOrangeShade;
+    case 'voilet':
+      return AppColors.lightVoiletShade;
+    case 'blue':
+      return AppColors.lightBlueShade;
+    default:
+      return AppColors.lightGreenShade;
   }
 }

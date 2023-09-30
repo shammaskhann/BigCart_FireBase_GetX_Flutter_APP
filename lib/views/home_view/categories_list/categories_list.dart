@@ -19,20 +19,24 @@ class CategoriesBar extends StatelessWidget {
         'icon': AppCategoriesIcon.vegIcon,
         'backgroundColor': AppColors.lightGreenShade,
         'onTap': () {
-          Get.toNamed((RouteName.vegetableScreen));
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Vegetables');
         },
       },
       {
         'name': 'Fruits',
         'icon': AppCategoriesIcon.fruitIcon,
         'backgroundColor': AppColors.lightRedShade,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Fruits');
+        },
       },
       {
         'name': 'Drink',
         'icon': AppCategoriesIcon.drinkIcon,
         'backgroundColor': AppColors.lightOrangeShade,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Drinks');
+        },
       },
       {
         'name': 'Grocery',
@@ -44,7 +48,9 @@ class CategoriesBar extends StatelessWidget {
         'name': 'Edible Oil',
         'icon': AppCategoriesIcon.edibleOilIcon,
         'backgroundColor': AppColors.lightBlueShade,
-        'onTap': () {},
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'EdibleOil');
+        },
       },
     ];
     return Padding(

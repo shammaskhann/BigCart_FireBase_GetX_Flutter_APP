@@ -181,18 +181,13 @@ class SignupScreen extends StatelessWidget {
                                 //PassWord
                                 Obx(
                                   () => TextFormField(
-                                    controller: signupController
-                                        .passwordConfirmController.value,
+                                    controller:
+                                        signupController.phoneController.value,
                                     focusNode: signupController
                                         .passwordConfirmFocusNode.value,
                                     validator: (value) {
                                       if (value!.isEmpty) {
-                                        return 'password_empty'.tr;
-                                      }
-                                      if (value !=
-                                          signupController
-                                              .passwordController.value.text) {
-                                        return 'password_not_match'.tr;
+                                        return 'phone_empty'.tr;
                                       }
                                       return null;
                                     },
@@ -202,48 +197,30 @@ class SignupScreen extends StatelessWidget {
                                           .unfocus();
                                     },
                                     style: AppTextStyles.textfieldInputStyle,
-                                    obscureText: signupController
-                                        .isPasswordNotVisible.value,
-                                    obscuringCharacter: '•',
                                     cursorColor: AppColors.primaryColor,
                                     decoration: InputDecoration(
-                                        contentPadding: const EdgeInsets.only(
-                                          left: 25,
-                                          top: 25,
-                                          bottom: 25,
+                                      contentPadding: const EdgeInsets.only(
+                                        left: 25,
+                                        top: 25,
+                                        bottom: 25,
+                                      ),
+                                      fillColor: AppColors.white,
+                                      hintText: 'enter_number'.tr,
+                                      hintStyle: AppTextStyles.substitle,
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          borderSide: BorderSide.none),
+                                      filled: true,
+                                      prefixIcon: Container(
+                                        padding: const EdgeInsets.all(15),
+                                        child: SvgPicture.asset(
+                                          AppTextFeildIcons.phoneIcon,
+                                          // ignore: deprecated_member_use
+                                          color: AppColors.grey,
                                         ),
-                                        fillColor: AppColors.white,
-                                        hintText: 'reenter_password'.tr,
-                                        hintStyle: AppTextStyles.substitle,
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            borderSide: BorderSide.none),
-                                        filled: true,
-                                        prefixIcon: Container(
-                                          padding: const EdgeInsets.all(15),
-                                          child: SvgPicture.asset(
-                                            AppTextFeildIcons.passwordLockIcon,
-                                            // ignore: deprecated_member_use
-                                            color: AppColors.grey,
-                                          ),
-                                        ),
-                                        suffixIcon: Container(
-                                          padding: const EdgeInsets.all(15),
-                                          child: InkWell(
-                                            onTap: () {
-                                              signupController
-                                                  .isPasswordNotVisible
-                                                  .toggle();
-                                            },
-                                            child: SvgPicture.asset(
-                                              AppTextFeildIcons
-                                                  .passwordVisibleIcon,
-                                              // ignore: deprecated_member_use
-                                              color: AppColors.grey,
-                                            ),
-                                          ),
-                                        )),
+                                      ),
+                                    ),
                                   ),
                                 ),
 
