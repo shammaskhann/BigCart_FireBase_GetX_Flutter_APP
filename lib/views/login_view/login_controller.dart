@@ -19,14 +19,14 @@ class LoginController extends GetxController {
 
   void authLogin() async {
     bool response;
-    loading = true.obs;
+    loading.value = true;
     response = await auth.Login(emailController.value.text.trim(),
         passwordController.value.text.trim());
     if (response) {
       Utils.snackBar('success'.tr, 'login_success'.tr);
       Get.offAllNamed(RouteName.homeScreen);
     } else {
-      loading = false.obs;
+      loading.value = false;
     }
   }
 

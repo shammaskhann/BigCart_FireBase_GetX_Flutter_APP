@@ -18,6 +18,7 @@ class SignUpController extends GetxController {
   final passwordConfirmFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
   final Authentication _auth = Authentication();
+
   void authSignup() async {
     loading.value = true;
     bool response = await _auth.SignUp(
