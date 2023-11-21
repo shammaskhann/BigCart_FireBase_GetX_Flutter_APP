@@ -1,6 +1,7 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/view_models/AuthExceptions/auth_exception.dart';
+import 'package:big_cart_app/services/Authentication/auth_exception.dart';
+import 'package:big_cart_app/services/Authentication/Authentication.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,28 +17,24 @@ class SignUpController extends GetxController {
   final emailFocusNode = FocusNode().obs;
   final passwordConfirmFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
-  final _auth = FirebaseAuth.instance;
-  final _db = FirebaseFirestore.instance;
-
+  final Authentication _auth = Authentication();
   void authSignup() async {
     loading.value = true;
-    await _auth
-        .createUserWithEmailAndPassword(
-            email: emailController.value.text,
-            password: passwordController.value.text)
-        .then((value) async {
+    bool response = await _auth.SignUp(
+        emailController.value.text.trim(),
+        passwordController.value.text.trim(),
+        phoneController.value.text.trim());
+    if (response) {
       Utils.snackBar('Success', 'Account Created Successfully');
-      await _db.collection('users').doc(value.user!.uid).set({
-        'email': emailController.value.text,
-        'password': passwordController.value.text,
-        'phoneNumber': phoneController.value.text,
-        'uid': value.user!.uid,
-      });
       loading.value = false;
       Get.offAllNamed(RouteName.loginScreen);
-    }).catchError((error) {
-      AuthException.authExceptionToast(error.code);
+    } else {
       loading.value = false;
-    });
+      Utils.snackBar('Error', 'Something went wrong');
+    }
+  }
+
+  void navigateToLoginScreen() {
+    Get.toNamed(RouteName.loginScreen);
   }
 }

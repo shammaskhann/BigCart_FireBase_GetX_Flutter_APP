@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/Images/images.dart';
-import 'package:big_cart_app/view_models/services/splash_services.dart';
+import 'package:big_cart_app/views/splash_view/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,10 +11,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  SplashController splashController = Get.put(SplashController());
   @override
   void initState() {
     super.initState();
-    SplashServices().isLogin();
+    splashController.isLogin();
   }
 
   @override

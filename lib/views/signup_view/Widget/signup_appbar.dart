@@ -13,13 +13,8 @@ class SignupAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Image.asset(
-            AppImages.signup,
-          ),
+        Image.asset(
+          AppImages.signup,
         ),
         Positioned(
           top: 10,
@@ -28,10 +23,15 @@ class SignupAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(
-                AppTextFeildIcons.backButton,
-                // ignore: deprecated_member_use
-                color: AppColors.white,
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: SvgPicture.asset(
+                  AppTextFeildIcons.backButton,
+                  // ignore: deprecated_member_use
+                  color: AppColors.white,
+                ),
               ),
               Center(
                 child: Text(

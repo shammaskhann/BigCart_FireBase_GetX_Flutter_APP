@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../../resources/Icons/textfield_icons.dart';
-import '../../resources/Routes/route_name.dart';
 import '../../resources/TextStyle/text_styles.dart';
 import '../../resources/color/colors.dart';
 import '../../utils/utils.dart';
-import '../../view_models/controller/Authentication/signup_controller.dart';
+import 'signup_controller.dart';
 import '../../widgets/CustomButon.dart';
 import 'Widget/signup_appbar.dart';
 
@@ -23,16 +22,12 @@ class SignupScreen extends StatelessWidget {
           height: Get.height,
           width: Get.width,
           child: Stack(
-            //crossAxisAlignment: CrossAxisAlignment.start,d
             children: [
               const SignupAppBar(),
-              //Login TextFeild
               Positioned(
                 bottom: 0,
                 child: Container(
-                  //margin: const EdgeInsets.only(top: 20),
                   padding: const EdgeInsets.only(top: 20),
-                  //height: Get.height * 0.5,
                   width: Get.width,
                   decoration: const BoxDecoration(
                     color: AppColors.greyBackGround,
@@ -225,21 +220,23 @@ class SignupScreen extends StatelessWidget {
                                 ),
 
                                 //Login Button
-                                CustomButton(
-                                  title: 'Signup'.tr,
-                                  loading: signupController.loading.value,
-                                  onPressed: () {
-                                    if (form.currentState!.validate()) {
-                                      signupController.authSignup();
-                                    }
-                                  },
+                                Obx(
+                                  () => CustomButton(
+                                    title: 'Signup'.tr,
+                                    loading: signupController.loading.value,
+                                    onPressed: () {
+                                      if (form.currentState!.validate()) {
+                                        signupController.authSignup();
+                                      }
+                                    },
+                                  ),
                                 ),
                               ],
                             )),
                         Center(
                           child: TextButton(
                               onPressed: () {
-                                Get.toNamed(RouteName.loginScreen);
+                                signupController.navigateToLoginScreen();
                               },
                               child: RichText(
                                 text: const TextSpan(

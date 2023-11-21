@@ -25,7 +25,8 @@ class CartController extends GetxController {
     List cart = [];
     bool isAlreadyInCart = false;
     await cartRef.get().then((value) {
-      cart = (value.data() as Map<String, dynamic>)['cart'];
+      var data = value.data() as Map<String, dynamic>;
+      cart = data['cart'] ?? [];
     });
     cart.forEach((element) {
       if (element['productName'] == item['productName']) {

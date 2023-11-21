@@ -13,26 +13,16 @@ class LoginAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        InkWell(
-          onTap: () {
-            Get.back();
-          },
-          child: Image.asset(
-            AppImages.login,
-          ),
+        Image.asset(
+          AppImages.login,
         ),
         Positioned(
           top: 40,
           left: 15,
           right: 0,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset(
-                AppTextFeildIcons.backButton,
-                // ignore: deprecated_member_use
-                color: AppColors.white,
-              ),
               Center(
                 child: Text(
                   'welcome'.tr,

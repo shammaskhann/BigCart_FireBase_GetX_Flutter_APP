@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 
 import '../../resources/TextStyle/text_styles.dart';
-import '../../view_models/controller/searchbar_controller.dart';
+import '../../controller/searchbar_controller.dart';
 import 'categories_list/categories_list.dart';
 import 'featured_list/featured_list.dart';
 
@@ -22,6 +22,49 @@ class HomeScreen extends StatelessWidget {
     SearchBarController searchbarcontroller = Get.put(SearchBarController());
     FloatingSearchBarController controller = FloatingSearchBarController();
     return Scaffold(
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.message),
+              title: const Text('Logout'),
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+                Utils.snackBar('Success', 'Logged Out Successfully');
+                Get.offAllNamed('/login');
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle),
+              title: const Text('Profile'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
+          ],
+        ),
+      ),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: SizedBox(

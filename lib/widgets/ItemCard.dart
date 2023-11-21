@@ -1,5 +1,5 @@
-import 'package:big_cart_app/view_models/controller/Cart_Contrller/cart_controller.dart';
-import 'package:big_cart_app/view_models/controller/ListingController/Featured-Items/featureitem_controller.dart';
+import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
+import 'package:big_cart_app/controller/ListingController/Featured-Items/featureitem_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import 'package:shimmer/shimmer.dart';
 
 import '../resources/Icons/common_icons.dart';
 import '../resources/color/colors.dart';
-import '../view_models/FireStoreImageServices/imageFetch.dart';
+import '../services/FireStoreImageServices/imageFetch.dart';
 
 class ItemCard extends StatelessWidget {
   final item;

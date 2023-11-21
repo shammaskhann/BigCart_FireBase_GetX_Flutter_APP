@@ -4,16 +4,18 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/utils.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
+import '../../../controller/searchbar_controller.dart';
 import '../../../resources/Icons/textfield_icons.dart';
 import '../../../resources/color/colors.dart';
-import '../../../view_models/controller/searchbar_controller.dart';
+// import '../../../view_models/controller/searchbar_controller.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    SearchBarController searchbarcontroller = Get.put(SearchBarController());
+    final SearchBarController searchbarcontroller =
+        Get.put(SearchBarController());
     FloatingSearchBarController controller = FloatingSearchBarController();
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
