@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/color/colors.dart';
-import 'package:big_cart_app/controller/ListingController/Categoryitem_controller.dart/categoryListingController.dart';
+import 'package:big_cart_app/views/category_pages/categoryController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,8 +11,7 @@ class CategoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scrollController = ScrollController();
-    CategoryListingController categoryListingController =
-        Get.put(CategoryListingController());
+    CategoryController categoryController = Get.put(CategoryController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -42,7 +41,7 @@ class CategoryView extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
               child: FutureBuilder(
-                  future: categoryListingController.categoryListing(category),
+                  future: categoryController.getCatergoryList(category),
                   builder: ((context, snapshot) {
                     if (snapshot.hasData) {
                       return GridView.builder(
@@ -56,7 +55,7 @@ class CategoryView extends StatelessWidget {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
-                                  childAspectRatio: Get.height / 1050),
+                                  childAspectRatio: Get.height / 1010),
                           itemBuilder: (context, index) {
                             final currentItem = snapshot.data[index];
                             return ItemCard(item: currentItem);

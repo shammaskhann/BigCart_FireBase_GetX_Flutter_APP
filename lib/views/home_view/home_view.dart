@@ -1,26 +1,69 @@
+import 'dart:developer';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/views/home_view/main_banner/banner1.dart';
+import 'package:big_cart_app/views/home_view/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
-
+import '../../resources/Icons/categories_icon.dart';
+import '../../resources/Images/images.dart';
+import '../../resources/Routes/route_name.dart';
 import '../../resources/TextStyle/text_styles.dart';
 import '../../controller/searchbar_controller.dart';
-import 'categories_list/categories_list.dart';
-import 'featured_list/featured_list.dart';
+import '../../widgets/ItemCard.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    List categoriesIcon = [
+      {
+        'name': 'Vegetables',
+        'icon': AppCategoriesIcon.vegIcon,
+        'backgroundColor': AppColors.lightGreenShade,
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Vegetables');
+        },
+      },
+      {
+        'name': 'Fruits',
+        'icon': AppCategoriesIcon.fruitIcon,
+        'backgroundColor': AppColors.lightRedShade,
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Fruits');
+        },
+      },
+      {
+        'name': 'Drink',
+        'icon': AppCategoriesIcon.drinkIcon,
+        'backgroundColor': AppColors.lightOrangeShade,
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'Drinks');
+        },
+      },
+      {
+        'name': 'Grocery',
+        'icon': AppCategoriesIcon.groceryIcon,
+        'backgroundColor': AppColors.lightVoiletShade,
+        'onTap': () {},
+      },
+      {
+        'name': 'Edible Oil',
+        'icon': AppCategoriesIcon.edibleOilIcon,
+        'backgroundColor': AppColors.lightBlueShade,
+        'onTap': () {
+          Get.toNamed((RouteName.categoryScreen), arguments: 'EdibleOil');
+        },
+      },
+    ];
     SearchBarController searchbarcontroller = Get.put(SearchBarController());
     FloatingSearchBarController controller = FloatingSearchBarController();
+    HomeController homeController = Get.put(HomeController());
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -81,8 +124,93 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const HomeBanner1(),
-                    const CategoriesBar(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                      ),
+                      child: Stack(
+                        children: [
+                          Image.asset(AppImages.homeBanner),
+                          const Positioned(
+                            left: 30,
+                            bottom: 70,
+                            child: Text(
+                              '20% off on your\nfirst purchase',
+                              style: AppTextStyles.heading,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 15.0,
+                      ),
+                      child: SizedBox(
+                        height: 150,
+                        width: Get.width,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text('Categories',
+                                      style: AppTextStyles.heading),
+                                  //const Spacer(),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: const Icon(
+                                        Icons.arrow_forward_ios_rounded,
+                                        color: AppColors.grey,
+                                      ))
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 100,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: categoriesIcon.length,
+                                  itemBuilder: ((context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15.0),
+                                      child: InkWell(
+                                          onTap: categoriesIcon[index]['onTap'],
+                                          child: Column(
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 30,
+                                                backgroundColor:
+                                                    categoriesIcon[index]
+                                                        ['backgroundColor'],
+                                                child: SvgPicture.asset(
+                                                  categoriesIcon[index]['icon'],
+                                                  height: 30,
+                                                  width: 30,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 5),
+                                              Text(
+                                                  categoriesIcon[index]['name'],
+                                                  style:
+                                                      AppTextStyles.substitle),
+                                            ],
+                                          )),
+                                    );
+                                  })),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: SizedBox(
@@ -94,7 +222,6 @@ class HomeScreen extends StatelessWidget {
                           children: [
                             const Text('Featured products',
                                 style: AppTextStyles.heading),
-                            //const Spacer(),
                             IconButton(
                                 onPressed: () {},
                                 icon: const Icon(
@@ -105,7 +232,43 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(child: FeaturedList()),
+                    Expanded(
+                      child: FutureBuilder(
+                          future: homeController.getFeaturedList(),
+                          builder: ((context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              return GridView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 5),
+                                  itemCount: snapshot.data.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          crossAxisSpacing: 10,
+                                          mainAxisSpacing: 10,
+                                          childAspectRatio: Get.height / 1110),
+                                  itemBuilder: (context, index) {
+                                    Map currentItem = snapshot.data[index];
+                                    return ItemCard(item: currentItem);
+                                  });
+                            } else if (!snapshot.hasData) {
+                              return const Center(
+                                  child: Text(
+                                "No Featured Item",
+                                style: AppTextStyles.heading,
+                              ));
+                            } else if (snapshot.hasError) {
+                              return const Center(
+                                  child: Text(
+                                "Error",
+                                style: AppTextStyles.heading,
+                              ));
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          })),
+                    ),
                   ],
                 ),
               ),
@@ -129,6 +292,7 @@ class HomeScreen extends StatelessWidget {
                       progress: searchbarcontroller.isSearching.value,
                       leadingActions: [
                         SvgPicture.asset(AppTextFeildIcons.searchIcon,
+                            // ignore: deprecated_member_use
                             color: AppColors.priamryButton2),
                       ],
                       actions: [
@@ -140,17 +304,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                       onQueryChanged: (query) {
-                        // Set the query value
                         searchbarcontroller.query.value = query;
-                        // Update suggestion list
                         searchbarcontroller.suggestionList();
-                        // Set isSearching based on query
                         searchbarcontroller.isSearching.value =
                             query.isNotEmpty;
                       },
                       onSubmitted: (query) {
                         query = searchbarcontroller.query.value;
-                        print(query);
+                        log(query);
                         searchbarcontroller.isSearching.value = false;
                         controller.close();
                       },
@@ -181,11 +342,11 @@ class HomeScreen extends StatelessWidget {
                                       return ListTile(
                                         title: Text(suggestion),
                                         onTap: () {
-                                          print(suggestion);
+                                          log(suggestion);
                                           controller.query =
                                               suggestion.toString();
                                           // Dismiss the search bar
-                                          print(controller.query);
+                                          log(controller.query);
                                           searchbarcontroller
                                               .isSearching.value = false;
                                           controller.close();

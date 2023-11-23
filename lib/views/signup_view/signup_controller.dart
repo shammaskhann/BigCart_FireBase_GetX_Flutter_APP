@@ -1,15 +1,11 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/services/Authentication/auth_exception.dart';
-import 'package:big_cart_app/services/Authentication/Authentication.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:big_cart_app/services/Authentication/AuthenticationService.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpController extends GetxController {
   final RxBool isPasswordNotVisible = true.obs;
-  RxBool loading = false.obs;
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   final passwordConfirmController = TextEditingController().obs;
@@ -18,6 +14,7 @@ class SignUpController extends GetxController {
   final passwordConfirmFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
   final Authentication _auth = Authentication();
+  RxBool loading = false.obs;
 
   void authSignup() async {
     loading.value = true;

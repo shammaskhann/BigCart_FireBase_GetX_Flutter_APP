@@ -1,11 +1,9 @@
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/services/Authentication/auth_exception.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../resources/Routes/route_name.dart';
-import '../../services/Authentication/Authentication.dart';
+import '../../services/Authentication/AuthenticationService.dart';
 
 class LoginController extends GetxController {
   RxBool loading = false.obs;

@@ -1,13 +1,12 @@
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
-import 'package:big_cart_app/controller/ListingController/Featured-Items/featureitem_controller.dart';
+import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-
 import '../resources/Icons/common_icons.dart';
 import '../resources/color/colors.dart';
-import '../services/FireStoreImageServices/imageFetch.dart';
+import 'dart:developer';
 
 class ItemCard extends StatelessWidget {
   final item;
@@ -15,10 +14,9 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FireStoreImageServices fireStoreImage = FireStoreImageServices();
+    FirebaseServices firebaseServices = FirebaseServices();
     CartController cartController = CartController();
     return Container(
-      // margin: const EdgeInsets.only(top: 20, bottom: 20),
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       decoration: const BoxDecoration(
         color: AppColors.white,
@@ -28,7 +26,7 @@ class ItemCard extends StatelessWidget {
           Column(
             children: [
               FutureBuilder(
-                future: fireStoreImage.getImage(item['imagePath']),
+                future: firebaseServices.getImage(item['imagePath']),
                 builder: ((context, snapshot) {
                   if (snapshot.hasData) {
                     return Stack(
@@ -86,6 +84,17 @@ class ItemCard extends StatelessWidget {
               FutureBuilder(
                   future: cartController.isAlreadyInCart(item),
                   builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Container(
+                        height: 20,
+                        child: const Center(
+                          child: LinearProgressIndicator(
+                            color: AppColors.primaryColor,
+                            backgroundColor: AppColors.white,
+                          ),
+                        ),
+                      );
+                    }
                     if (snapshot.hasData) {
                       return (snapshot.data == false)
                           ? InkWell(
@@ -115,44 +124,60 @@ class ItemCard extends StatelessWidget {
                               ),
                             )
                           : Obx(
-                              () => Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      if (cartController.quantity.value > 1) {
-                                        cartController.quantity.value--;
+                              () => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        log('Quantity: ${cartController.quantity.value}');
+                                        if (cartController.quantity.value > 1) {
+                                          cartController.quantity.value--;
+                                          item['quantity'] =
+                                              cartController.quantity.value;
+                                          cartController.removeFromCart(item);
+                                        }
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(5),
+                                        child: Center(
+                                          child: SvgPicture.asset(
+                                            AppIcons.quantityRemoveIcon,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                        cartController.quantity.value
+                                            .toString(),
+                                        style: const TextStyle(
+                                            fontFamily: 'Poppins',
+                                            color: AppColors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600)),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        log('Quantity: ${cartController.quantity.value}');
+                                        cartController.quantity.value++;
                                         item['quantity'] =
                                             cartController.quantity.value;
-                                        cartController.removeFromCart(item);
-                                      }
-                                    },
-                                    child: SvgPicture.asset(
-                                      AppIcons.quantityRemoveIcon,
+                                        cartController.addToCart(item);
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(5),
+                                        child: Center(
+                                          child: SvgPicture.asset(
+                                            AppIcons.quantityAddIcon,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  const Spacer(),
-                                  const SizedBox(width: 10),
-                                  Text(cartController.quantity.value.toString(),
-                                      style: const TextStyle(
-                                          fontFamily: 'Poppins',
-                                          color: AppColors.black,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600)),
-                                  const SizedBox(width: 10),
-                                  const Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      cartController.quantity.value++;
-                                      item['quantity'] =
-                                          cartController.quantity.value;
-                                      cartController.addToCart(item);
-                                    },
-                                    child: SvgPicture.asset(
-                                      AppIcons.quantityAddIcon,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                     }
