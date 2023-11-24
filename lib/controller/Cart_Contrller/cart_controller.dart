@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class CartController extends GetxController {
   RxInt quantity = 0.obs;
+  RxBool atc = false.obs;
   final user = FirebaseAuth.instance.currentUser;
   final DocumentReference cartRef = FirebaseFirestore.instance
       .collection('users')
@@ -24,6 +25,7 @@ class CartController extends GetxController {
   Future<bool> isAlreadyInCart(Map item) async {
     List cart = [];
     bool isAlreadyInCart = false;
+
     await cartRef.get().then((value) {
       var data = value.data() as Map<String, dynamic>;
       cart = data['cart'] ?? [];
@@ -34,6 +36,7 @@ class CartController extends GetxController {
       String itemProductName = item['productName'];
       if (productName.toLowerCase() == itemProductName.toLowerCase()) {
         quantity.value = cart[i]['quantity'];
+        atc.value = true;
         isAlreadyInCart = true;
         break;
       }

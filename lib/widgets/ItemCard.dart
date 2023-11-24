@@ -33,6 +33,19 @@ class ItemCard extends StatelessWidget {
                 FutureBuilder(
                   future: firebaseServices.getImage(item['imagePath']),
                   builder: ((context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Shimmer(
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.priamryButton1,
+                            AppColors.lightGreenShade
+                          ],
+                        ),
+                        child: CircleAvatar(
+                          radius: 50,
+                        ),
+                      );
+                    }
                     if (snapshot.hasData) {
                       return Stack(
                         children: [
@@ -101,33 +114,67 @@ class ItemCard extends StatelessWidget {
                         );
                       }
                       if (snapshot.hasData) {
-                        return (snapshot.data == false)
-                            ? InkWell(
-                                onTap: () {
-                                  CartController cartController =
-                                      CartController();
-                                  item['quantity'] = 1;
-                                  cartController.addToCart(item);
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      AppIcons.cartIcon,
-                                      color: AppColors.primaryColor,
-                                      height: 20,
-                                      width: 20,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    const Text('Add to cart',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            color: AppColors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600)),
-                                  ],
-                                ),
-                              )
+                        return Obx(() => (cartController.atc.value == false)
+                            ? Obx(() => InkWell(
+                                  onTap: () {
+                                    item['quantity'] = 1;
+                                    cartController.addToCart(item);
+                                    cartController.quantity.value = 1;
+                                    cartController.atc.value = true;
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        AppIcons.cartIcon,
+                                        color: AppColors.primaryColor,
+                                        height: 20,
+                                        width: 20,
+                                      ),
+                                      const SizedBox(width: 10),
+                                      const Text(
+                                          'Add to cart ', // Use cartController.quantity.value here
+                                          style: TextStyle(
+                                              fontFamily: 'Poppins',
+                                              color: AppColors.black,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600)),
+                                      //
+                                      Text(
+                                          '${cartController.quantity.value}', // Use cartController.quantity.value here
+                                          style: const TextStyle(
+                                              fontFamily: 'Poppins',
+                                              color: AppColors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600)),
+                                    ],
+                                  ),
+                                ))
+                            // ? Obx(() => InkWell(
+                            //       onTap: () {
+                            //         item['quantity'] = 1;
+                            //         cartController.addToCart(item);
+                            //         cartController.quantity.value = 1;
+                            //       },
+                            //       child: Row(
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           SvgPicture.asset(
+                            //             AppIcons.cartIcon,
+                            //             color: AppColors.primaryColor,
+                            //             height: 20,
+                            //             width: 20,
+                            //           ),
+                            //           const SizedBox(width: 10),
+                            //           const Text('Add to cart',
+                            //               style: TextStyle(
+                            //                   fontFamily: 'Poppins',
+                            //                   color: AppColors.black,
+                            //                   fontSize: 18,
+                            //                   fontWeight: FontWeight.w600)),
+                            //         ],
+                            //       ),
+                            //     ))
                             : Obx(
                                 () => Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -185,7 +232,7 @@ class ItemCard extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                              );
+                              ));
                       }
                       return Container(
                         height: 30,

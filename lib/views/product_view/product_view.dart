@@ -81,7 +81,7 @@ class ProductView extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             Text(item['productName'],
                 style: const TextStyle(
@@ -90,14 +90,14 @@ class ProductView extends StatelessWidget {
                     fontSize: 28,
                     fontWeight: FontWeight.w600)),
             const SizedBox(
-              height: 20,
+              height: 05,
             ),
-            // Text(item['description'],
-            //     style: const TextStyle(
-            //         fontFamily: 'Poppins',
-            //         color: AppColors.black,
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.w400)),
+            Text(item['weightPer'],
+                style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    color: AppColors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400)),
           ]),
     );
   }
