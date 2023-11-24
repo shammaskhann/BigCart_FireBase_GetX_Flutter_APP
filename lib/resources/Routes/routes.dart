@@ -5,6 +5,7 @@ import 'package:big_cart_app/views/signup_view/signup_view.dart';
 import 'package:get/get.dart';
 
 import '../../views/home_view/home_view.dart';
+import '../../views/product_view/product_view.dart';
 import '../../views/splash_view/splash_view.dart';
 
 class AppRoutes {
@@ -35,6 +36,13 @@ class AppRoutes {
           arguments: Get.arguments,
           page: () => CategoryView(
                 category: Get.arguments,
+              ),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.productScreen,
+          page: () => ProductView(
+                item: Get.arguments,
               ),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),

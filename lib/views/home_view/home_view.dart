@@ -21,13 +21,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List categoriesIcon = [
+    SearchBarController searchbarcontroller = SearchBarController();
+    FloatingSearchBarController controller = FloatingSearchBarController();
+    HomeController homeController = HomeController();
+    final List categoriesIcon = [
       {
         'name': 'Vegetables',
         'icon': AppCategoriesIcon.vegIcon,
         'backgroundColor': AppColors.lightGreenShade,
         'onTap': () {
-          Get.toNamed((RouteName.categoryScreen), arguments: 'Vegetables');
+          homeController.navToCategoryScreen('Vegetables');
         },
       },
       {
@@ -35,35 +38,34 @@ class HomeScreen extends StatelessWidget {
         'icon': AppCategoriesIcon.fruitIcon,
         'backgroundColor': AppColors.lightRedShade,
         'onTap': () {
-          Get.toNamed((RouteName.categoryScreen), arguments: 'Fruits');
+          homeController.navToCategoryScreen('Fruits');
         },
       },
       {
-        'name': 'Drink',
+        'name': 'Drinks',
         'icon': AppCategoriesIcon.drinkIcon,
         'backgroundColor': AppColors.lightOrangeShade,
         'onTap': () {
-          Get.toNamed((RouteName.categoryScreen), arguments: 'Drinks');
+          homeController.navToCategoryScreen('Drinks');
         },
       },
       {
         'name': 'Grocery',
         'icon': AppCategoriesIcon.groceryIcon,
         'backgroundColor': AppColors.lightVoiletShade,
-        'onTap': () {},
+        'onTap': () {
+          homeController.navToCategoryScreen('Grocery');
+        },
       },
       {
         'name': 'Edible Oil',
         'icon': AppCategoriesIcon.edibleOilIcon,
         'backgroundColor': AppColors.lightBlueShade,
         'onTap': () {
-          Get.toNamed((RouteName.categoryScreen), arguments: 'EdibleOil');
+          homeController.navToCategoryScreen('EdibleOil');
         },
       },
     ];
-    SearchBarController searchbarcontroller = Get.put(SearchBarController());
-    FloatingSearchBarController controller = FloatingSearchBarController();
-    HomeController homeController = Get.put(HomeController());
     return Scaffold(
       drawer: Drawer(
         child: ListView(

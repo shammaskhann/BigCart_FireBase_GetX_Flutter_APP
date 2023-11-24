@@ -28,12 +28,22 @@ class CartController extends GetxController {
       var data = value.data() as Map<String, dynamic>;
       cart = data['cart'] ?? [];
     });
-    cart.forEach((element) {
-      if (element['productName'] == item['productName']) {
-        quantity.value = element['quantity'];
+
+    for (int i = 0; i < cart.length; i++) {
+      String productName = cart[i]['productName'];
+      String itemProductName = item['productName'];
+      if (productName.toLowerCase() == itemProductName.toLowerCase()) {
+        quantity.value = cart[i]['quantity'];
         isAlreadyInCart = true;
+        break;
       }
-    });
+    }
+    // cart.forEach((element) {
+    //   if (element['productName'] == item['productName']) {
+    //     quantity.value = element['quantity'];
+    //     isAlreadyInCart = true;
+    //   }
+    // });
     return isAlreadyInCart;
   }
 }
