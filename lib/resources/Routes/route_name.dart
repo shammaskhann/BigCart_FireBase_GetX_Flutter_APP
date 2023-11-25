@@ -6,4 +6,5 @@ class RouteName {
   static const String categoryScreen = '/category_screen';
   static const String cartScreen = '/cart_screen';
   static const String productScreen = '/product_screen';
+  static const String reviewScreen = '/review_screen';
 }

@@ -15,6 +15,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isAlreadyInCart = false;
     FirebaseServices firebaseServices = FirebaseServices();
     CartController cartController = CartController();
     return InkWell(
@@ -114,6 +115,7 @@ class ItemCard extends StatelessWidget {
                         );
                       }
                       if (snapshot.hasData) {
+                        isAlreadyInCart = snapshot.data as bool;
                         return Obx(() => (cartController.atc.value == false)
                             ? Obx(() => InkWell(
                                   onTap: () {
@@ -150,31 +152,6 @@ class ItemCard extends StatelessWidget {
                                     ],
                                   ),
                                 ))
-                            // ? Obx(() => InkWell(
-                            //       onTap: () {
-                            //         item['quantity'] = 1;
-                            //         cartController.addToCart(item);
-                            //         cartController.quantity.value = 1;
-                            //       },
-                            //       child: Row(
-                            //         mainAxisAlignment: MainAxisAlignment.center,
-                            //         children: [
-                            //           SvgPicture.asset(
-                            //             AppIcons.cartIcon,
-                            //             color: AppColors.primaryColor,
-                            //             height: 20,
-                            //             width: 20,
-                            //           ),
-                            //           const SizedBox(width: 10),
-                            //           const Text('Add to cart',
-                            //               style: TextStyle(
-                            //                   fontFamily: 'Poppins',
-                            //                   color: AppColors.black,
-                            //                   fontSize: 18,
-                            //                   fontWeight: FontWeight.w600)),
-                            //         ],
-                            //       ),
-                            //     ))
                             : Obx(
                                 () => Padding(
                                   padding: const EdgeInsets.symmetric(

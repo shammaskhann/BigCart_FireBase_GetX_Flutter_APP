@@ -3,14 +3,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
-  RxInt quantity = 0.obs;
+  RxInt quantity = 1.obs;
   RxBool atc = false.obs;
   final user = FirebaseAuth.instance.currentUser;
   final DocumentReference cartRef = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser?.uid);
 
-  addToCart(Map item) {
+  addToCart(Map<String, dynamic> item) {
+    item['quantity'] = quantity.value;
     cartRef.update({
       'cart': FieldValue.arrayUnion([item])
     });
@@ -41,12 +42,6 @@ class CartController extends GetxController {
         break;
       }
     }
-    // cart.forEach((element) {
-    //   if (element['productName'] == item['productName']) {
-    //     quantity.value = element['quantity'];
-    //     isAlreadyInCart = true;
-    //   }
-    // });
     return isAlreadyInCart;
   }
 }

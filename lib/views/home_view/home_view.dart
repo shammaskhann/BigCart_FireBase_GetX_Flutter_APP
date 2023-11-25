@@ -4,6 +4,7 @@ import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/views/home_view/home_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

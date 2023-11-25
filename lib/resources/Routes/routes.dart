@@ -1,6 +1,7 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
-import 'package:big_cart_app/views/category_pages/category_view.dart';
+import 'package:big_cart_app/views/category_view/category_view.dart';
 import 'package:big_cart_app/views/login_view/login_view.dart';
+import 'package:big_cart_app/views/review_view/review_view.dart';
 import 'package:big_cart_app/views/signup_view/signup_view.dart';
 import 'package:get/get.dart';
 
@@ -43,6 +44,13 @@ class AppRoutes {
           name: RouteName.productScreen,
           page: () => ProductView(
                 item: Get.arguments,
+              ),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.reviewScreen,
+          page: () => ReviewView(
+                review: Get.arguments,
               ),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
