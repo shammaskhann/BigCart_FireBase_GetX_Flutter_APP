@@ -135,15 +135,14 @@ class ItemCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 10),
                                       const Text(
-                                          'Add to cart ', // Use cartController.quantity.value here
+                                          'Add to cart ',
                                           style: TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.black,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w600)),
-                                      //
                                       Text(
-                                          '${cartController.quantity.value}', // Use cartController.quantity.value here
+                                          '${cartController.quantity.value}',
                                           style: const TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.white,

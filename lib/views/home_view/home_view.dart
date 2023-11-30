@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _selectedLanguage = 'English';
     SearchBarController searchbarcontroller = SearchBarController();
     FloatingSearchBarController controller = FloatingSearchBarController();
     HomeController homeController = HomeController();
@@ -76,7 +77,7 @@ class HomeScreen extends StatelessWidget {
                 color: AppColors.primaryColor,
               ),
               child: Text(
-                'Drawer Header',
+                'Profile Name Here',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -92,13 +93,24 @@ class HomeScreen extends StatelessWidget {
                 Get.offAllNamed('/login');
               },
             ),
-            ListTile(
-              leading: const Icon(Icons.account_circle),
-              title: const Text('Profile'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+            Obx(
+              () => ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text('Change Language'),
+                trailing: DropdownButton<String>(
+                  value: _selectedLanguage,
+                  items: <String>['English', 'Urdu']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    homeController.selectedLanguage.value = newValue!;
+                  },
+                ),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.settings),

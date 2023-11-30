@@ -10,7 +10,7 @@ import '../../resources/color/colors.dart';
 class HomeController extends GetxController {
   FirebaseServices firebaseServices = FirebaseServices();
   RxBool isUpdated = false.obs;
-
+  RxString selectedLanguage = 'English'.obs;
   final List featuredList = [];
 
   getFeaturedList() async {
