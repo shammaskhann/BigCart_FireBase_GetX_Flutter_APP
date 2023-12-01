@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
 import 'package:get/get.dart';
@@ -34,5 +35,14 @@ class HomeController extends GetxController {
 
   navToCategoryScreen(String category) {
     Get.toNamed((RouteName.categoryScreen), arguments: category);
+  }
+
+  void changeLanguage(String newLanguage) {
+    selectedLanguage.value = newLanguage;
+    if (newLanguage == 'English') {
+      Get.updateLocale(const Locale('en', 'US'));
+    } else if (newLanguage == 'Urdu') {
+      Get.updateLocale(const Locale('ur', 'PK'));
+    }
   }
 }

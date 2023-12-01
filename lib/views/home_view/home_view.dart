@@ -22,13 +22,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _selectedLanguage = 'English';
     SearchBarController searchbarcontroller = SearchBarController();
     FloatingSearchBarController controller = FloatingSearchBarController();
-    HomeController homeController = HomeController();
+    HomeController homeController = Get.put(HomeController());
     final List categoriesIcon = [
       {
-        'name': 'Vegetables',
+        'name': 'vegetables'.tr,
         'icon': AppCategoriesIcon.vegIcon,
         'backgroundColor': AppColors.lightGreenShade,
         'onTap': () {
@@ -36,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         },
       },
       {
-        'name': 'Fruits',
+        'name': 'fruits'.tr,
         'icon': AppCategoriesIcon.fruitIcon,
         'backgroundColor': AppColors.lightRedShade,
         'onTap': () {
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
         },
       },
       {
-        'name': 'Drinks',
+        'name': 'drink'.tr,
         'icon': AppCategoriesIcon.drinkIcon,
         'backgroundColor': AppColors.lightOrangeShade,
         'onTap': () {
@@ -52,7 +51,7 @@ class HomeScreen extends StatelessWidget {
         },
       },
       {
-        'name': 'Grocery',
+        'name': 'grocery'.tr,
         'icon': AppCategoriesIcon.groceryIcon,
         'backgroundColor': AppColors.lightVoiletShade,
         'onTap': () {
@@ -60,7 +59,7 @@ class HomeScreen extends StatelessWidget {
         },
       },
       {
-        'name': 'Edible Oil',
+        'name': 'edible Oil'.tr,
         'icon': AppCategoriesIcon.edibleOilIcon,
         'backgroundColor': AppColors.lightBlueShade,
         'onTap': () {
@@ -98,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                 leading: const Icon(Icons.language),
                 title: const Text('Change Language'),
                 trailing: DropdownButton<String>(
-                  value: _selectedLanguage,
+                  value: homeController.selectedLanguage.value,
                   items: <String>['English', 'Urdu']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -107,7 +106,8 @@ class HomeScreen extends StatelessWidget {
                     );
                   }).toList(),
                   onChanged: (String? newValue) {
-                    homeController.selectedLanguage.value = newValue!;
+                    log(newValue.toString());
+                    homeController.changeLanguage(newValue!);
                   },
                 ),
               ),
@@ -115,10 +115,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
-              },
+              onTap: () {},
             ),
           ],
         ),
@@ -146,11 +143,11 @@ class HomeScreen extends StatelessWidget {
                       child: Stack(
                         children: [
                           Image.asset(AppImages.homeBanner),
-                          const Positioned(
+                          Positioned(
                             left: 30,
                             bottom: 70,
                             child: Text(
-                              '20% off on your\nfirst purchase',
+                              '20% off on your\nfirst purchase'.tr,
                               style: AppTextStyles.heading,
                             ),
                           )
@@ -176,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  const Text('Categories',
+                                  Text('categories'.tr,
                                       style: AppTextStyles.heading),
                                   //const Spacer(),
                                   IconButton(
@@ -235,7 +232,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text('Featured products',
+                            Text('Featured products'.tr,
                                 style: AppTextStyles.heading),
                             IconButton(
                                 onPressed: () {},
@@ -254,13 +251,13 @@ class HomeScreen extends StatelessWidget {
                             if (snapshot.hasData) {
                               return GridView.builder(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 5),
+                                      horizontal: 5, vertical: 15),
                                   itemCount: snapshot.data.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           crossAxisSpacing: 10,
-                                          mainAxisSpacing: 10,
+                                          mainAxisSpacing: 15,
                                           childAspectRatio: Get.height / 1110),
                                   itemBuilder: (context, index) {
                                     Map currentItem = snapshot.data[index];
@@ -331,7 +328,7 @@ class HomeScreen extends StatelessWidget {
                         controller.close();
                       },
                       clearQueryOnClose: true,
-                      hint: 'Search...',
+                      hint: 'search_hint_text'.tr,
                       hintStyle: const TextStyle(
                           fontFamily: 'Poppins',
                           color: AppColors.grey,
@@ -377,18 +374,18 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       )),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 15.0, right: 5),
-        child: FloatingActionButton(
-            onPressed: () {
-              FirebaseAuth.instance.signOut();
-              Utils.snackBar('Success', 'Logged Out Successfully');
-              Get.offAllNamed('/login');
-            },
-            backgroundColor: AppColors.primaryColor,
-            child: SvgPicture.asset(AppIcons.cartIcon)),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: 15.0, right: 5),
+      //   child: FloatingActionButton(
+      //       onPressed: () {
+      //         FirebaseAuth.instance.signOut();
+      //         Utils.snackBar('Success', 'Logged Out Successfully');
+      //         Get.offAllNamed('/login');
+      //       },
+      //       backgroundColor: AppColors.primaryColor,
+      //       child: SvgPicture.asset(AppIcons.cartIcon)),
+      // ),
     );
   }
 }

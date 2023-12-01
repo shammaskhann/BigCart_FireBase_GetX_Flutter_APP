@@ -1,4 +1,4 @@
-import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
+import '../controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
 import 'package:flutter/material.dart';
@@ -18,15 +18,20 @@ class ItemCard extends StatelessWidget {
     bool isAlreadyInCart = false;
     FirebaseServices firebaseServices = FirebaseServices();
     CartController cartController = CartController();
+    String productName = item['productName'];
     return InkWell(
       onTap: () {
         Get.toNamed(RouteName.productScreen, arguments: item);
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 10, bottom: 10),
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-        ),
+        padding: const EdgeInsets.only(top: 10, bottom: 5),
+        decoration: const BoxDecoration(color: AppColors.white, boxShadow: [
+          BoxShadow(
+            color: AppColors.grey,
+            blurRadius: 1,
+            offset: Offset(0, 1),
+          )
+        ]),
         child: Stack(
           children: [
             Column(
@@ -83,7 +88,7 @@ class ItemCard extends StatelessWidget {
                         fontSize: 15,
                         fontWeight: FontWeight.w500)),
                 Text(
-                  item['productName'],
+                  productName.tr,
                   style: const TextStyle(
                       fontFamily: 'Poppins',
                       color: AppColors.black,
@@ -134,15 +139,13 @@ class ItemCard extends StatelessWidget {
                                         width: 20,
                                       ),
                                       const SizedBox(width: 10),
-                                      const Text(
-                                          'Add to cart ',
-                                          style: TextStyle(
+                                      Text('add_to_cart'.tr,
+                                          style: const TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.black,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w600)),
-                                      Text(
-                                          '${cartController.quantity.value}',
+                                      Text('${cartController.quantity.value}',
                                           style: const TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.white,

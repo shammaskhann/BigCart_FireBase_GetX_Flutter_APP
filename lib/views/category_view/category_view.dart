@@ -25,7 +25,7 @@ class CategoryView extends StatelessWidget {
               color: AppColors.black,
             )),
         centerTitle: true,
-        title: Text(category,
+        title: Text(category.tr,
             style: const TextStyle(
                 fontFamily: 'Poppins',
                 color: AppColors.black,
@@ -55,7 +55,7 @@ class CategoryView extends StatelessWidget {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
-                                  childAspectRatio: Get.height / 1010),
+                                  childAspectRatio: Get.height / 1160),
                           itemBuilder: (context, index) {
                             final currentItem = snapshot.data[index];
                             return ItemCard(item: currentItem);

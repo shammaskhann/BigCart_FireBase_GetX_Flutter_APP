@@ -5,6 +5,8 @@ class RouteName {
   static const String homeScreen = '/home_screen';
   static const String categoryScreen = '/category_screen';
   static const String cartScreen = '/cart_screen';
+  static const String profileScreen = '/profile_screen';
+  static const String favouriteScreen = '/favourite_screen';
   static const String productScreen = '/product_screen';
   static const String reviewScreen = '/review_screen';
 }

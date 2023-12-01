@@ -1,6 +1,9 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
+import 'package:big_cart_app/views/cart_view/cart_view.dart';
 import 'package:big_cart_app/views/category_view/category_view.dart';
+import 'package:big_cart_app/views/favourite_view/favourite_view.dart';
 import 'package:big_cart_app/views/login_view/login_view.dart';
+import 'package:big_cart_app/views/profile_view/profile_view.dart';
 import 'package:big_cart_app/views/review_view/review_view.dart';
 import 'package:big_cart_app/views/signup_view/signup_view.dart';
 import 'package:get/get.dart';
@@ -54,6 +57,24 @@ class AppRoutes {
               ),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+        name: RouteName.favouriteScreen,
+        page: () => const FavouriteView(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: RouteName.profileScreen,
+        page: () => const ProfileView(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: RouteName.cartScreen,
+        page: () => const CartView(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
     ];
   }
 }
