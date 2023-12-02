@@ -142,10 +142,13 @@ class HomeScreen extends StatelessWidget {
                       ),
                       child: Stack(
                         children: [
-                          Image.asset(AppImages.homeBanner),
+                          Image.asset(AppImages.homeBanner,
+                              height: Get.height * 0.3,
+                              width: Get.width,
+                              fit: BoxFit.fill),
                           Positioned(
                             left: 30,
-                            bottom: 70,
+                            bottom: 60,
                             child: Text(
                               '20% off on your\nfirst purchase'.tr,
                               style: AppTextStyles.heading,
@@ -251,17 +254,20 @@ class HomeScreen extends StatelessWidget {
                             if (snapshot.hasData) {
                               return GridView.builder(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 5, vertical: 15),
+                                      horizontal: 10, vertical: 15),
                                   itemCount: snapshot.data.length,
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
                                           crossAxisSpacing: 10,
                                           mainAxisSpacing: 15,
-                                          childAspectRatio: Get.height / 1110),
+                                          childAspectRatio: Get.height / 910),
                                   itemBuilder: (context, index) {
                                     Map currentItem = snapshot.data[index];
-                                    return ItemCard(item: currentItem);
+                                    return ItemCard(
+                                      item: currentItem,
+                                      isFeatured: true,
+                                    );
                                   });
                             } else if (!snapshot.hasData) {
                               return const Center(

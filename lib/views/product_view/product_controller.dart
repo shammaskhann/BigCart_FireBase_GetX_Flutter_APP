@@ -18,6 +18,8 @@ class ProductController extends GetxController {
     //set busy true while fetching data from server
     isAlreadyInCart(item);
     log('ProductController onInit');
+    log(isAlreadyInCart(item).toString());
+    log(atc.value.toString());
   }
 
   double ratingAvgCalculate(Map item) {
@@ -32,8 +34,8 @@ class ProductController extends GetxController {
     return ratingAvg;
   }
 
-  void navToReviewScreen(Map item) {
-    Get.toNamed(RouteName.reviewScreen, arguments: item);
+  void navToReviewScreen(List reviews) {
+    Get.toNamed(RouteName.reviewScreen, arguments: reviews);
   }
 
   Future<bool> isAlreadyInCart(Map item) async {

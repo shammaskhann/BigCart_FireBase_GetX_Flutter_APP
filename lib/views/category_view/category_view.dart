@@ -55,10 +55,13 @@ class CategoryView extends StatelessWidget {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
-                                  childAspectRatio: Get.height / 1160),
+                                  childAspectRatio: Get.height / 980),
                           itemBuilder: (context, index) {
                             final currentItem = snapshot.data[index];
-                            return ItemCard(item: currentItem);
+                            return ItemCard(
+                              item: currentItem,
+                              isFeatured: false,
+                            );
                           });
                     }
                     return const Center(

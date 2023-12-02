@@ -1,12 +1,4 @@
 import 'package:big_cart_app/resources/languages/languages.dart';
-import 'package:big_cart_app/views/home_view/home_controller.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'resources/Routes/routes.dart';
-
-import 'package:big_cart_app/resources/languages/languages.dart';
-import 'package:big_cart_app/views/home_view/home_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

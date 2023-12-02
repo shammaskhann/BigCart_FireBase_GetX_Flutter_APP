@@ -11,7 +11,8 @@ import 'dart:developer';
 
 class ItemCard extends StatelessWidget {
   final item;
-  const ItemCard({required this.item, super.key});
+  bool? isFeatured = false;
+  ItemCard({required this.item, this.isFeatured, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class ItemCard extends StatelessWidget {
         Get.toNamed(RouteName.productScreen, arguments: item);
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 10, bottom: 5),
+        padding: const EdgeInsets.only(bottom: 5),
         decoration: const BoxDecoration(color: AppColors.white, boxShadow: [
           BoxShadow(
             color: AppColors.grey,
@@ -36,50 +37,54 @@ class ItemCard extends StatelessWidget {
           children: [
             Column(
               children: [
-                FutureBuilder(
-                  future: firebaseServices.getImage(item['imagePath']),
-                  builder: ((context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: FutureBuilder(
+                    future: firebaseServices.getImage(item['imagePath']),
+                    builder: ((context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Shimmer(
+                          gradient: LinearGradient(
+                            colors: [
+                              AppColors.priamryButton1,
+                              AppColors.lightGreenShade
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            radius: 50,
+                          ),
+                        );
+                      }
+                      if (snapshot.hasData) {
+                        return Stack(
+                          children: [
+                            CircleAvatar(
+                                radius: 50,
+                                backgroundColor:
+                                    colorShade(item['colorScheme'])),
+                            Positioned(
+                              bottom: 0,
+                              left: 0,
+                              right: 0,
+                              child: Image.network(
+                                snapshot.data as String,
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                          ],
+                        );
+                      }
                       return const Shimmer(
                         gradient: LinearGradient(
-                          colors: [
-                            AppColors.priamryButton1,
-                            AppColors.lightGreenShade
-                          ],
+                          colors: [Colors.grey, Colors.white],
                         ),
                         child: CircleAvatar(
                           radius: 50,
                         ),
                       );
-                    }
-                    if (snapshot.hasData) {
-                      return Stack(
-                        children: [
-                          CircleAvatar(
-                              radius: 50,
-                              backgroundColor: colorShade(item['colorScheme'])),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Image.network(
-                              snapshot.data as String,
-                              height: 80,
-                              width: 80,
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                    return const Shimmer(
-                      gradient: LinearGradient(
-                        colors: [Colors.grey, Colors.white],
-                      ),
-                      child: CircleAvatar(
-                        radius: 50,
-                      ),
-                    );
-                  }),
+                    }),
+                  ),
                 ),
                 Text('\$${item['price']}',
                     style: const TextStyle(
@@ -223,7 +228,7 @@ class ItemCard extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 0,
+              top: 5,
               right: 5,
               child: SvgPicture.asset(
                 AppIcons.heartIcon,
@@ -231,7 +236,34 @@ class ItemCard extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
-            )
+            ),
+            (isFeatured!)
+                ? Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 2),
+                          decoration: const BoxDecoration(
+                            color: AppColors.lightOrangeShade,
+                          ),
+                          child: Text(
+                            'Featured'.tr,
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                color: Colors.orange,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

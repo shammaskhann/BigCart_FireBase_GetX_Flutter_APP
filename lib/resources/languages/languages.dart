@@ -48,6 +48,8 @@ class Languages extends Translations {
           'Avacodo': 'Avacodo',
           'Coconut Oil': 'Coconut Oil',
           'Pepsi': 'Pepsi',
+          'Reviews': 'Reviews',
+          'No Reviews': 'No Reviews',
         },
         'ur_PK': {
           'name': 'نام',
@@ -95,6 +97,8 @@ class Languages extends Translations {
           'Avacodo': 'ایوکاڈو',
           'Coconut Oil': 'ناریل کا تیل',
           'Pepsi': 'پیپسی',
+          'Reviews': 'جائزے',
+          'No Reviews': 'کوئی جائزہ نہیں',
         }
       };
 }

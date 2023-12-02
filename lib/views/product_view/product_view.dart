@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
+import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/views/product_view/product_controller.dart';
 import 'package:big_cart_app/widgets/CustomButon.dart';
 import 'package:flutter/material.dart';
@@ -105,6 +108,9 @@ class ProductView extends StatelessWidget {
                     color: AppColors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w400)),
+            const SizedBox(
+              height: 05,
+            ),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -170,7 +176,10 @@ class ProductView extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              productController.navToReviewScreen(item);
+                              log(item['reviews'].toString());
+                              log(item['reviews'].length.toString());
+                              productController
+                                  .navToReviewScreen(item['reviews']);
                             },
                             child: Text("(${item['reviews'].length} reviews)",
                                 style: const TextStyle(
@@ -265,23 +274,38 @@ class ProductView extends StatelessWidget {
                         height: 10,
                       ),
                       // For Add to Cart Button
-                      Obx(
-                        () => CustomButton(
-                          loading: false,
-                          title: (cartController.atc.value)
-                              ? 'Already in Cart'
-                              : 'Add to Cart',
-                          onPressed: () async {
-                            if (cartController.atc.value) {
-                              cartController.removeFromCart(item);
-                              Get.snackbar('Cart', 'Item removed from cart');
-                            } else {
-                              cartController.addToCart(item);
-                              Get.snackbar('Cart', 'Item added to cart');
+                      FutureBuilder(
+                          future: productController.isAlreadyInCart(item),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return CustomButton(
+                                  title: 'Loading',
+                                  loading: true,
+                                  onPressed: () {
+                                    Utils.toastMessage('Connection Error');
+                                  });
                             }
-                          },
-                        ),
-                      ),
+                            if (snapshot.hasData) {
+                              return CustomButton(
+                                loading: false,
+                                title: productController.atc.value
+                                    ? 'Item Already in Cart'
+                                    : 'Add to Cart',
+                                onPressed: () {
+                                  if (productController.atc.value) {
+                                    Get.toNamed('/cartScreen');
+                                  } else {
+                                    cartController.addToCart(item);
+                                    productController.atc.value = true;
+                                  }
+                                },
+                              );
+                            }
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }),
                     ],
                   ),
                 ),

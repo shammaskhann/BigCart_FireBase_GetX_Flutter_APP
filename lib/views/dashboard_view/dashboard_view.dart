@@ -1,15 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
-import 'package:big_cart_app/resources/Routes/route_name.dart';
-import 'package:big_cart_app/resources/Routes/routes.dart';
 import 'package:big_cart_app/views/cart_view/cart_view.dart';
 import 'package:big_cart_app/views/dashboard_view/dashboard_controller.dart';
 import 'package:big_cart_app/views/favourite_view/favourite_view.dart';
 import 'package:big_cart_app/views/home_view/home_view.dart';
 import 'package:big_cart_app/views/profile_view/profile_view.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -57,6 +53,7 @@ class DashboardView extends StatelessWidget {
         backgroundColor: AppColors.priamryButton2,
         child: SvgPicture.asset(AppIcons.cartIcon),
       ),
+      // floatingActionButtonAnimator: ,
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
     );
   }
