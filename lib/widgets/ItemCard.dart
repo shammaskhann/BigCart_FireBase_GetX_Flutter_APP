@@ -271,7 +271,7 @@ class ItemCard extends StatelessWidget {
   }
 }
 
-colorShade(String colorScheme) {
+Color colorShade(String colorScheme) {
   switch (colorScheme) {
     case 'green':
       return AppColors.lightGreenShade;

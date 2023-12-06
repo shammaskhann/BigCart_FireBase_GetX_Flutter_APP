@@ -24,7 +24,6 @@ class DashboardView extends StatelessWidget {
               HomeScreen(),
               ProfileView(),
               FavouriteView(),
-              CartView(),
             ],
           )),
       bottomNavigationBar: Obx(() => AnimatedBottomNavigationBar(
@@ -48,7 +47,7 @@ class DashboardView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         elevation: 0,
         onPressed: () {
-          dashboardController.currentIndex.value = 3;
+          dashboardController.navigateToCartScreen();
         },
         backgroundColor: AppColors.priamryButton2,
         child: SvgPicture.asset(AppIcons.cartIcon),

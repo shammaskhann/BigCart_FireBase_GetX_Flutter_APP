@@ -251,6 +251,13 @@ class HomeScreen extends StatelessWidget {
                       child: FutureBuilder(
                           future: homeController.getFeaturedList(),
                           builder: ((context, AsyncSnapshot snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                    color: AppColors.primaryColor),
+                              );
+                            }
                             if (snapshot.hasData) {
                               return GridView.builder(
                                   padding: const EdgeInsets.symmetric(
