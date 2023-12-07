@@ -8,8 +8,9 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../../widgets/ItemCard.dart';
 
-class CartItemCard extends StatelessWidget {
-  const CartItemCard({super.key});
+class ItemCard2 extends StatelessWidget {
+  final Map item;
+  const ItemCard2({required this.item, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class CartItemCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               FutureBuilder(
-                future: firebaseServices.getImage('Drinks/Cocacola.png'),
+                future: firebaseServices.getImage(item['imagePath']),
                 builder: ((context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Shimmer(
@@ -86,7 +87,7 @@ class CartItemCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    '\$2.22 x 4',
+                    '\$ ${item['price']} x ${item['quantity']}',
                     style: const TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.primaryColor,
@@ -94,7 +95,7 @@ class CartItemCard extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
-                    'Coca Cola',
+                    item['productName'],
                     style: const TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.black,
@@ -102,7 +103,7 @@ class CartItemCard extends StatelessWidget {
                         fontWeight: FontWeight.w800),
                   ),
                   Text(
-                    '1.25L',
+                    item['weightPer'],
                     style: const TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.grey,

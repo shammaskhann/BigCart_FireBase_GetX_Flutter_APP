@@ -21,7 +21,7 @@ class ProductView extends StatelessWidget {
     FirebaseServices firebaseServices = FirebaseServices();
     ProductController productController =
         Get.put(ProductController(item: item));
-    CartController cartController = CartController();
+    CartServices cartController = CartServices();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

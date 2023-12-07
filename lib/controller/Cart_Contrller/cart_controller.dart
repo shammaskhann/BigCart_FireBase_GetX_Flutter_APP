@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class CartController extends GetxController {
+class CartServices extends GetxController {
   RxInt quantity = 1.obs;
   RxBool atc = false.obs;
   final user = FirebaseAuth.instance.currentUser;

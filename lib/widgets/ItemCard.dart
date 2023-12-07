@@ -18,7 +18,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isAlreadyInCart = false;
     FirebaseServices firebaseServices = FirebaseServices();
-    CartController cartController = CartController();
+    CartServices cartController = CartServices();
     String productName = item['productName'];
     return InkWell(
       onTap: () {
