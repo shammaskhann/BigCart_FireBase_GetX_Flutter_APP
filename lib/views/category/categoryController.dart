@@ -1,5 +1,4 @@
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CategoryController {
   FirebaseServices firebaseServices = FirebaseServices();

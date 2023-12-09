@@ -50,6 +50,12 @@ class Languages extends Translations {
           'Pepsi': 'Pepsi',
           'Reviews': 'Reviews',
           'No Reviews': 'No Reviews',
+          'Added to Favourite': 'Added to Favourite',
+          'Item added to favourite successfully':
+              'Item added to favourite successfully',
+          'Removed from Favourite': 'Removed from Favourite',
+          'Item removed from favourite successfully':
+              'Item removed from favourite successfully',
         },
         'ur_PK': {
           'name': 'نام',
@@ -99,6 +105,12 @@ class Languages extends Translations {
           'Pepsi': 'پیپسی',
           'Reviews': 'جائزے',
           'No Reviews': 'کوئی جائزہ نہیں',
+          'Added to Favourite': 'پسندیدہ میں شامل کیا گیا',
+          'Item added to favourite successfully':
+              'آئٹم کو کامیابی سے پسندیدہ میں شامل کیا گیا',
+          'Removed from Favourite': 'پسندیدہ سے ہٹا دیا گیا',
+          'Item removed from favourite successfully':
+              'آئٹم کو کامیابی سے پسندیدہ سے ہٹا دیا گیا',
         }
       };
 }

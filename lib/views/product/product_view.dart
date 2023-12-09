@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/views/product_view/product_controller.dart';
+import 'package:big_cart_app/views/product/product_controller.dart';
 import 'package:big_cart_app/widgets/CustomButon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -21,7 +21,7 @@ class ProductView extends StatelessWidget {
     FirebaseServices firebaseServices = FirebaseServices();
     ProductController productController =
         Get.put(ProductController(item: item));
-    CartServices cartController = CartServices();
+    CartController cartController = CartController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,

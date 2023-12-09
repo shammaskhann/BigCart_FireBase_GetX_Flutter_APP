@@ -1,16 +1,16 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
-import 'package:big_cart_app/views/cart_view/cart_view.dart';
-import 'package:big_cart_app/views/category_view/category_view.dart';
-import 'package:big_cart_app/views/favourite_view/favourite_view.dart';
-import 'package:big_cart_app/views/login_view/login_view.dart';
-import 'package:big_cart_app/views/profile_view/profile_view.dart';
-import 'package:big_cart_app/views/review_view/review_view.dart';
-import 'package:big_cart_app/views/signup_view/signup_view.dart';
+import 'package:big_cart_app/views/cart/cart_view.dart';
+import 'package:big_cart_app/views/category/category_view.dart';
+import 'package:big_cart_app/views/favourite/favourite_view.dart';
+import 'package:big_cart_app/views/login/login_view.dart';
+import 'package:big_cart_app/views/profile/profile_view.dart';
+import 'package:big_cart_app/views/review/review_view.dart';
+import 'package:big_cart_app/views/signup/signup_view.dart';
 import 'package:get/get.dart';
 
-import '../../views/home_view/home_view.dart';
-import '../../views/product_view/product_view.dart';
-import '../../views/splash_view/splash_view.dart';
+import '../../views/home/home_view.dart';
+import '../../views/product/product_view.dart';
+import '../../views/splash/splash_view.dart';
 
 class AppRoutes {
   static List<GetPage> appRoute() {

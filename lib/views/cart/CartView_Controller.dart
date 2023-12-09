@@ -1,14 +1,15 @@
 import 'dart:developer';
 
-import 'package:big_cart_app/services/Cart/Cart_Service.dart';
+import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
 import 'package:get/get.dart';
 
-class CartController extends GetxController {
-  CartServices cartServices = Get.put(CartServices());
+class CartViewController extends GetxController {
+  CartController cartController = CartController();
+  RxInt isUpdate = 1.obs;
 
   Future<bool> addCart(Map<String, dynamic> item) async {
     try {
-      await cartServices.addCart(item);
+      await cartController.addToCart(item);
       return true;
     } catch (e) {
       return false;
@@ -18,13 +19,13 @@ class CartController extends GetxController {
   Future getCart() async {
     List? itemList = [];
     try {
-      final response = await cartServices.getCart();
+      final response = await cartController.getCart();
       itemList = response;
       if (itemList == null) {
         return itemList!;
       }
       log('cart $itemList');
-      return itemList!;
+      return itemList;
     } catch (e) {
       log('error : $e');
       return itemList!;
@@ -32,10 +33,9 @@ class CartController extends GetxController {
   }
 
   Future<double> getSubTotal() async {
-    List itemList = [];
     double subTotal = 0;
     try {
-      final response = await cartServices.getCart();
+      final response = await cartController.getCart();
       for (var i = 0; i < response!.length; i++) {
         subTotal += response[i]['price'] * response[i]['quantity'];
       }
@@ -48,8 +48,8 @@ class CartController extends GetxController {
   Future<double> getShippingCharges() async {
     double shippingCharges = 0;
     try {
-      final response = await cartServices.getCart();
-      if (response!.length > 0 && response.length < 3) {
+      final response = await cartController.getCart();
+      if (response!.isNotEmpty && response.length < 3) {
         shippingCharges = 5;
       } else if (response.length > 3 && response.length < 6) {
         shippingCharges = 10;

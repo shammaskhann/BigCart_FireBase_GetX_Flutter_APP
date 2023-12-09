@@ -3,10 +3,7 @@ import 'dart:ui';
 
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
 import 'package:get/get.dart';
-
-import '../../resources/Icons/categories_icon.dart';
 import '../../resources/Routes/route_name.dart';
-import '../../resources/color/colors.dart';
 
 class HomeController extends GetxController {
   FirebaseServices firebaseServices = FirebaseServices();

@@ -1,6 +1,4 @@
-import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../resources/Images/images.dart';

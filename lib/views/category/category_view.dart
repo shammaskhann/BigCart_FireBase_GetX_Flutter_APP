@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/color/colors.dart';
-import 'package:big_cart_app/views/category_view/categoryController.dart';
+import 'package:big_cart_app/views/category/categoryController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

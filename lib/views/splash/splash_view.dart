@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/Images/images.dart';
-import 'package:big_cart_app/views/splash_view/splash_controller.dart';
+import 'package:big_cart_app/views/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

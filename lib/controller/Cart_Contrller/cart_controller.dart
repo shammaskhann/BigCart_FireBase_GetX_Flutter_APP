@@ -1,47 +1,69 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:developer';
+import 'package:big_cart_app/services/Cart/Cart_Service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-class CartServices extends GetxController {
+class CartController extends GetxController {
   RxInt quantity = 1.obs;
   RxBool atc = false.obs;
   final user = FirebaseAuth.instance.currentUser;
-  final DocumentReference cartRef = FirebaseFirestore.instance
-      .collection('users')
-      .doc(FirebaseAuth.instance.currentUser?.uid);
-
-  addToCart(Map<String, dynamic> item) {
-    item['quantity'] = quantity.value;
-    cartRef.update({
-      'cart': FieldValue.arrayUnion([item])
-    });
+  CartServices cartServices = CartServices();
+  Future<bool> addToCart(Map<String, dynamic> item) async {
+    try {
+      await cartServices.addToCart(item, quantity.value);
+      atc.value = true;
+      return true;
+    } catch (e) {
+      atc.value = false;
+      return false;
+    }
   }
 
-  removeFromCart(Map item) {
-    cartRef.update({
-      'cart': FieldValue.arrayRemove([item])
-    });
+  Future<bool> updateCart(Map<String, dynamic> item) async {
+    log('item : $item');
+    try {
+      await cartServices.updateCart(item, item, quantity.value);
+      atc.value = true;
+      return true;
+    } catch (e) {
+      atc.value = false;
+      return false;
+    }
   }
 
-  Future<bool> isAlreadyInCart(Map item) async {
-    List cart = [];
+  Future<bool> removeFromCart(Map<String, dynamic> item) async {
+    try {
+      await cartServices.removeFromCart(item);
+      atc.value = false;
+      return true;
+    } catch (e) {
+      atc.value = true;
+      return false;
+    }
+  }
+
+  Future<bool> itemQuantity(Map item) async {
     bool isAlreadyInCart = false;
-
-    await cartRef.get().then((value) {
-      var data = value.data() as Map<String, dynamic>;
-      cart = data['cart'] ?? [];
-    });
-
-    for (int i = 0; i < cart.length; i++) {
-      String productName = cart[i]['productName'];
-      String itemProductName = item['productName'];
-      if (productName.toLowerCase() == itemProductName.toLowerCase()) {
-        quantity.value = cart[i]['quantity'];
-        atc.value = true;
-        isAlreadyInCart = true;
-        break;
-      }
+    final response = await cartServices.itemAlreadyInCart(item);
+    if (response != -1) {
+      quantity.value = response;
+      atc.value = true;
+      isAlreadyInCart = true;
     }
     return isAlreadyInCart;
+  }
+
+  Future<List<dynamic>?> getCart() async {
+    List? itemList = [];
+    try {
+      final response = await cartServices.getCart();
+      itemList = response;
+      if (itemList == null) {
+        return itemList;
+      }
+      return itemList;
+    } catch (e) {
+      return itemList;
+    }
   }
 }

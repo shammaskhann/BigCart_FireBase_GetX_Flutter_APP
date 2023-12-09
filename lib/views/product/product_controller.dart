@@ -12,6 +12,7 @@ class ProductController extends GetxController {
   ProductController({required this.item});
   RxInt quantity = 1.obs;
   RxBool atc = false.obs;
+  CartController cartController = CartController();
   @override
   void onInit() {
     super.onInit();

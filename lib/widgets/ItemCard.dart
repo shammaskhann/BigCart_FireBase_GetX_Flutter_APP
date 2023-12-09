@@ -1,3 +1,5 @@
+import 'package:big_cart_app/controller/Favourite_Controller/favourite_controller.dart';
+
 import '../controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
@@ -18,7 +20,8 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isAlreadyInCart = false;
     FirebaseServices firebaseServices = FirebaseServices();
-    CartServices cartController = CartServices();
+    CartController cartController = CartController();
+    FavouriteController favouriteController = FavouriteController();
     String productName = item['productName'];
     return InkWell(
       onTap: () {
@@ -111,12 +114,12 @@ class ItemCard extends StatelessWidget {
                   thickness: 1,
                 ),
                 FutureBuilder(
-                    future: cartController.isAlreadyInCart(item),
+                    future: cartController.itemQuantity(item),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Container(
+                        return const SizedBox(
                           height: 20,
-                          child: const Center(
+                          child: Center(
                             child: LinearProgressIndicator(
                               color: AppColors.primaryColor,
                               backgroundColor: AppColors.white,
@@ -139,6 +142,7 @@ class ItemCard extends StatelessWidget {
                                     children: [
                                       SvgPicture.asset(
                                         AppIcons.cartIcon,
+                                        // ignore: deprecated_member_use
                                         color: AppColors.primaryColor,
                                         height: 20,
                                         width: 20,
@@ -172,9 +176,12 @@ class ItemCard extends StatelessWidget {
                                           if (cartController.quantity.value >
                                               1) {
                                             cartController.quantity.value--;
-                                            item['quantity'] =
-                                                cartController.quantity.value;
+                                            cartController.updateCart(item);
+                                          } else if (cartController
+                                                  .quantity.value ==
+                                              1) {
                                             cartController.removeFromCart(item);
+                                            cartController.atc.value = false;
                                           }
                                         },
                                         child: Container(
@@ -199,10 +206,25 @@ class ItemCard extends StatelessWidget {
                                       InkWell(
                                         onTap: () {
                                           log('Quantity: ${cartController.quantity.value}');
-                                          cartController.quantity.value++;
-                                          item['quantity'] =
-                                              cartController.quantity.value;
-                                          cartController.addToCart(item);
+                                          if (cartController.quantity.value <
+                                              10) {
+                                            cartController.quantity.value++;
+                                            cartController.updateCart(item);
+                                          } else {
+                                            Get.snackbar(
+                                              'Maximum Quantity',
+                                              'Maximum Quantity is 10',
+                                              snackPosition:
+                                                  SnackPosition.BOTTOM,
+                                              backgroundColor:
+                                                  AppColors.primaryColor,
+                                              colorText: AppColors.white,
+                                              icon: const Icon(
+                                                Icons.remove_shopping_cart,
+                                                color: AppColors.white,
+                                              ),
+                                            );
+                                          }
                                         },
                                         child: Container(
                                           padding: const EdgeInsets.all(5),
@@ -218,9 +240,9 @@ class ItemCard extends StatelessWidget {
                                 ),
                               ));
                       }
-                      return Container(
+                      return const SizedBox(
                         height: 30,
-                        child: const Center(
+                        child: Center(
                           child: CircularProgressIndicator(),
                         ),
                       );
@@ -228,15 +250,77 @@ class ItemCard extends StatelessWidget {
               ],
             ),
             Positioned(
-              top: 5,
-              right: 5,
-              child: SvgPicture.asset(
-                AppIcons.heartIcon,
-                color: AppColors.grey,
-                height: 20,
-                width: 20,
-              ),
-            ),
+                top: 5,
+                right: 5,
+                child: FutureBuilder(
+                    future: favouriteController.isFavourite(productName),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Shimmer(
+                          gradient: const LinearGradient(
+                            colors: [
+                              AppColors.greyBackGround,
+                              AppColors.lightRedShade,
+                            ],
+                          ),
+                          child: SvgPicture.asset(
+                            AppIcons.heartFillIcon,
+                            // ignore: deprecated_member_use
+                            color: AppColors.grey,
+                            height: 20,
+                            width: 20,
+                          ),
+                        );
+                      }
+                      return Obx(() => InkWell(
+                            onTap: () {
+                              if (favouriteController.isFavouriteItem.value ==
+                                  false) {
+                                favouriteController.addFavourite(item);
+                                favouriteController.isFavouriteItem.value =
+                                    true;
+                                Get.snackbar('Added to Favourite'.tr,
+                                    'Item added to favourite successfully'.tr,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: AppColors.primaryColor,
+                                    colorText: AppColors.white,
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: AppColors.white,
+                                    ));
+                              } else {
+                                favouriteController.removeFavourite(item);
+                                favouriteController.isFavouriteItem.value =
+                                    false;
+                                Get.snackbar(
+                                    'Removed from Favourite'.tr,
+                                    'Item removed from favourite successfully'
+                                        .tr,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor: AppColors.primaryColor,
+                                    colorText: AppColors.white,
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: AppColors.white,
+                                    ));
+                              }
+                            },
+                            child: SvgPicture.asset(
+                              (favouriteController.isFavouriteItem.value ==
+                                      false)
+                                  ? AppIcons.heartIcon
+                                  : AppIcons.heartFillIcon,
+                              // ignore: deprecated_member_use
+                              color:
+                                  (favouriteController.isFavouriteItem.value ==
+                                          false)
+                                      ? AppColors.grey
+                                      : AppColors.red,
+                              height: 20,
+                              width: 20,
+                            ),
+                          ));
+                    })),
             (isFeatured!)
                 ? Positioned(
                     top: 0,

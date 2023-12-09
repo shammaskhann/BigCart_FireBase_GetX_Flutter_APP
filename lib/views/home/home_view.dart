@@ -1,10 +1,8 @@
 import 'dart:developer';
-import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
-import 'package:big_cart_app/views/home_view/home_controller.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:big_cart_app/views/home/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,7 +10,6 @@ import 'package:get/get.dart';
 import 'package:material_floating_search_bar_2/material_floating_search_bar_2.dart';
 import '../../resources/Icons/categories_icon.dart';
 import '../../resources/Images/images.dart';
-import '../../resources/Routes/route_name.dart';
 import '../../resources/TextStyle/text_styles.dart';
 import '../../controller/searchbar_controller.dart';
 import '../../widgets/ItemCard.dart';
@@ -387,18 +384,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       )),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      // floatingActionButton: Padding(
-      //   padding: const EdgeInsets.only(bottom: 15.0, right: 5),
-      //   child: FloatingActionButton(
-      //       onPressed: () {
-      //         FirebaseAuth.instance.signOut();
-      //         Utils.snackBar('Success', 'Logged Out Successfully');
-      //         Get.offAllNamed('/login');
-      //       },
-      //       backgroundColor: AppColors.primaryColor,
-      //       child: SvgPicture.asset(AppIcons.cartIcon)),
-      // ),
     );
   }
 }

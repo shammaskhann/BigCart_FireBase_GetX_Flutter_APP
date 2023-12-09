@@ -15,4 +15,5 @@ class AppColors {
   static const Color lightOrangeShade = Color(0xFFFFF6E3);
   static const Color lightVoiletShade = Color(0xFFF3EFFA);
   static const Color lightBlueShade = Color(0xFFDCF4F5);
+  static const Color red = Color.fromARGB(255, 255, 17, 0);
 }

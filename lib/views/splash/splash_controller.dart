@@ -1,5 +1,5 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
-import 'package:big_cart_app/views/dashboard_view/dashboard_view.dart';
+import 'package:big_cart_app/views/dashboard/dashboard_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
