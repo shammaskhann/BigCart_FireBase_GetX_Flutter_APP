@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/controller/Favourite_Controller/favourite_controller.dart';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
@@ -20,8 +22,31 @@ class FavItemCard extends StatelessWidget {
     FirebaseServices firebaseServices = FirebaseServices();
     FavouriteController favouriteController = FavouriteController();
 
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
+    return Dismissible(
+      key: Key(item['productName']),
+      background: Container(
+        color: AppColors.red,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              SvgPicture.asset(AppIcons.deleteIcon, color: Colors.white),
+              // Icon(Icons.delete, color: Colors.white),
+              // const Text('Delete',
+              //     style: TextStyle(
+              //         color: Colors.white,
+              //         fontSize: 25,
+              //         fontWeight: FontWeight.w600)),
+              const SizedBox(width: 20),
+            ],
+          ),
+        ),
+      ),
+      direction: DismissDirection.endToStart,
+      onDismissed: (direction) {
+        favouriteController.removeFavourite(item);
+      },
       child: Container(
           height: 100,
           width: Get.width,

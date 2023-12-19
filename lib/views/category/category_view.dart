@@ -1,3 +1,4 @@
+import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/views/category/categoryController.dart';
 import 'package:flutter/material.dart';
@@ -16,21 +17,16 @@ class CategoryView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.black,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Get.back();
+        //     },
+        //     icon: const Icon(
+        //       Icons.arrow_back_ios_new,
+        //       color: AppColors.black,
+        //     )),
         centerTitle: true,
-        title: Text(category.tr,
-            style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: AppColors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w500)),
+        title: Text(category.tr, style: AppTextStyles.appBarStyle),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,

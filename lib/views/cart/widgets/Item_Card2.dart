@@ -144,8 +144,7 @@ class ItemCard2 extends StatelessWidget {
                                             Get.snackbar(
                                               'Max Quantity',
                                               'Max Quantity Reached',
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
+                                              snackPosition: SnackPosition.TOP,
                                               backgroundColor:
                                                   AppColors.primaryColor,
                                               colorText: AppColors.white,
@@ -197,8 +196,7 @@ class ItemCard2 extends StatelessWidget {
                                             Get.snackbar(
                                               'Item Removed',
                                               'Item Removed from Cart',
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
+                                              snackPosition: SnackPosition.TOP,
                                               backgroundColor:
                                                   AppColors.primaryColor,
                                               colorText: AppColors.white,

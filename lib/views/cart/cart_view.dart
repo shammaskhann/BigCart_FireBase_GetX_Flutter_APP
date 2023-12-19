@@ -289,7 +289,9 @@ class CartView extends StatelessWidget {
                         CustomButton(
                           title: 'Checkout',
                           loading: false,
-                          onPressed: () {},
+                          onPressed: () {
+                            cartController.navigateToShippingScreen();
+                          },
                         )
                       ],
                     )

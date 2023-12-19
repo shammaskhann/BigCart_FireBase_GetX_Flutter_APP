@@ -5,6 +5,8 @@ import 'package:big_cart_app/views/favourite/favourite_view.dart';
 import 'package:big_cart_app/views/login/login_view.dart';
 import 'package:big_cart_app/views/profile/profile_view.dart';
 import 'package:big_cart_app/views/review/review_view.dart';
+import 'package:big_cart_app/views/shipping/shipping_info_view.dart';
+import 'package:big_cart_app/views/shipping/shipping_method_view.dart';
 import 'package:big_cart_app/views/signup/signup_view.dart';
 import 'package:get/get.dart';
 
@@ -75,6 +77,16 @@ class AppRoutes {
         transition: Transition.rightToLeftWithFade,
         transitionDuration: const Duration(milliseconds: 500),
       ),
+      GetPage(
+          name: RouteName.shippingMethodScreen,
+          page: () => const ShippingMethodScreen(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.shippingInfoScreen,
+          page: () => const ShippingInfoScreen(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
     ];
   }
 }

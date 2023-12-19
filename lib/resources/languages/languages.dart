@@ -6,7 +6,7 @@ class Languages extends Translations {
         'en_US': {
           'name': 'Name',
           'address': 'Address',
-          'zip code': 'Zip Code',
+          'zip_code': 'Zip Code',
           'city': 'City',
           'country': 'Country',
           'welcome': 'Welcome',

@@ -8,7 +8,7 @@ class AppTextFeildIcons {
   static const String profileIcon =
       'assets/Icons/TextfieldIcons/ProfileIcon.svg';
   static const String searchIcon = 'assets/Icons/TextfieldIcons/SearchIcon.svg';
-  static const zipCodeIcon = 'assets/Icons/TextfieldIcons/ZipCodeIcon.svg';
+  static const zipCodeIcon = 'assets/Icons/TextfieldIcons/ZipcodeIcon.svg';
   static const cityIcon = 'assets/Icons/TextfieldIcons/CityIcon.svg';
   static const countryIcon = 'assets/Icons/TextfieldIcons/CountryIcon.svg';
   static const filterIcon = 'assets/Icons/TextfieldIcons/FilterIcon.svg';

@@ -1,3 +1,4 @@
+import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,21 +14,16 @@ class ReviewView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: Colors.black,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //     icon: const Icon(
+        //       Icons.arrow_back_ios_new,
+        //       color: Colors.black,
+        //     )),
         centerTitle: true,
-        title: Text('Reviews'.tr,
-            style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w700)),
+        title: Text('Reviews'.tr, style: AppTextStyles.appBarStyle),
       ),
       body: (review.isNotEmpty)
           ? ListView.builder(

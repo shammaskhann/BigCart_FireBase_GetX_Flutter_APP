@@ -19,4 +19,10 @@ class AppTextStyles {
     fontSize: 15,
     fontWeight: FontWeight.w500,
   );
+  static const appBarStyle = TextStyle(
+    color: AppColors.black,
+    fontFamily: 'Poppins',
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
 }

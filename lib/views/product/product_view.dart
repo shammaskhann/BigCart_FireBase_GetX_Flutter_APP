@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
+import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/views/product/product_controller.dart';
 import 'package:big_cart_app/widgets/CustomButon.dart';
@@ -26,21 +27,16 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios_new,
-              color: AppColors.black,
-            )),
+        // leading: IconButton(
+        //     onPressed: () {
+        //       Get.back();
+        //     },
+        //     icon: const Icon(
+        //       Icons.arrow_back_ios_new,
+        //       color: AppColors.black,
+        //     )),
         centerTitle: true,
-        title: Text(item['productName'],
-            style: const TextStyle(
-                fontFamily: 'Poppins',
-                color: AppColors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w500)),
+        title: Text(item['productName'], style: AppTextStyles.appBarStyle),
       ),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,

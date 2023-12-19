@@ -9,4 +9,7 @@ class RouteName {
   static const String favouriteScreen = '/favourite_screen';
   static const String productScreen = '/product_screen';
   static const String reviewScreen = '/review_screen';
+  static const String shippingMethodScreen = '/shipping_method_screen';
+  static const String shippingInfoScreen = '/shipping_info_screen';
+  static const String paymentScreen = '/payment_screen';
 }

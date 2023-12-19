@@ -1,4 +1,5 @@
 import 'package:big_cart_app/controller/Favourite_Controller/favourite_controller.dart';
+import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/views/favourite/widgets/fav_itemcard.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,7 @@ class FavouriteView extends StatelessWidget {
         centerTitle: true,
         title: const Text(
           'Favourites',
-          style: TextStyle(
-              color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+          style: AppTextStyles.appBarStyle,
         ),
       ),
       body: FutureBuilder(
@@ -30,7 +30,10 @@ class FavouriteView extends StatelessWidget {
             return ListView.builder(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return FavItemCard(item: snapshot.data![index]);
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: FavItemCard(item: snapshot.data![index]),
+                );
               },
             );
           }

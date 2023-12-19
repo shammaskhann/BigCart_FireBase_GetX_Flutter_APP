@@ -214,8 +214,7 @@ class ItemCard extends StatelessWidget {
                                             Get.snackbar(
                                               'Maximum Quantity',
                                               'Maximum Quantity is 10',
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
+                                              snackPosition: SnackPosition.TOP,
                                               backgroundColor:
                                                   AppColors.primaryColor,
                                               colorText: AppColors.white,
@@ -281,7 +280,7 @@ class ItemCard extends StatelessWidget {
                                     true;
                                 Get.snackbar('Added to Favourite'.tr,
                                     'Item added to favourite successfully'.tr,
-                                    snackPosition: SnackPosition.BOTTOM,
+                                    snackPosition: SnackPosition.TOP,
                                     backgroundColor: AppColors.primaryColor,
                                     colorText: AppColors.white,
                                     icon: const Icon(
@@ -296,7 +295,7 @@ class ItemCard extends StatelessWidget {
                                     'Removed from Favourite'.tr,
                                     'Item removed from favourite successfully'
                                         .tr,
-                                    snackPosition: SnackPosition.BOTTOM,
+                                    snackPosition: SnackPosition.TOP,
                                     backgroundColor: AppColors.primaryColor,
                                     colorText: AppColors.white,
                                     icon: const Icon(
