@@ -51,7 +51,7 @@ class CategoryView extends StatelessWidget {
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 10,
                                   mainAxisSpacing: 10,
-                                  childAspectRatio: Get.height / 980),
+                                  childAspectRatio: 4 / 5),
                           itemBuilder: (context, index) {
                             final currentItem = snapshot.data[index];
                             return ItemCard(

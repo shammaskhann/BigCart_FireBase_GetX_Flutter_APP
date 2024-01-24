@@ -263,9 +263,9 @@ class HomeScreen extends StatelessWidget {
                                   gridDelegate:
                                       SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
-                                          crossAxisSpacing: 10,
-                                          mainAxisSpacing: 15,
-                                          childAspectRatio: Get.height / 910),
+                                          crossAxisSpacing: 5,
+                                          mainAxisSpacing: 10,
+                                          childAspectRatio: 4 / 5),
                                   itemBuilder: (context, index) {
                                     Map currentItem = snapshot.data[index];
                                     return ItemCard(

@@ -3,6 +3,7 @@ import 'package:big_cart_app/views/cart/cart_view.dart';
 import 'package:big_cart_app/views/category/category_view.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
 import 'package:big_cart_app/views/login/login_view.dart';
+import 'package:big_cart_app/views/payment/payment_view.dart';
 import 'package:big_cart_app/views/profile/profile_view.dart';
 import 'package:big_cart_app/views/review/review_view.dart';
 import 'package:big_cart_app/views/shipping/shipping_info_view.dart';
@@ -85,6 +86,11 @@ class AppRoutes {
       GetPage(
           name: RouteName.shippingInfoScreen,
           page: () => const ShippingInfoScreen(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.paymentScreen,
+          page: () => const PaymentScreen(),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
     ];

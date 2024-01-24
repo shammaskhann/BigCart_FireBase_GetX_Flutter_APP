@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/utils/utils.dart';
@@ -27,14 +28,6 @@ class ProductView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        // leading: IconButton(
-        //     onPressed: () {
-        //       Get.back();
-        //     },
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios_new,
-        //       color: AppColors.black,
-        //     )),
         centerTitle: true,
         title: Text(item['productName'], style: AppTextStyles.appBarStyle),
       ),
@@ -89,21 +82,29 @@ class ProductView extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Text(item['productName'],
-                style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    color: AppColors.black,
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600)),
+            AutoSizeText(
+              item['productName'],
+              style: const TextStyle(
+                  fontFamily: 'Poppins',
+                  color: AppColors.black,
+                  fontWeight: FontWeight.w600),
+              maxLines: 1,
+              minFontSize: 20.0,
+              maxFontSize: 28.0,
+            ),
             const SizedBox(
               height: 05,
             ),
-            Text(item['weightPer'],
-                style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    color: AppColors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400)),
+            AutoSizeText(
+              item['weightPer'],
+              style: const TextStyle(
+                  fontFamily: 'Poppins',
+                  color: AppColors.black,
+                  fontWeight: FontWeight.w400),
+              maxLines: 1,
+              minFontSize: 15,
+              maxFontSize: 20,
+            ),
             const SizedBox(
               height: 05,
             ),
@@ -131,34 +132,73 @@ class ProductView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      // Text(
+                      //   ' \$ ${item['price'].toString()}',
+                      //   style: const TextStyle(
+                      //       color: AppColors.priamryButton2,
+                      //       fontSize: 25,
+                      //       fontWeight: FontWeight.w600),
+                      // ),
+                      // Text(item['productName'],
+                      //     style: const TextStyle(
+                      //         fontFamily: 'Poppins',
+                      //         color: AppColors.black,
+                      //         fontSize: 25,
+                      //         fontWeight: FontWeight.w600)),
+                      // Text(item['weightPer'],
+                      //     style: const TextStyle(
+                      //         fontFamily: 'Poppins',
+                      //         color: AppColors.black,
+                      //         fontSize: 18,
+                      //         fontWeight: FontWeight.w400)),
+                      AutoSizeText(
                         ' \$ ${item['price'].toString()}',
                         style: const TextStyle(
                             color: AppColors.priamryButton2,
-                            fontSize: 25,
                             fontWeight: FontWeight.w600),
+                        maxLines: 1,
+                        minFontSize: 20.0,
+                        maxFontSize: 28.0,
                       ),
-                      Text(item['productName'],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.black,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w600)),
-                      Text(item['weightPer'],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400)),
+                      AutoSizeText(
+                        item['productName'],
+                        style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w600),
+                        maxLines: 1,
+                        minFontSize: 20.0,
+                        maxFontSize: 28.0,
+                      ),
+                      AutoSizeText(
+                        item['weightPer'],
+                        style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w400),
+                        maxLines: 1,
+                        minFontSize: 15,
+                        maxFontSize: 20,
+                      ),
                       Row(
                         children: [
-                          Text(
+                          // Text(
+                          //   '${productController.ratingAvgCalculate(item)}',
+                          //   style: const TextStyle(
+                          //       fontFamily: 'Poppins',
+                          //       color: AppColors.black,
+                          //       fontSize: 18,
+                          //       fontWeight: FontWeight.w400),
+                          // ),
+                          AutoSizeText(
                             '${productController.ratingAvgCalculate(item)}',
                             style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 color: AppColors.black,
-                                fontSize: 18,
                                 fontWeight: FontWeight.w400),
+                            maxLines: 1,
+                            minFontSize: 15,
+                            maxFontSize: 20,
                           ),
                           RatingBarIndicator(
                             itemBuilder: (context, index) => const Icon(
@@ -186,12 +226,16 @@ class ProductView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(item['description'],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.black,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400)),
+                      AutoSizeText(
+                        item['description'],
+                        style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w400),
+                        maxLines: 3,
+                        minFontSize: 17,
+                        maxFontSize: 20,
+                      ),
                       const Spacer(),
                       // For Quantity Increment and decrement
                       Container(
