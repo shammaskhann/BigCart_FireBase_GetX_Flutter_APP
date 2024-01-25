@@ -14,4 +14,7 @@ class AppTextFeildIcons {
   static const filterIcon = 'assets/Icons/TextfieldIcons/FilterIcon.svg';
   static const locationIcon = 'assets/Icons/TextfieldIcons/LocationIcon.svg';
   static const backButton = 'assets/Icons/CommonIcon/BackButtonIcon.svg';
+  static const paypalIcon = 'assets/Icons/TextfieldIcons/paypal.png';
+  static const creditcardIcon = 'assets/Icons/TextfieldIcons/creditcard.png';
+  static const applepay = 'assets/Icons/TextfieldIcons/applepay.png';
 }

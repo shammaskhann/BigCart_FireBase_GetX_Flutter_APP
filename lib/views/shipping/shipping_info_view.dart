@@ -17,16 +17,16 @@ class ShippingInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ShippingController shippingController = Get.put(ShippingController());
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Shipping Address', style: AppTextStyles.appBarStyle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Padding(
               padding: EdgeInsets.only(
@@ -235,7 +235,12 @@ class ShippingInfoScreen extends StatelessWidget {
                     },
                   ),
                 ]),
-            const Spacer(),
+            // const Spacer(),
+            Expanded(
+              child: SizedBox(
+                height: 50,
+              ),
+            ),
             CustomButton(
                 title: 'Next',
                 loading: false,

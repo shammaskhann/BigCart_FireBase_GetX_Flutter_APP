@@ -4,4 +4,5 @@ class AppImages {
   static const String login = 'assets/Images/loginBack.jpg';
   static const String signup = 'assets/Images/signupBack.jpg';
   static const String homeBanner = 'assets/Images/homeBanner.jpg';
+  static const String card = 'assets/Images/card.svg';
 }
