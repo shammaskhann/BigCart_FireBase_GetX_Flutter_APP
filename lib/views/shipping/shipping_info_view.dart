@@ -148,6 +148,12 @@ class ShippingInfoScreen extends StatelessWidget {
                       }
                       return null;
                     },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.nameFocusNode.value,
+                          shippingController.emailFocusNode.value);
+                    },
                   ),
                   const SizedBox(
                     height: 10,
@@ -164,6 +170,12 @@ class ShippingInfoScreen extends StatelessWidget {
                         return 'Please enter your email';
                       }
                       return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.emailFocusNode.value,
+                          shippingController.phoneFocusNode.value);
                     },
                   ),
                   const SizedBox(
@@ -182,6 +194,12 @@ class ShippingInfoScreen extends StatelessWidget {
                       }
                       return null;
                     },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.phoneFocusNode.value,
+                          shippingController.addressFocusNode.value);
+                    },
                   ),
                   const SizedBox(
                     height: 10,
@@ -198,6 +216,12 @@ class ShippingInfoScreen extends StatelessWidget {
                         return 'Please enter your address';
                       }
                       return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.addressFocusNode.value,
+                          shippingController.cityFocusNode.value);
                     },
                   ),
                   const SizedBox(
@@ -216,6 +240,12 @@ class ShippingInfoScreen extends StatelessWidget {
                       }
                       return null;
                     },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.cityFocusNode.value,
+                          shippingController.zipCodeFocusNode.value);
+                    },
                   ),
                   const SizedBox(
                     height: 10,
@@ -232,6 +262,12 @@ class ShippingInfoScreen extends StatelessWidget {
                         return 'Please enter your zip code';
                       }
                       return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.zipCodeFocusNode.value,
+                          shippingController.zipCodeFocusNode.value);
                     },
                   ),
                 ]),

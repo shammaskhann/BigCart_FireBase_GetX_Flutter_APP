@@ -12,6 +12,7 @@ class CustomTextFeild extends StatelessWidget {
   final String hint;
   final Function(String?) validator;
   final String leadingIcon;
+  final Function onFieldSubmitted;
   const CustomTextFeild(
       {required this.controller,
       required this.currentNode,
@@ -19,11 +20,15 @@ class CustomTextFeild extends StatelessWidget {
       required this.hint,
       required this.validator,
       required this.leadingIcon,
+      required this.onFieldSubmitted,
       super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: (value) {
+        onFieldSubmitted(value);
+      },
       controller: controller,
       focusNode: currentNode,
       style: AppTextStyles.textfieldInputStyle,
@@ -31,9 +36,6 @@ class CustomTextFeild extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       validator: (value) {
         return validator(value);
-      },
-      onFieldSubmitted: (value) {
-        Utils.fieldFocusChange(context, currentNode, nextNode);
       },
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(

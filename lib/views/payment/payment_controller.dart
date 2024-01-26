@@ -16,8 +16,14 @@ class PaymentController extends GetxController {
   final cardCVVFocusNode = FocusNode().obs;
 
   String getCardLastFourDigit() {
-    return cardNumberForCard.value
-        .substring(cardNumberForCard.value.length - 4);
+    // if (cardNumberForCard.value.length > 15) {
+    //   String fourdigit =
+    //       cardNumberForCard.value.substring(cardNumberForCard.value.length - 4);
+    //   return "XXXX XXXX XXXX $fourdigit";
+    // } else {
+    //   return "XXXX XXXX XXXX XXXX";
+    // }
+    return "XXXX XXXX XXXX XXXX";
   }
 
   void updateCardNum() {
