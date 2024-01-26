@@ -1,3 +1,4 @@
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,14 +17,14 @@ class PaymentController extends GetxController {
   final cardCVVFocusNode = FocusNode().obs;
 
   String getCardLastFourDigit() {
-    // if (cardNumberForCard.value.length > 15) {
-    //   String fourdigit =
-    //       cardNumberForCard.value.substring(cardNumberForCard.value.length - 4);
-    //   return "XXXX XXXX XXXX $fourdigit";
-    // } else {
-    //   return "XXXX XXXX XXXX XXXX";
-    // }
-    return "XXXX XXXX XXXX XXXX";
+    if (cardNumberForCard.value.length > 15) {
+      String fourdigit =
+          cardNumberForCard.value.substring(cardNumberForCard.value.length - 4);
+      return "XXXX XXXX XXXX $fourdigit";
+    } else {
+      return "XXXX XXXX XXXX XXXX";
+    }
+    // return "XXXX XXXX XXXX XXXX";
   }
 
   void updateCardNum() {
@@ -36,5 +37,9 @@ class PaymentController extends GetxController {
 
   void updateCardExpiryDate() {
     cardExpiryDateForCard.value = cardExpiryDate.value.text;
+  }
+
+  void navToOrderSuccess() {
+    Get.offNamed(RouteName.orderSuccessScreen);
   }
 }

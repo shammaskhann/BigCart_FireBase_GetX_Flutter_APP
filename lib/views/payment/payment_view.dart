@@ -7,6 +7,7 @@ import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/views/payment/payment_controller.dart';
 import 'package:big_cart_app/views/shipping/shipping_Controller.dart';
 import 'package:big_cart_app/views/shipping/widgets/customTextfield.dart';
+import 'package:big_cart_app/widgets/CustomButon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -258,12 +259,12 @@ class PaymentScreen extends StatelessWidget {
               child: Stack(
                 children: [
                   SvgPicture.asset(AppImages.card),
-                  Positioned(
-                    top: 60,
-                    left: 20,
-                    child: Obx(
-                      () => Text(
-                        "paymentController.getCardLastFourDigit()",
+                  Obx(
+                    () => Positioned(
+                      top: 60,
+                      left: 20,
+                      child: Text(
+                        paymentController.getCardLastFourDigit(),
                         style: TextStyle(
                             color: AppColors.white,
                             fontSize: 18,
@@ -282,11 +283,11 @@ class PaymentScreen extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                   ),
-                  Positioned(
-                    top: 140,
-                    left: 20,
-                    child: Obx(
-                      () => Text(
+                  Obx(
+                    () => Positioned(
+                      top: 140,
+                      left: 20,
+                      child: Text(
                         paymentController.cardHolderNameForCard.value,
                         style: TextStyle(
                             color: AppColors.white,
@@ -306,11 +307,11 @@ class PaymentScreen extends StatelessWidget {
                           fontWeight: FontWeight.w300),
                     ),
                   ),
-                  Positioned(
-                    top: 140,
-                    right: 20,
-                    child: Obx(
-                      () => Text(
+                  Obx(
+                    () => Positioned(
+                      top: 140,
+                      right: 20,
+                      child: Text(
                         paymentController.cardExpiryDateForCard.value,
                         style: TextStyle(
                             color: AppColors.white,
@@ -367,43 +368,60 @@ class PaymentScreen extends StatelessWidget {
                 leadingIcon: AppTextFeildIcons.creditcardIcon,
               ),
             ),
-            Row(children: [
-              CustomTextFeild(
-                controller: paymentController.cardExpiryDate.value,
-                currentNode: paymentController.cardExpiryDateFocusNode.value,
-                nextNode: paymentController.cardCVVFocusNode.value,
-                hint: "Expiry Date",
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter expiry date';
-                  }
-                  return null;
-                },
-                leadingIcon: AppTextFeildIcons.cityIcon,
-                onFieldSubmitted: (value) {
-                  log('onFieldSubmitted');
-                  paymentController.updateCardExpiryDate();
-                  paymentController.cardExpiryDateFocusNode.value.unfocus();
-                  paymentController.cardCVVFocusNode.value.requestFocus();
-                },
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: CustomTextFeild(
+                    controller: paymentController.cardExpiryDate.value,
+                    currentNode:
+                        paymentController.cardExpiryDateFocusNode.value,
+                    nextNode: paymentController.cardCVVFocusNode.value,
+                    hint: "Expiry Date",
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter expiry date';
+                      }
+                      return null;
+                    },
+                    leadingIcon: AppTextFeildIcons.calendarIcon,
+                    onFieldSubmitted: (value) {
+                      log('onFieldSubmitted');
+                      paymentController.updateCardExpiryDate();
+                      paymentController.cardExpiryDateFocusNode.value.unfocus();
+                      paymentController.cardCVVFocusNode.value.requestFocus();
+                    },
+                  ),
+                ),
               ),
-              CustomTextFeild(
-                  controller: paymentController.cardCVV.value,
-                  currentNode: paymentController.cardCVVFocusNode.value,
-                  nextNode: paymentController.cardCVVFocusNode.value,
-                  hint: "CVV",
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter CVV';
-                    }
-                    return null;
-                  },
-                  leadingIcon: AppTextFeildIcons.lockIcon,
-                  onFieldSubmitted: (value) {
-                    log('onFieldSubmitted');
-                    paymentController.cardCVVFocusNode.value.unfocus();
-                  }),
-            ])
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: CustomTextFeild(
+                      controller: paymentController.cardCVV.value,
+                      currentNode: paymentController.cardCVVFocusNode.value,
+                      nextNode: paymentController.cardCVVFocusNode.value,
+                      hint: "CVV",
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter CVV';
+                        }
+                        return null;
+                      },
+                      leadingIcon: AppTextFeildIcons.lockIcon,
+                      onFieldSubmitted: (value) {
+                        log('onFieldSubmitted');
+                        paymentController.cardCVVFocusNode.value.unfocus();
+                      }),
+                ),
+              ),
+            ]),
+            CustomButton(
+                title: "Make a Payment",
+                loading: false,
+                onPressed: () {
+                  paymentController.navToOrderSuccess();
+                })
           ],
         ),
       ),

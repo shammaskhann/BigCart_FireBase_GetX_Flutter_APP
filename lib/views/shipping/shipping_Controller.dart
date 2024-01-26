@@ -34,7 +34,7 @@ class ShippingController extends GetxController {
     if (selectedShippingMethod.value == 0) {
       return false;
     } else {
-      Get.toNamed(RouteName.shippingInfoScreen);
+      Get.offNamed(RouteName.shippingInfoScreen);
       return true;
     }
   }

@@ -8,4 +8,14 @@ class AppIcons {
   static const String heartFillIcon =
       'assets/Icons/CommonIcon/HeartFillIcon.svg';
   static const String heartIcon = 'assets/Icons/CommonIcon/HeartIcon.svg';
+  static const String aboutIcon = 'assets/Icons/CommonIcon/Profile.svg';
+  static const String orderIcon = 'assets/Icons/CommonIcon/Order.svg';
+  static const String favouriteIcon = 'assets/Icons/CommonIcon/Favourite.svg';
+  static const String locationIcon = 'assets/Icons/CommonIcon/Location.svg';
+  static const String creditCardIcon = 'assets/Icons/CommonIcon/Creditcard.svg';
+  static const String transactionIcon =
+      'assets/Icons/CommonIcon/Transaction.svg';
+  static const String notificationIcon =
+      'assets/Icons/CommonIcon/Notification.svg';
+  static const String signoutIcon = 'assets/Icons/CommonIcon/Signout.svg';
 }

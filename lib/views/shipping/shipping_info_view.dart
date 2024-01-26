@@ -282,7 +282,7 @@ class ShippingInfoScreen extends StatelessWidget {
                 loading: false,
                 onPressed: () {
                   if (shippingController.validate()) {
-                    Get.toNamed(RouteName.paymentScreen);
+                    Get.offNamed(RouteName.paymentScreen);
                   } else {
                     Get.snackbar(
                       'Error',
