@@ -46,7 +46,8 @@ class ProductController extends GetxController {
         .collection('users')
         .doc(FirebaseAuth.instance.currentUser?.uid);
     await cartRef.get().then((value) {
-      var data = value.data() as Map<String, dynamic>;
+      var dataRecieved = value.data();
+      var data = (dataRecieved!=null) ? dataRecieved as Map<String, dynamic> : {};
       cart = data['cart'] ?? [];
     });
 

@@ -63,7 +63,7 @@ class CartServices {
           .update({'cart': cart});
       return true;
     } catch (e) {
-      log('error : $e');
+      log('UpdateCart error : $e');
       return false;
     }
   }
@@ -95,7 +95,7 @@ class CartServices {
       cart = item?['cart'];
       return cart;
     } catch (e) {
-      log('error : $e');
+      log('getCart error : $e');
       return cart;
     }
   }
@@ -112,7 +112,7 @@ class CartServices {
       cart = item?['cart'];
       return cart!.length;
     } catch (e) {
-      log('error : $e');
+      log('getCartCount error : $e');
       return cart!.length;
     }
   }

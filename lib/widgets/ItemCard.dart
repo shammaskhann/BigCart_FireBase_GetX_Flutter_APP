@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:big_cart_app/controller/Favourite_Controller/favourite_controller.dart';
 
 import '../controller/Cart_Contrller/cart_controller.dart';
@@ -71,8 +72,8 @@ class ItemCard extends StatelessWidget {
                               right: 0,
                               child: Image.network(
                                 snapshot.data as String,
-                                height: 80,
-                                width: 80,
+                                height: 90,
+                                width: 90,
                               ),
                             ),
                           ],
@@ -89,26 +90,47 @@ class ItemCard extends StatelessWidget {
                     }),
                   ),
                 ),
-                Text('\$${item['price']}',
-                    style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        color: AppColors.primaryColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-                Text(
-                  productName.tr,
-                  style: const TextStyle(
-                      fontFamily: 'Poppins',
-                      color: AppColors.black,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    child: AutoSizeText('\$${item['price']}',
+                        minFontSize: 12,
+                        maxFontSize: 20,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            color: AppColors.black,
+                            fontWeight: FontWeight.w600)),
+                  ),
                 ),
-                Text(item['weightPer'],
+                Expanded(
+                  flex: 2,
+                  child: AutoSizeText(
+                    item['productName'],
+                    minFontSize: 12,
+                    maxFontSize: 18,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: const TextStyle(
                         fontFamily: 'Poppins',
-                        color: AppColors.grey,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
+                        color: AppColors.black,
+                        fontWeight: FontWeight.w300),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: AutoSizeText(item['weightPer'].toString(),
+                      minFontSize: 12,
+                      maxFontSize: 20,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: const TextStyle(
+                          fontFamily: 'Poppins',
+                          color: AppColors.grey,
+                          fontWeight: FontWeight.w500)),
+                ),
+                Spacer(),
                 const Divider(
                   color: Color(0xFFEBEBEB),
                   thickness: 1,
@@ -245,7 +267,8 @@ class ItemCard extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                    })
+                    }),
+                const SizedBox(height: 10),
               ],
             ),
             Positioned(

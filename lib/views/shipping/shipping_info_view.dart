@@ -17,15 +17,16 @@ class ShippingInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ShippingController shippingController = Get.put(ShippingController());
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Shipping Address', style: AppTextStyles.appBarStyle),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Padding(
               padding: EdgeInsets.only(
@@ -130,119 +131,158 @@ class ShippingInfoScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SingleChildScrollView(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    //Name
-                    CustomTextFeild(
-                      controller: shippingController.nameController.value,
-                      currentNode: shippingController.nameFocusNode.value,
-                      nextNode: shippingController.emailFocusNode.value,
-                      hint: 'name'.tr,
-                      leadingIcon: AppTextFeildIcons.profileIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your name';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //Email
-                    CustomTextFeild(
-                      controller: shippingController.emailController.value,
-                      currentNode: shippingController.emailFocusNode.value,
-                      nextNode: shippingController.phoneFocusNode.value,
-                      hint: 'email'.tr,
-                      leadingIcon: AppTextFeildIcons.emailIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //Phone
-                    CustomTextFeild(
-                      controller: shippingController.phoneController.value,
-                      currentNode: shippingController.phoneFocusNode.value,
-                      nextNode: shippingController.addressFocusNode.value,
-                      hint: 'phone'.tr,
-                      leadingIcon: AppTextFeildIcons.phoneIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your phone';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //Address
-                    CustomTextFeild(
-                      controller: shippingController.addressController.value,
-                      currentNode: shippingController.addressFocusNode.value,
-                      nextNode: shippingController.cityFocusNode.value,
-                      hint: 'address'.tr,
-                      leadingIcon: AppTextFeildIcons.locationIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your address';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //City
-                    CustomTextFeild(
-                      controller: shippingController.cityController.value,
-                      currentNode: shippingController.cityFocusNode.value,
-                      nextNode: shippingController.zipCodeFocusNode.value,
-                      hint: 'city'.tr,
-                      leadingIcon: AppTextFeildIcons.cityIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your city';
-                        }
-                        return null;
-                      },
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //Zip Code
-                    CustomTextFeild(
-                      controller: shippingController.zipCodeController.value,
-                      currentNode: shippingController.zipCodeFocusNode.value,
-                      nextNode: shippingController.zipCodeFocusNode.value,
-                      hint: 'zip_code'.tr,
-                      leadingIcon: AppTextFeildIcons.zipCodeIcon,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your zip code';
-                        }
-                        return null;
-                      },
-                    ),
-                  ]),
+            Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //Name
+                  CustomTextFeild(
+                    controller: shippingController.nameController.value,
+                    currentNode: shippingController.nameFocusNode.value,
+                    nextNode: shippingController.emailFocusNode.value,
+                    hint: 'name'.tr,
+                    leadingIcon: AppTextFeildIcons.profileIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.nameFocusNode.value,
+                          shippingController.emailFocusNode.value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //Email
+                  CustomTextFeild(
+                    controller: shippingController.emailController.value,
+                    currentNode: shippingController.emailFocusNode.value,
+                    nextNode: shippingController.phoneFocusNode.value,
+                    hint: 'email'.tr,
+                    leadingIcon: AppTextFeildIcons.emailIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.emailFocusNode.value,
+                          shippingController.phoneFocusNode.value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //Phone
+                  CustomTextFeild(
+                    controller: shippingController.phoneController.value,
+                    currentNode: shippingController.phoneFocusNode.value,
+                    nextNode: shippingController.addressFocusNode.value,
+                    hint: 'phone'.tr,
+                    leadingIcon: AppTextFeildIcons.phoneIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your phone';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.phoneFocusNode.value,
+                          shippingController.addressFocusNode.value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //Address
+                  CustomTextFeild(
+                    controller: shippingController.addressController.value,
+                    currentNode: shippingController.addressFocusNode.value,
+                    nextNode: shippingController.cityFocusNode.value,
+                    hint: 'address'.tr,
+                    leadingIcon: AppTextFeildIcons.locationIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your address';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.addressFocusNode.value,
+                          shippingController.cityFocusNode.value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //City
+                  CustomTextFeild(
+                    controller: shippingController.cityController.value,
+                    currentNode: shippingController.cityFocusNode.value,
+                    nextNode: shippingController.zipCodeFocusNode.value,
+                    hint: 'city'.tr,
+                    leadingIcon: AppTextFeildIcons.cityIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your city';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.cityFocusNode.value,
+                          shippingController.zipCodeFocusNode.value);
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  //Zip Code
+                  CustomTextFeild(
+                    controller: shippingController.zipCodeController.value,
+                    currentNode: shippingController.zipCodeFocusNode.value,
+                    nextNode: shippingController.zipCodeFocusNode.value,
+                    hint: 'zip_code'.tr,
+                    leadingIcon: AppTextFeildIcons.zipCodeIcon,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter your zip code';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (value) {
+                      Utils.fieldFocusChange(
+                          context,
+                          shippingController.zipCodeFocusNode.value,
+                          shippingController.zipCodeFocusNode.value);
+                    },
+                  ),
+                ]),
+            // const Spacer(),
+            Expanded(
+              child: SizedBox(
+                height: 50,
+              ),
             ),
-            const Spacer(),
             CustomButton(
                 title: 'Next',
                 loading: false,
                 onPressed: () {
                   if (shippingController.validate()) {
-                    Get.toNamed(RouteName.paymentScreen);
+                    Get.offNamed(RouteName.paymentScreen);
                   } else {
                     Get.snackbar(
                       'Error',

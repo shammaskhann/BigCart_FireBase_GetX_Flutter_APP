@@ -1,6 +1,7 @@
 
 import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
+import 'package:big_cart_app/views/payment/payment_controller.dart';
 import 'package:big_cart_app/views/shipping/shipping_Controller.dart';
 import 'package:big_cart_app/widgets/CustomButon.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class ShippingMethodScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ShippingController shippingController = Get.put(ShippingController());
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

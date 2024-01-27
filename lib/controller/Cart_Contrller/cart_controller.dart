@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:big_cart_app/services/Cart/Cart_Service.dart';
+import 'package:big_cart_app/views/cart/CartView_Controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,6 @@ class CartController extends GetxController {
   }
 
   Future<bool> updateCart(Map<String, dynamic> item) async {
-    log('item : $item');
     try {
       await cartServices.updateCart(item, item, quantity.value);
       atc.value = true;
@@ -51,6 +51,17 @@ class CartController extends GetxController {
       isAlreadyInCart = true;
     }
     return isAlreadyInCart;
+  }
+
+  Future<int> getCartCount() async {
+    int count = 0;
+    try {
+      final response = await cartServices.getCart();
+      count = response!.length;
+      return count;
+    } catch (e) {
+      return count;
+    }
   }
 
   Future<List<dynamic>?> getCart() async {

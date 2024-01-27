@@ -12,4 +12,7 @@ class RouteName {
   static const String shippingMethodScreen = '/shipping_method_screen';
   static const String shippingInfoScreen = '/shipping_info_screen';
   static const String paymentScreen = '/payment_screen';
+  static const String orderSuccessScreen = '/order-success';
+  static const String trackOrderScreen = '/track-order';
+  static const String dashboardScreen = '/dashboard';
 }

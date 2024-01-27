@@ -5,8 +5,23 @@ import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:get/get.dart';
 
 class CartViewController extends GetxController {
+  var isLoading = false.obs;
+  int cartNo = 0;
   CartController cartController = CartController();
   RxInt isUpdate = 1.obs;
+
+  @override
+  void onInit() async {
+    super.onInit();
+    isLoading(true);
+    try {
+      cartNo = await cartController.getCartCount();
+    } catch (e) {
+      log('error : $e');
+    } finally {
+      isLoading(false);
+    }
+  }
 
   Future<bool> addCart(Map<String, dynamic> item) async {
     try {
@@ -18,6 +33,8 @@ class CartViewController extends GetxController {
   }
 
   Future getCart() async {
+    // isLoading(true);
+    // isLoading(false);
     List? itemList = [];
     try {
       final response = await cartController.getCart();
@@ -26,6 +43,7 @@ class CartViewController extends GetxController {
         return itemList!;
       }
       log('cart $itemList');
+
       return itemList;
     } catch (e) {
       log('error : $e');
@@ -69,6 +87,7 @@ class CartViewController extends GetxController {
 
   Future<double> getTotal() async {
     double total = 0;
+
     try {
       double subTotal = await getSubTotal();
       double shippingCharges = await getShippingCharges();
@@ -80,6 +99,10 @@ class CartViewController extends GetxController {
   }
 
   navigateToShippingScreen() {
-    Get.toNamed(RouteName.shippingMethodScreen);
+    Get.offNamed(RouteName.shippingMethodScreen);
+  }
+
+  navigateToHomeScreen() {
+    Get.offAllNamed(RouteName.dashboardScreen);
   }
 }
