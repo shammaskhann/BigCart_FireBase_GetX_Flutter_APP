@@ -112,6 +112,41 @@ class AppRoutes {
           page: () => const DashboardView(),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.myAddressScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.myOrdersScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.notificationScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.addAddressScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.myCardScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.addCardScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.transactionScreen,
+          page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
     ];
   }
 }

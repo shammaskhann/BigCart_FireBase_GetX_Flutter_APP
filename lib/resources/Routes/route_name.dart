@@ -15,4 +15,11 @@ class RouteName {
   static const String orderSuccessScreen = '/order-success';
   static const String trackOrderScreen = '/track-order';
   static const String dashboardScreen = '/dashboard';
+  static const String myOrdersScreen = '/my-orders';
+  static const String myAddressScreen = '/my-address';
+  static const String notificationScreen = '/notification';
+  static const String addAddressScreen = '/add-address';
+  static const String myCardScreen = '/my-card';
+  static const String addCardScreen = '/add-card';
+  static const String transactionScreen = '/transaction';
 }
