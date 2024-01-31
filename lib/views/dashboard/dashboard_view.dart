@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
+import 'package:big_cart_app/views/cart/cart_view.dart';
 import 'package:big_cart_app/views/dashboard/dashboard_controller.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
 import 'package:big_cart_app/views/home/home_view.dart';
@@ -17,10 +18,10 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DashboardController dashboardController = Get.put(DashboardController());
+    final controller = Get.put(DashboardController());
     return WillPopScope(
         onWillPop: () async {
-          if (dashboardController.currentIndex.value == 0) {
+          if (controller.currentIndex.value == 0) {
             return await showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -38,13 +39,13 @@ class DashboardView extends StatelessWidget {
                       ],
                     ));
           } else {
-            dashboardController.currentIndex.value = 0;
+            controller.changeIndex(0);
             return false;
           }
         },
         child: Scaffold(
           body: Obx(() => IndexedStack(
-                index: dashboardController.currentIndex.value,
+                index: controller.currentIndex.value,
                 children: const [
                   HomeScreen(),
                   ProfileView(),
@@ -59,9 +60,9 @@ class DashboardView extends StatelessWidget {
                 ],
                 gapLocation: GapLocation.end,
                 notchMargin: 0,
-                activeIndex: dashboardController.currentIndex.value,
+                activeIndex: controller.currentIndex.value,
                 onTap: (index) {
-                  dashboardController.currentIndex.value = index;
+                  controller.changeIndex(index);
                 },
                 activeColor: AppColors.priamryButton2,
                 inactiveColor: AppColors.grey,
@@ -70,7 +71,7 @@ class DashboardView extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             elevation: 0,
             onPressed: () {
-              dashboardController.navigateToCartScreen();
+              controller.navigateToCartScreen();
             },
             backgroundColor: AppColors.priamryButton2,
             child: SvgPicture.asset(AppIcons.cartIcon),

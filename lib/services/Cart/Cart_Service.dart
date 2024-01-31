@@ -143,4 +143,15 @@ class CartServices {
       return index;
     }
   }
+
+  Future<void> clearCart() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser?.uid)
+          .update({'cart': []});
+    } catch (e) {
+      log('error : $e');
+    }
+  }
 }

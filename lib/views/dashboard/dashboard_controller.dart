@@ -1,17 +1,26 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
+import 'package:big_cart_app/views/home/home_controller.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
   RxInt currentIndex = 0.obs;
-  void navigateToCartScreen() {
-    Get.toNamed(RouteName.cartScreen);
+  void navigateToCartScreen() async {
+    HomeController homeController = Get.isRegistered<HomeController>()
+        ? Get.find<HomeController>()
+        : Get.put(HomeController());
+    await Get.toNamed(RouteName.cartScreen);
+    homeController.refresh();
   }
 
-  void navigateToProfileScreen() {
+  void changeIndex(int index) {
+    currentIndex.value = index;
+  }
+
+  void navigateToProfileScreen() async {
     Get.toNamed(RouteName.profileScreen);
   }
 
-  void navigateToFavouriteScreen() {
+  void navigateToFavouriteScreen() async {
     Get.toNamed(RouteName.favouriteScreen);
   }
 

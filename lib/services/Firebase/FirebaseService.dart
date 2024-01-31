@@ -19,25 +19,6 @@ class FirebaseServices {
     }
   }
 
-  // Future getFeaturedItems() async {
-  //   DocumentReference inventory = FirebaseFirestore.instance
-  //       .collection('Inventory')
-  //       .doc('Featured-Items');
-  //   try {
-  //     final DocumentSnapshot snapshot = await inventory.get();
-  //     if (snapshot.exists) {
-  //       final Map<dynamic, dynamic> values = snapshot.data() as Map;
-  //       return values;
-  //     } else {
-  //       log('Document does not exist');
-  //       return null;
-  //     }
-  //   } catch (e) {
-  //     log(e.toString());
-  //     return null;
-  //   }
-  // }
-
   Future getFeaturedItems() {
     CollectionReference inventory =
         FirebaseFirestore.instance.collection('Inventory');

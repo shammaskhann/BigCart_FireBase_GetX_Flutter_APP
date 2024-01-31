@@ -11,6 +11,10 @@ class HomeController extends GetxController {
   RxString selectedLanguage = 'English'.obs;
   final List featuredList = [];
 
+  void refresh() {
+    update();
+  }
+
   getFeaturedList() async {
     final Map<dynamic, dynamic> response =
         await firebaseServices.getFeaturedItems();
