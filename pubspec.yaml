@@ -54,6 +54,7 @@ dependencies:
   auto_size_text: ^3.0.0
   mask_text_input_formatter: ^2.8.0
   intl: ^0.19.0
+  firebase_messaging: ^14.7.15
 
 dev_dependencies:
   flutter_test:

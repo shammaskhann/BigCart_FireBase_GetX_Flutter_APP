@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ffi';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
@@ -64,6 +65,7 @@ class HomeScreen extends StatelessWidget {
         },
       },
     ];
+    log('Home Screen loaded');
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -244,53 +246,56 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: FutureBuilder(
-                          future: homeController.getFeaturedList(),
-                          builder: ((context, AsyncSnapshot snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                child: CircularProgressIndicator(
-                                    color: AppColors.primaryColor),
-                              );
-                            }
-                            if (snapshot.hasData) {
-                              return GridView.builder(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 15),
-                                  itemCount: snapshot.data.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 5,
-                                          mainAxisSpacing: 10,
-                                          childAspectRatio: 4 / 5),
-                                  itemBuilder: (context, index) {
-                                    Map currentItem = snapshot.data[index];
-                                    return ItemCard(
-                                      item: currentItem,
-                                      isFeatured: true,
+                    Obx(() => (homeController.isUpdated.value)
+                        ? Expanded(
+                            child: FutureBuilder(
+                                future: homeController.getFeaturedList(),
+                                builder: ((context, AsyncSnapshot snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(
+                                          color: AppColors.primaryColor),
                                     );
-                                  });
-                            } else if (!snapshot.hasData) {
-                              return const Center(
-                                  child: Text(
-                                "No Featured Item",
-                                style: AppTextStyles.heading,
-                              ));
-                            } else if (snapshot.hasError) {
-                              return const Center(
-                                  child: Text(
-                                "Error",
-                                style: AppTextStyles.heading,
-                              ));
-                            }
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          })),
-                    ),
+                                  }
+                                  if (snapshot.hasData) {
+                                    return GridView.builder(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 15),
+                                        itemCount: snapshot.data.length,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                crossAxisSpacing: 5,
+                                                mainAxisSpacing: 10,
+                                                childAspectRatio: 4 / 5),
+                                        itemBuilder: (context, index) {
+                                          Map currentItem =
+                                              snapshot.data[index];
+                                          return ItemCard(
+                                            item: currentItem,
+                                            isFeatured: true,
+                                          );
+                                        });
+                                  } else if (!snapshot.hasData) {
+                                    return const Center(
+                                        child: Text(
+                                      "No Featured Item",
+                                      style: AppTextStyles.heading,
+                                    ));
+                                  } else if (snapshot.hasError) {
+                                    return const Center(
+                                        child: Text(
+                                      "Error",
+                                      style: AppTextStyles.heading,
+                                    ));
+                                  }
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                })),
+                          )
+                        : const Center(child: CircularProgressIndicator())),
                   ],
                 ),
               ),

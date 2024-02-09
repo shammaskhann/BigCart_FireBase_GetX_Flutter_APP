@@ -25,7 +25,7 @@ class Authentication {
       await _db.collection('users').doc(userCredential.user!.uid).set({
         'email': email,
         'password': password,
-        'phoneNumber': phone,
+        'name': phone,
         'uid': userCredential.user!.uid,
       });
       return true;

@@ -57,6 +57,51 @@ class SignupScreen extends StatelessWidget {
                             key: form,
                             child: Column(
                               children: [
+                                //PassWord
+                                Obx(
+                                  () => TextFormField(
+                                    controller:
+                                        signupController.phoneController.value,
+                                    focusNode: signupController
+                                        .passwordConfirmFocusNode.value,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'name_empty'.tr;
+                                      }
+                                      return null;
+                                    },
+                                    onFieldSubmitted: (value) {
+                                      signupController
+                                          .passwordConfirmFocusNode.value
+                                          .unfocus();
+                                    },
+                                    style: AppTextStyles.textfieldInputStyle,
+                                    cursorColor: AppColors.primaryColor,
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.only(
+                                        left: 25,
+                                        top: 25,
+                                        bottom: 25,
+                                      ),
+                                      fillColor: AppColors.white,
+                                      hintText: 'name_hint'.tr,
+                                      hintStyle: AppTextStyles.substitle,
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          borderSide: BorderSide.none),
+                                      filled: true,
+                                      prefixIcon: Container(
+                                        padding: const EdgeInsets.all(15),
+                                        child: SvgPicture.asset(
+                                          AppTextFeildIcons.profileIcon,
+                                          // ignore: deprecated_member_use
+                                          color: AppColors.grey,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 //email address
                                 TextFormField(
                                   controller:
@@ -172,51 +217,6 @@ class SignupScreen extends StatelessWidget {
                                 ),
                                 const SizedBox(
                                   height: 10,
-                                ),
-                                //PassWord
-                                Obx(
-                                  () => TextFormField(
-                                    controller:
-                                        signupController.phoneController.value,
-                                    focusNode: signupController
-                                        .passwordConfirmFocusNode.value,
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'phone_empty'.tr;
-                                      }
-                                      return null;
-                                    },
-                                    onFieldSubmitted: (value) {
-                                      signupController
-                                          .passwordConfirmFocusNode.value
-                                          .unfocus();
-                                    },
-                                    style: AppTextStyles.textfieldInputStyle,
-                                    cursorColor: AppColors.primaryColor,
-                                    decoration: InputDecoration(
-                                      contentPadding: const EdgeInsets.only(
-                                        left: 25,
-                                        top: 25,
-                                        bottom: 25,
-                                      ),
-                                      fillColor: AppColors.white,
-                                      hintText: 'enter_number'.tr,
-                                      hintStyle: AppTextStyles.substitle,
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          borderSide: BorderSide.none),
-                                      filled: true,
-                                      prefixIcon: Container(
-                                        padding: const EdgeInsets.all(15),
-                                        child: SvgPicture.asset(
-                                          AppTextFeildIcons.phoneIcon,
-                                          // ignore: deprecated_member_use
-                                          color: AppColors.grey,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 ),
 
                                 //Login Button

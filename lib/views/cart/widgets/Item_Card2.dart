@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:big_cart_app/controller/Cart_Contrller/cart_controller.dart';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
@@ -26,7 +27,18 @@ class ItemCard2 extends StatelessWidget {
             child: Container(
                 height: 100,
                 width: Get.width,
-                color: AppColors.white,
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.grey.withOpacity(0.5),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
                 padding: const EdgeInsets.all(10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -73,19 +85,19 @@ class ItemCard2 extends StatelessWidget {
                                 right: 0,
                                 child: Image.network(
                                   snapshot.data as String,
-                                  height: 80,
-                                  width: 80,
+                                  height: Get.height * 0.1,
+                                  width: Get.width * 0.2,
                                 ),
                               ),
                             ],
                           );
                         }
-                        return const Shimmer(
+                        return Shimmer(
                           gradient: LinearGradient(
                             colors: [Colors.grey, Colors.white],
                           ),
                           child: CircleAvatar(
-                            radius: 50,
+                            radius: 40,
                           ),
                         );
                       }),
@@ -93,35 +105,43 @@ class ItemCard2 extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                          '\$ ${item['price']} x ${item['quantity']}',
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.primaryColor,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          item['productName'],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w800),
-                        ),
-                        Text(
-                          item['weightPer'],
-                          style: const TextStyle(
-                              fontFamily: 'Poppins',
-                              color: AppColors.grey,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          AutoSizeText(
+                            '\$ ${item['price']} x ${item['quantity']}',
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.w500),
+                            maxLines: 1,
+                            minFontSize: 10,
+                            maxFontSize: 18,
+                          ),
+                          AutoSizeText(
+                            item['productName'],
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold),
+                            maxLines: 1,
+                            minFontSize: 14,
+                            maxFontSize: 18,
+                          ),
+                          AutoSizeText(
+                            item['weightPer'],
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                color: AppColors.grey,
+                                fontWeight: FontWeight.w400),
+                            maxLines: 1,
+                            minFontSize: 10,
+                            maxFontSize: 18,
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                     FutureBuilder(
@@ -176,14 +196,17 @@ class ItemCard2 extends StatelessWidget {
                                         ),
                                       ),
                                       const Spacer(),
-                                      Text(
+                                      AutoSizeText(
                                         cartController.quantity.value
                                             .toString(),
                                         style: const TextStyle(
                                             fontFamily: 'Poppins',
-                                            color: AppColors.grey,
-                                            fontSize: 22,
+                                            color: AppColors.black,
                                             fontWeight: FontWeight.w500),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        minFontSize: 14,
+                                        maxFontSize: 18,
                                       ),
                                       const Spacer(),
                                       InkWell(
