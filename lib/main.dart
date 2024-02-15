@@ -1,4 +1,3 @@
-
 import 'package:big_cart_app/resources/languages/languages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -59,6 +58,11 @@ class _MyAppState extends State<MyApp> {
       translations: Languages(),
       locale: const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+        centerTitle: true,
+        toolbarHeight: 80,
+      )),
     );
   }
 }

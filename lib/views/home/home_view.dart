@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
@@ -82,15 +81,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.message),
-              title: const Text('Logout'),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-                Utils.snackBar('Success', 'Logged Out Successfully');
-                Get.offAllNamed('/login');
-              },
-            ),
             Obx(
               () => ListTile(
                 leading: const Icon(Icons.language),
@@ -115,6 +105,15 @@ class HomeScreen extends StatelessWidget {
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
               onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.exit_to_app),
+              title: const Text('Logout'),
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+                Utils.snackBar('Success', 'Logged Out Successfully');
+                Get.offAllNamed('/login');
+              },
             ),
           ],
         ),

@@ -22,6 +22,7 @@ class LoginController extends GetxController {
         passwordController.value.text.trim());
     if (response) {
       Utils.snackBar('success'.tr, 'login_success'.tr);
+
       Get.offAllNamed(RouteName.dashboardScreen);
     } else {
       loading.value = false;

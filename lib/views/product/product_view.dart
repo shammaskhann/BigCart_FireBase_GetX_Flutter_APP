@@ -109,6 +109,7 @@ class ProductView extends StatelessWidget {
               height: 05,
             ),
             Expanded(
+              flex: 2,
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -129,28 +130,9 @@ class ProductView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   ' \$ ${item['price'].toString()}',
-                      //   style: const TextStyle(
-                      //       color: AppColors.priamryButton2,
-                      //       fontSize: 25,
-                      //       fontWeight: FontWeight.w600),
-                      // ),
-                      // Text(item['productName'],
-                      //     style: const TextStyle(
-                      //         fontFamily: 'Poppins',
-                      //         color: AppColors.black,
-                      //         fontSize: 25,
-                      //         fontWeight: FontWeight.w600)),
-                      // Text(item['weightPer'],
-                      //     style: const TextStyle(
-                      //         fontFamily: 'Poppins',
-                      //         color: AppColors.black,
-                      //         fontSize: 18,
-                      //         fontWeight: FontWeight.w400)),
                       AutoSizeText(
                         ' \$ ${item['price'].toString()}',
                         style: const TextStyle(
@@ -232,11 +214,13 @@ class ProductView extends StatelessWidget {
                             fontFamily: 'Poppins',
                             color: AppColors.black,
                             fontWeight: FontWeight.w400),
-                        maxLines: 3,
-                        minFontSize: 17,
-                        maxFontSize: 20,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 5,
+                        minFontSize: 16,
+                        maxFontSize: 19,
                       ),
-                      const Spacer(),
+                      //Flexible(child: Container()),
+                      Spacer(),
                       // For Quantity Increment and decrement
                       Container(
                         height: 70,

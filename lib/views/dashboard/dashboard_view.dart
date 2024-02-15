@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
-import 'package:big_cart_app/views/cart/cart_view.dart';
 import 'package:big_cart_app/views/dashboard/dashboard_controller.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
 import 'package:big_cart_app/views/home/home_view.dart';
@@ -18,10 +17,11 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(DashboardController());
+    DashboardController dashboardController = Get.put(DashboardController());
+    // ignore: deprecated_member_use
     return WillPopScope(
         onWillPop: () async {
-          if (controller.currentIndex.value == 0) {
+          if (dashboardController.currentIndex.value == 0) {
             return await showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
@@ -39,13 +39,13 @@ class DashboardView extends StatelessWidget {
                       ],
                     ));
           } else {
-            controller.changeIndex(0);
+            dashboardController.currentIndex.value = 0;
             return false;
           }
         },
         child: Scaffold(
           body: Obx(() => IndexedStack(
-                index: controller.currentIndex.value,
+                index: dashboardController.currentIndex.value,
                 children: const [
                   HomeScreen(),
                   ProfileView(),
@@ -60,21 +60,37 @@ class DashboardView extends StatelessWidget {
                 ],
                 gapLocation: GapLocation.end,
                 notchMargin: 0,
-                activeIndex: controller.currentIndex.value,
+                activeIndex: dashboardController.currentIndex.value,
                 onTap: (index) {
-                  controller.changeIndex(index);
+                  dashboardController.currentIndex.value = index;
                 },
                 activeColor: AppColors.priamryButton2,
                 inactiveColor: AppColors.grey,
                 backgroundColor: AppColors.white,
               )),
-          floatingActionButton: FloatingActionButton(
-            elevation: 0,
-            onPressed: () {
-              controller.navigateToCartScreen();
+          floatingActionButton: InkWell(
+            onTap: () {
+              dashboardController.navigateToCartScreen();
             },
-            backgroundColor: AppColors.priamryButton2,
-            child: SvgPicture.asset(AppIcons.cartIcon),
+            child: Container(
+              height: 56.0, // same as FloatingActionButton default size
+              width: 56.0, // same as FloatingActionButton default size
+              decoration: BoxDecoration(
+                color: AppColors.priamryButton2,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset(AppIcons.cartIcon),
+              ),
+            ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         ));
