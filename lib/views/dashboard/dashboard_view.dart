@@ -18,6 +18,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DashboardController dashboardController = Get.put(DashboardController());
+    // ignore: deprecated_member_use
     return WillPopScope(
         onWillPop: () async {
           if (dashboardController.currentIndex.value == 0) {
@@ -67,13 +68,29 @@ class DashboardView extends StatelessWidget {
                 inactiveColor: AppColors.grey,
                 backgroundColor: AppColors.white,
               )),
-          floatingActionButton: FloatingActionButton(
-            elevation: 0,
-            onPressed: () {
+          floatingActionButton: InkWell(
+            onTap: () {
               dashboardController.navigateToCartScreen();
             },
-            backgroundColor: AppColors.priamryButton2,
-            child: SvgPicture.asset(AppIcons.cartIcon),
+            child: Container(
+              height: 56.0, // same as FloatingActionButton default size
+              width: 56.0, // same as FloatingActionButton default size
+              decoration: BoxDecoration(
+                color: AppColors.priamryButton2,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.white,
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset(AppIcons.cartIcon),
+              ),
+            ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         ));

@@ -1,6 +1,7 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/views/Tracking/track_order_view.dart';
 import 'package:big_cart_app/views/cart/cart_view.dart';
+import 'package:big_cart_app/views/category/category_expand_view.dart';
 import 'package:big_cart_app/views/category/category_view.dart';
 import 'package:big_cart_app/views/dashboard/dashboard_view.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
@@ -110,6 +111,11 @@ class AppRoutes {
       GetPage(
           name: RouteName.dashboardScreen,
           page: () => const DashboardView(),
+          transition: Transition.rightToLeftWithFade,
+          transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+          name: RouteName.CategoryExtendedScreen,
+          page: () => CategoryExtendView(),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
     ];

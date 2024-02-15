@@ -42,4 +42,8 @@ class HomeController extends GetxController {
       Get.updateLocale(const Locale('ur', 'PK'));
     }
   }
+
+  navToCategoryExtendedScreen() {
+    Get.toNamed(RouteName.CategoryExtendedScreen);
+  }
 }

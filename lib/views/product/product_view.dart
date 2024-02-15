@@ -132,32 +132,13 @@ class ProductView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Text(
-                      //   ' \$ ${item['price'].toString()}',
-                      //   style: const TextStyle(
-                      //       color: AppColors.priamryButton2,
-                      //       fontSize: 25,
-                      //       fontWeight: FontWeight.w600),
-                      // ),
-                      // Text(item['productName'],
-                      //     style: const TextStyle(
-                      //         fontFamily: 'Poppins',
-                      //         color: AppColors.black,
-                      //         fontSize: 25,
-                      //         fontWeight: FontWeight.w600)),
-                      // Text(item['weightPer'],
-                      //     style: const TextStyle(
-                      //         fontFamily: 'Poppins',
-                      //         color: AppColors.black,
-                      //         fontSize: 18,
-                      //         fontWeight: FontWeight.w400)),
                       AutoSizeText(
                         ' \$ ${item['price'].toString()}',
                         style: const TextStyle(
                             color: AppColors.priamryButton2,
                             fontWeight: FontWeight.w600),
                         maxLines: 1,
-                        minFontSize: 20.0,
+                        minFontSize: 22.0,
                         maxFontSize: 28.0,
                       ),
                       AutoSizeText(
@@ -167,7 +148,7 @@ class ProductView extends StatelessWidget {
                             color: AppColors.black,
                             fontWeight: FontWeight.w600),
                         maxLines: 1,
-                        minFontSize: 20.0,
+                        minFontSize: 22.0,
                         maxFontSize: 28.0,
                       ),
                       AutoSizeText(
@@ -222,7 +203,8 @@ class ProductView extends StatelessWidget {
                                     fontFamily: 'Poppins',
                                     color: AppColors.black,
                                     fontSize: 18,
-                                    fontWeight: FontWeight.w400)),
+                                    fontWeight: FontWeight.w400,
+                                    decoration: TextDecoration.underline)),
                           ),
                         ],
                       ),
@@ -232,11 +214,12 @@ class ProductView extends StatelessWidget {
                             fontFamily: 'Poppins',
                             color: AppColors.black,
                             fontWeight: FontWeight.w400),
-                        maxLines: 3,
-                        minFontSize: 17,
-                        maxFontSize: 20,
+                        maxLines: 6,
+                        minFontSize: 18,
+                        maxFontSize: 28,
                       ),
                       const Spacer(),
+
                       // For Quantity Increment and decrement
                       Container(
                         height: 70,

@@ -20,6 +20,12 @@ class MyApp extends StatelessWidget {
       translations: Languages(),
       locale: const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          toolbarHeight: 80, // Set the toolbarHeight here
+          centerTitle: true,
+        ),
+      ),
     );
   }
 }

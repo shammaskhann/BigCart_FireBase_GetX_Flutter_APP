@@ -177,7 +177,10 @@ class HomeScreen extends StatelessWidget {
                                       style: AppTextStyles.heading),
                                   //const Spacer(),
                                   IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        homeController
+                                            .navToCategoryExtendedScreen();
+                                      },
                                       icon: const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         color: AppColors.grey,

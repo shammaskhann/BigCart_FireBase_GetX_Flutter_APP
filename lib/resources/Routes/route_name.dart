@@ -15,4 +15,5 @@ class RouteName {
   static const String orderSuccessScreen = '/order-success';
   static const String trackOrderScreen = '/track-order';
   static const String dashboardScreen = '/dashboard';
+  static const String CategoryExtendedScreen = '/category-extended-screen';
 }
