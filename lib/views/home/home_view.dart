@@ -228,7 +228,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 5),
                       child: SizedBox(
                         height: 30,
                         width: Get.width,
@@ -239,7 +240,10 @@ class HomeScreen extends StatelessWidget {
                             Text('Featured products'.tr,
                                 style: AppTextStyles.heading),
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  homeController
+                                      .navToFeaturedProductExtendView();
+                                },
                                 icon: const Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   color: AppColors.grey,
@@ -264,7 +268,7 @@ class HomeScreen extends StatelessWidget {
                                     return GridView.builder(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 10, vertical: 15),
-                                        itemCount: snapshot.data.length,
+                                        itemCount: snapshot.data!.length,
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                                 crossAxisCount: 2,

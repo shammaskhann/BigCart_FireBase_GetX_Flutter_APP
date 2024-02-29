@@ -5,6 +5,7 @@ import 'package:big_cart_app/views/category/category_expand_view.dart';
 import 'package:big_cart_app/views/category/category_view.dart';
 import 'package:big_cart_app/views/dashboard/dashboard_view.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
+import 'package:big_cart_app/views/home/featured_product_extend_view.dart';
 import 'package:big_cart_app/views/login/login_view.dart';
 import 'package:big_cart_app/views/payment/payment_view.dart';
 import 'package:big_cart_app/views/profile/profile_view.dart';
@@ -118,6 +119,12 @@ class AppRoutes {
           page: () => CategoryExtendView(),
           transition: Transition.rightToLeftWithFade,
           transitionDuration: const Duration(milliseconds: 500)),
+      GetPage(
+        name: RouteName.FeaturedProductExtendedView,
+        page: () => FeaturedProductExtendedView(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
     ];
   }
 }

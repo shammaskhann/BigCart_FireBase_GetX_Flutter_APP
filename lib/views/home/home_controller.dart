@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
+import 'package:big_cart_app/views/home/featured_product_extend_view.dart';
 import 'package:get/get.dart';
 import '../../resources/Routes/route_name.dart';
 
@@ -48,6 +49,10 @@ class HomeController extends GetxController {
     } else if (newLanguage == 'Urdu') {
       Get.updateLocale(const Locale('ur', 'PK'));
     }
+  }
+
+  void navToFeaturedProductExtendView() {
+    Get.toNamed(RouteName.FeaturedProductExtendedView);
   }
 
   navToCategoryExtendedScreen() {
