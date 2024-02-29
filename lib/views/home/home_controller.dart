@@ -7,9 +7,16 @@ import '../../resources/Routes/route_name.dart';
 
 class HomeController extends GetxController {
   FirebaseServices firebaseServices = FirebaseServices();
-  RxBool isUpdated = false.obs;
+  RxBool isUpdated = true.obs;
   RxString selectedLanguage = 'English'.obs;
   final List featuredList = [];
+
+  void refresh() {
+    isUpdated.value = !isUpdated.value;
+    isUpdated.refresh();
+    isUpdated.value = !isUpdated.value;
+    isUpdated.refresh();
+  }
 
   getFeaturedList() async {
     final Map<dynamic, dynamic> response =

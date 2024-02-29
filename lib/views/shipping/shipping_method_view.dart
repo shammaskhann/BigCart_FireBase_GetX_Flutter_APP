@@ -144,10 +144,8 @@ class ShippingMethodScreen extends StatelessWidget {
                         (shippingController.selectedShippingMethod.value == 1)
                             ? const BoxShadow(
                                 color: AppColors.primaryColor,
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
+                                spreadRadius: 1,
+                                blurRadius: 1,
                               )
                             : const BoxShadow(
                                 color: AppColors.white,
@@ -219,10 +217,8 @@ class ShippingMethodScreen extends StatelessWidget {
                         (shippingController.selectedShippingMethod.value == 2)
                             ? const BoxShadow(
                                 color: AppColors.primaryColor,
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
+                                spreadRadius: 1,
+                                blurRadius: 1,
                               )
                             : const BoxShadow(
                                 color: AppColors.white,
@@ -294,17 +290,13 @@ class ShippingMethodScreen extends StatelessWidget {
                         (shippingController.selectedShippingMethod.value == 3)
                             ? const BoxShadow(
                                 color: AppColors.primaryColor,
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
+                                spreadRadius: 1,
+                                blurRadius: 1,
                               )
                             : const BoxShadow(
                                 color: AppColors.white,
-                                spreadRadius: 2,
-                                blurRadius: 5,
-                                offset:
-                                    Offset(0, 3), // changes position of shadow
+                                spreadRadius: 1,
+                                blurRadius: 1,
                               ),
                       ]),
                   child: const Row(

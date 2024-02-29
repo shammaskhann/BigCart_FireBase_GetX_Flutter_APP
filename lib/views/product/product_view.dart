@@ -109,6 +109,7 @@ class ProductView extends StatelessWidget {
               height: 05,
             ),
             Expanded(
+              flex: 2,
               child: Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -129,7 +130,7 @@ class ProductView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
@@ -214,12 +215,13 @@ class ProductView extends StatelessWidget {
                             fontFamily: 'Poppins',
                             color: AppColors.black,
                             fontWeight: FontWeight.w400),
-                        maxLines: 6,
-                        minFontSize: 18,
-                        maxFontSize: 28,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 5,
+                        minFontSize: 16,
+                        maxFontSize: 19,
                       ),
-                      const Spacer(),
-
+                      //Flexible(child: Container()),
+                      Spacer(),
                       // For Quantity Increment and decrement
                       Container(
                         height: 70,

@@ -11,6 +11,7 @@ import 'package:big_cart_app/widgets/CustomButon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
@@ -19,6 +20,7 @@ class PaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     ShippingController shippingController = Get.put(ShippingController());
     PaymentController paymentController = Get.put(PaymentController());
+    final key = GlobalKey<FormState>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -183,10 +185,9 @@ class PaymentScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.grey.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                        color: AppColors.primaryColor,
+                        spreadRadius: 1,
+                        blurRadius: 1,
                       ),
                     ],
                   ),
@@ -323,105 +324,147 @@ class PaymentScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
-              child: CustomTextFeild(
-                controller: paymentController.cardHolderName.value,
-                currentNode: paymentController.cardHolderNameFocusNode.value,
-                nextNode: paymentController.cardNumberFocusNode.value,
-                hint: "Name",
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter name';
-                  }
-                  return null;
-                },
-                onFieldSubmitted: (value) {
-                  log('onFieldSubmitted');
-                  paymentController.updateCardHolderName();
-                  paymentController.cardHolderNameFocusNode.value.unfocus();
-                  paymentController.cardNumberFocusNode.value.requestFocus();
-                },
-                leadingIcon: AppTextFeildIcons.profileIcon,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
-              child: CustomTextFeild(
-                controller: paymentController.cardNumber.value,
-                currentNode: paymentController.cardNumberFocusNode.value,
-                nextNode: paymentController.cardExpiryDateFocusNode.value,
-                hint: "Card Number",
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter card number';
-                  }
-                  return null;
-                },
-                onFieldSubmitted: (value) {
-                  log('onFieldSubmitted');
-                  paymentController.updateCardNum();
-                  paymentController.cardNumberFocusNode.value.unfocus();
-                  paymentController.cardExpiryDateFocusNode.value
-                      .requestFocus();
-                },
-                leadingIcon: AppTextFeildIcons.creditcardIcon,
-              ),
-            ),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: CustomTextFeild(
-                    controller: paymentController.cardExpiryDate.value,
-                    currentNode:
-                        paymentController.cardExpiryDateFocusNode.value,
-                    nextNode: paymentController.cardCVVFocusNode.value,
-                    hint: "Expiry Date",
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter expiry date';
-                      }
-                      return null;
-                    },
-                    leadingIcon: AppTextFeildIcons.calendarIcon,
-                    onFieldSubmitted: (value) {
-                      log('onFieldSubmitted');
-                      paymentController.updateCardExpiryDate();
-                      paymentController.cardExpiryDateFocusNode.value.unfocus();
-                      paymentController.cardCVVFocusNode.value.requestFocus();
-                    },
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: CustomTextFeild(
-                      controller: paymentController.cardCVV.value,
-                      currentNode: paymentController.cardCVVFocusNode.value,
-                      nextNode: paymentController.cardCVVFocusNode.value,
-                      hint: "CVV",
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter CVV';
-                        }
-                        return null;
-                      },
-                      leadingIcon: AppTextFeildIcons.lockIcon,
-                      onFieldSubmitted: (value) {
-                        log('onFieldSubmitted');
-                        paymentController.cardCVVFocusNode.value.unfocus();
-                      }),
-                ),
-              ),
-            ]),
-            CustomButton(
+            Form(
+                key: key,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 5),
+                      child: CustomTextFeild(
+                        controller: paymentController.cardHolderName.value,
+                        currentNode:
+                            paymentController.cardHolderNameFocusNode.value,
+                        nextNode: paymentController.cardNumberFocusNode.value,
+                        hint: "Name",
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter name';
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (value) {
+                          log('onFieldSubmitted');
+                          paymentController.updateCardHolderName();
+                          paymentController.cardHolderNameFocusNode.value
+                              .unfocus();
+                          paymentController.cardNumberFocusNode.value
+                              .requestFocus();
+                        },
+                        leadingIcon: AppTextFeildIcons.profileIcon,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0, vertical: 5),
+                      child: CustomTextFeild(
+                        formater: [
+                          MaskTextInputFormatter(
+                              mask: '#### #### #### ####',
+                              filter: {"#": RegExp(r'[0-9]')})
+                        ],
+                        controller: paymentController.cardNumber.value,
+                        currentNode:
+                            paymentController.cardNumberFocusNode.value,
+                        nextNode:
+                            paymentController.cardExpiryDateFocusNode.value,
+                        hint: "Card Number",
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter card number';
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (value) {
+                          log('onFieldSubmitted');
+                          paymentController.updateCardNum();
+                          paymentController.cardNumberFocusNode.value.unfocus();
+                          paymentController.cardExpiryDateFocusNode.value
+                              .requestFocus();
+                        },
+                        leadingIcon: AppTextFeildIcons.creditcardIcon,
+                      ),
+                    ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CustomTextFeild(
+                                formater: [
+                                  MaskTextInputFormatter(
+                                      mask: '##/##',
+                                      filter: {"#": RegExp(r'[0-9]')})
+                                ],
+                                controller:
+                                    paymentController.cardExpiryDate.value,
+                                currentNode: paymentController
+                                    .cardExpiryDateFocusNode.value,
+                                nextNode:
+                                    paymentController.cardCVVFocusNode.value,
+                                hint: "Expiry Date",
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Please enter expiry date';
+                                  }
+                                  return null;
+                                },
+                                leadingIcon: AppTextFeildIcons.calendarIcon,
+                                onFieldSubmitted: (value) {
+                                  log('onFieldSubmitted');
+                                  paymentController.updateCardExpiryDate();
+                                  paymentController
+                                      .cardExpiryDateFocusNode.value
+                                      .unfocus();
+                                  paymentController.cardCVVFocusNode.value
+                                      .requestFocus();
+                                },
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: CustomTextFeild(
+                                  formater: [
+                                    MaskTextInputFormatter(
+                                        mask: '###',
+                                        filter: {"#": RegExp(r'[0-9]')})
+                                  ],
+                                  controller: paymentController.cardCVV.value,
+                                  currentNode:
+                                      paymentController.cardCVVFocusNode.value,
+                                  nextNode:
+                                      paymentController.cardCVVFocusNode.value,
+                                  hint: "CVV",
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Please enter CVV';
+                                    }
+                                    return null;
+                                  },
+                                  leadingIcon: AppTextFeildIcons.lockIcon,
+                                  onFieldSubmitted: (value) {
+                                    log('onFieldSubmitted');
+                                    paymentController.cardCVVFocusNode.value
+                                        .unfocus();
+                                  }),
+                            ),
+                          ),
+                        ]),
+                  ],
+                )),
+            Obx(() => CustomButton(
                 title: "Make a Payment",
-                loading: false,
+                loading: paymentController.isLoading.value,
                 onPressed: () {
-                  paymentController.navToOrderSuccess();
-                })
+                  if (key.currentState!.validate()) {
+                    paymentController.processTransaction();
+                  } else {
+                    Get.snackbar('Error', 'Please enter all fields');
+                  }
+                }))
           ],
         ),
       ),

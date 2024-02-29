@@ -77,4 +77,25 @@ class CartController extends GetxController {
       return itemList;
     }
   }
+
+  Future<double> getSubTotal() async {
+    double subTotal = 0;
+    try {
+      final response = await cartServices.getCart();
+      for (var i = 0; i < response!.length; i++) {
+        subTotal += response[i]['price'] * response[i]['quantity'];
+      }
+      return subTotal;
+    } catch (e) {
+      return subTotal;
+    }
+  }
+
+  Future<void> clearCart() async {
+    try {
+      await cartServices.clearCart();
+    } catch (e) {
+      log('error : $e');
+    }
+  }
 }

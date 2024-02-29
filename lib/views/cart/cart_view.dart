@@ -4,10 +4,8 @@ import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/views/cart/CartView_Controller.dart';
 import 'package:big_cart_app/views/cart/widgets/Item_Card2.dart';
 import 'package:big_cart_app/widgets/CustomButon.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -53,7 +51,6 @@ class CartView extends StatelessWidget {
                                 child: Text('No Item in Cart'),
                               );
                             }
-
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               return Center(

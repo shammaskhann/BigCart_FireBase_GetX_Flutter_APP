@@ -264,10 +264,7 @@ class ShippingInfoScreen extends StatelessWidget {
                       return null;
                     },
                     onFieldSubmitted: (value) {
-                      Utils.fieldFocusChange(
-                          context,
-                          shippingController.zipCodeFocusNode.value,
-                          shippingController.zipCodeFocusNode.value);
+                      shippingController.zipCodeFocusNode.value.unfocus();
                     },
                   ),
                 ]),

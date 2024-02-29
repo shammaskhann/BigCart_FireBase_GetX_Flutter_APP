@@ -32,9 +32,7 @@ class CartViewController extends GetxController {
     }
   }
 
-  Future getCart() async {
-    // isLoading(true);
-    // isLoading(false);
+  Future<List> getCart() async {
     List? itemList = [];
     try {
       final response = await cartController.getCart();
@@ -69,13 +67,13 @@ class CartViewController extends GetxController {
     try {
       final response = await cartController.getCart();
       if (response!.isNotEmpty && response.length < 3) {
-        shippingCharges = 5;
+        shippingCharges = 0.5;
       } else if (response.length > 3 && response.length < 6) {
-        shippingCharges = 10;
+        shippingCharges = 2.5;
       } else if (response.length > 6 && response.length < 9) {
-        shippingCharges = 15;
+        shippingCharges = 3;
       } else if (response.length > 9 && response.length < 12) {
-        shippingCharges = 20;
+        shippingCharges = 5;
       }
 
       return shippingCharges;

@@ -9,6 +9,7 @@ class CustomTextFeild extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode currentNode;
   final FocusNode nextNode;
+  final formater;
   final String hint;
   final Function(String?) validator;
   final String leadingIcon;
@@ -17,6 +18,7 @@ class CustomTextFeild extends StatelessWidget {
       {required this.controller,
       required this.currentNode,
       required this.nextNode,
+      this.formater,
       required this.hint,
       required this.validator,
       required this.leadingIcon,
@@ -31,6 +33,7 @@ class CustomTextFeild extends StatelessWidget {
       },
       controller: controller,
       focusNode: currentNode,
+      inputFormatters: formater,
       style: AppTextStyles.textfieldInputStyle,
       keyboardType: TextInputType.emailAddress,
       cursorColor: AppColors.primaryColor,
