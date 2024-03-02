@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../views/home/home_view.dart';
+import '../../views/myAddress/myAddress_view.dart';
 import '../../views/product/product_view.dart';
 import '../../views/splash/splash_view.dart';
 
@@ -122,6 +123,12 @@ class AppRoutes {
       GetPage(
         name: RouteName.FeaturedProductExtendedView,
         page: () => FeaturedProductExtendedView(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: RouteName.myAddressScreen,
+        page: () => const MyAddressScreen(),
         transition: Transition.rightToLeftWithFade,
         transitionDuration: const Duration(milliseconds: 500),
       ),

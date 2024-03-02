@@ -1,5 +1,6 @@
 import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/Images/images.dart';
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -56,14 +57,21 @@ class ProfileView extends StatelessWidget {
                         title: Text("My Address",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: InkWell(
+                          child: Icon(Icons.arrow_forward_ios),
+                          onTap: () {
+                            Get.toNamed(RouteName.myAddressScreen);
+                          },
+                        ),
                       ),
                       ListTile(
                         leading: SvgPicture.asset(AppIcons.creditCardIcon),
                         title: Text("My Credit Card",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                        trailing: Icon(Icons.arrow_forward_ios),
+                        trailing: InkWell(
+                          child: Icon(Icons.arrow_forward_ios),
+                        ),
                       ),
                       ListTile(
                         leading: SvgPicture.asset(AppIcons.transactionIcon),
