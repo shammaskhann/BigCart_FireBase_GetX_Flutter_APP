@@ -6,16 +6,17 @@ import 'package:get/get.dart';
 
 class CartViewController extends GetxController {
   var isLoading = false.obs;
-  int cartNo = 0;
+  RxInt cartNo = 0.obs;
   CartController cartController = CartController();
   RxInt isUpdate = 1.obs;
+  RxBool isCartEmptied = false.obs;
 
   @override
   void onInit() async {
     super.onInit();
     isLoading(true);
     try {
-      cartNo = await cartController.getCartCount();
+      cartNo.value = await cartController.getCartCount();
     } catch (e) {
       log('error : $e');
     } finally {
@@ -40,7 +41,7 @@ class CartViewController extends GetxController {
       if (itemList == null) {
         return itemList!;
       }
-      log('cart $itemList');
+      // log('cart $itemList');
 
       return itemList;
     } catch (e) {

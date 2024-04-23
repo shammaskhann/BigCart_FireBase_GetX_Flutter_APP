@@ -10,17 +10,17 @@ class FavouriteController extends GetxController {
 
   Future<void> isFavourite(String productName) async {
     bool result = await favouriteServices.isFavourite(productName);
-    log('isFavourite: $productName $result');
+    //log('isFavourite: $productName $result');
     isFavouriteItem.value = result;
   }
 
   Future<bool> addFavourite(Map<String, dynamic> item) async {
-    log('addFavourite: $item');
+    // log('addFavourite: $item');
     return await favouriteServices.addFavourite(item);
   }
 
   Future<bool> removeFavourite(Map<String, dynamic> item) async {
-    log('removeFavourite: $item');
+    // log('removeFavourite: $item');
     return await favouriteServices.removeFavourite(item);
   }
 

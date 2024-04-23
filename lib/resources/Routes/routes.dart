@@ -1,5 +1,6 @@
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/views/Tracking/track_order_view.dart';
+import 'package:big_cart_app/views/aboutme/aboutme_view.dart';
 import 'package:big_cart_app/views/cart/cart_view.dart';
 import 'package:big_cart_app/views/category/category_expand_view.dart';
 import 'package:big_cart_app/views/category/category_view.dart';
@@ -7,6 +8,7 @@ import 'package:big_cart_app/views/dashboard/dashboard_view.dart';
 import 'package:big_cart_app/views/favourite/favourite_view.dart';
 import 'package:big_cart_app/views/home/featured_product_extend_view.dart';
 import 'package:big_cart_app/views/login/login_view.dart';
+import 'package:big_cart_app/views/notification/notification_view.dart';
 import 'package:big_cart_app/views/payment/payment_view.dart';
 import 'package:big_cart_app/views/profile/profile_view.dart';
 import 'package:big_cart_app/views/review/review_view.dart';
@@ -14,11 +16,12 @@ import 'package:big_cart_app/views/shipping/shipping_info_view.dart';
 import 'package:big_cart_app/views/shipping/shipping_method_view.dart';
 import 'package:big_cart_app/views/signup/signup_view.dart';
 import 'package:big_cart_app/views/static/order_success_screen.dart';
+import 'package:big_cart_app/views/transaction/transaction_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../views/home/home_view.dart';
-import '../../views/myAddress/myAddress_view.dart';
+
 import '../../views/product/product_view.dart';
 import '../../views/splash/splash_view.dart';
 
@@ -127,8 +130,20 @@ class AppRoutes {
         transitionDuration: const Duration(milliseconds: 500),
       ),
       GetPage(
-        name: RouteName.myAddressScreen,
-        page: () => const MyAddressScreen(),
+        name: RouteName.transactionScreen,
+        page: () => TransactionScreen(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: RouteName.notificationScreen,
+        page: () => NotificationScreen(),
+        transition: Transition.rightToLeftWithFade,
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
+      GetPage(
+        name: RouteName.aboutMeScreen,
+        page: () => AboutMe_View(),
         transition: Transition.rightToLeftWithFade,
         transitionDuration: const Duration(milliseconds: 500),
       ),

@@ -1,6 +1,8 @@
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/views/category/categoryController.dart';
+import 'package:big_cart_app/views/dashboard/dashboard_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,14 +19,14 @@ class CategoryView extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
-        // leading: IconButton(
-        //     onPressed: () {
-        //       Get.back();
-        //     },
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios_new,
-        //       color: AppColors.black,
-        //     )),
+        leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed(RouteName.dashboardScreen);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: AppColors.black,
+            )),
         centerTitle: true,
         title: Text(category.tr, style: AppTextStyles.appBarStyle),
       ),
@@ -59,6 +61,11 @@ class CategoryView extends StatelessWidget {
                               isFeatured: false,
                             );
                           });
+                    }
+                    if (!snapshot.hasData) {
+                      return const Center(
+                        child: Text("No Item Found"),
+                      );
                     }
                     return const Center(
                       child: CircularProgressIndicator(),

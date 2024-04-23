@@ -64,60 +64,60 @@ class HomeScreen extends StatelessWidget {
         },
       },
     ];
-    log('Home Screen loaded');
+    //log('Home Screen loaded');
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-              ),
-              child: Text(
-                'Profile Name Here',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            Obx(
-              () => ListTile(
-                leading: const Icon(Icons.language),
-                title: const Text('Change Language'),
-                trailing: DropdownButton<String>(
-                  value: homeController.selectedLanguage.value,
-                  items: <String>['English', 'Urdu']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    log(newValue.toString());
-                    homeController.changeLanguage(newValue!);
-                  },
-                ),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text('Logout'),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-                Utils.snackBar('Success', 'Logged Out Successfully');
-                Get.offAllNamed('/login');
-              },
-            ),
-          ],
-        ),
-      ),
+      // drawer: Drawer(
+      //   child: ListView(
+      //     children: [
+      //       const DrawerHeader(
+      //         decoration: BoxDecoration(
+      //           color: AppColors.primaryColor,
+      //         ),
+      //         child: Text(
+      //           'Profile Name Here',
+      //           style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 24,
+      //           ),
+      //         ),
+      //       ),
+      //       Obx(
+      //         () => ListTile(
+      //           leading: const Icon(Icons.language),
+      //           title: const Text('Change Language'),
+      //           trailing: DropdownButton<String>(
+      //             value: homeController.selectedLanguage.value,
+      //             items: <String>['English', 'Urdu']
+      //                 .map<DropdownMenuItem<String>>((String value) {
+      //               return DropdownMenuItem<String>(
+      //                 value: value,
+      //                 child: Text(value),
+      //               );
+      //             }).toList(),
+      //             onChanged: (String? newValue) {
+      //               log(newValue.toString());
+      //               homeController.changeLanguage(newValue!);
+      //             },
+      //           ),
+      //         ),
+      //       ),
+      //       ListTile(
+      //         leading: const Icon(Icons.settings),
+      //         title: const Text('Settings'),
+      //         onTap: () {},
+      //       ),
+      //       ListTile(
+      //         leading: const Icon(Icons.exit_to_app),
+      //         title: const Text('Logout'),
+      //         onTap: () {
+      //           FirebaseAuth.instance.signOut();
+      //           Utils.snackBar('Success', 'Logged Out Successfully');
+      //           Get.offAllNamed('/login');
+      //         },
+      //       ),
+      //     ],
+      //   ),
+      // ),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: SizedBox(

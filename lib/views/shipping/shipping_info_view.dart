@@ -23,14 +23,14 @@ class ShippingInfoScreen extends StatelessWidget {
         title: const Text('Shipping Address', style: AppTextStyles.appBarStyle),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
         child: ListView(
           // mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Padding(
               padding: EdgeInsets.only(
-                  top: 10.0, bottom: 20.0, left: 20.0, right: 20.0),
+                  top: 5.0, bottom: 5.0, left: 20.0, right: 20.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,

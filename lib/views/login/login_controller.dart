@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   final emailController = TextEditingController().obs;
   final passwordController = TextEditingController().obs;
   RxBool isPasswordVisible = true.obs;
-  RxBool isRememberMe = false.obs;
+  RxBool isRememberMe = true.obs;
   final emailFocusNode = FocusNode().obs;
   final passwordFocusNode = FocusNode().obs;
   Authentication auth = Authentication();

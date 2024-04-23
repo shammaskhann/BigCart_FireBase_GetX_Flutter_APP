@@ -19,4 +19,7 @@ class RouteName {
   static const String FeaturedProductExtendedView =
       '/featured-product-extended-view';
   static const String myAddressScreen = '/my-address-screen';
+  static const String transactionScreen = '/transaction-screen';
+  static const String notificationScreen = '/notification-screen';
+  static const String aboutMeScreen = '/about-me-screen';
 }

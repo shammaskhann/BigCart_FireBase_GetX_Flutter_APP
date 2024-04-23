@@ -216,6 +216,7 @@ class ItemCard2 extends StatelessWidget {
                                             cartController.quantity.value = 0;
                                             await cartController
                                                 .removeFromCart(item);
+
                                             Get.snackbar(
                                               'Item Removed',
                                               'Item Removed from Cart',
@@ -228,6 +229,13 @@ class ItemCard2 extends StatelessWidget {
                                                 color: AppColors.white,
                                               ),
                                             );
+                                            int count = await cartController
+                                                .getCartCount();
+                                            if (count == 0) {
+                                              cartViewController.cartNo.value =
+                                                  0;
+                                            }
+                                            cartViewController.isUpdate.value++;
                                             return;
                                           } else {
                                             cartController.quantity.value--;

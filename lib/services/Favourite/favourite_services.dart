@@ -28,7 +28,7 @@ class FavouriteServices {
     try {
       final response = await db.get();
       itemList = response.docs.map((e) => e.data()).toList();
-      log('getFavourite: $itemList');
+      //log('getFavourite: $itemList');
       if (itemList.isNotEmpty) {
         return itemList;
       }

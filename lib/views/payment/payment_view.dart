@@ -138,42 +138,52 @@ class PaymentScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.grey.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                InkWell(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'We apologize, but we are not accepting PayPal transactions at the moment.'),
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Image.asset(
-                        AppTextFeildIcons.paypalIcon,
-                        height: 50,
-                        width: 50,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Paypal',
-                        style: TextStyle(
-                            color: AppColors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
+                    );
+                  },
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.grey.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Image.asset(
+                          AppTextFeildIcons.paypalIcon,
+                          height: 50,
+                          width: 50,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Paypal',
+                          style: TextStyle(
+                              color: AppColors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
@@ -214,43 +224,53 @@ class PaymentScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  height: 100,
-                  width: 100,
-                  margin: EdgeInsets.only(left: 20),
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.grey.withOpacity(0.2),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
+                InkWell(
+                  onTap: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'We apologize, but we are not accepting Apple Pay transactions at the moment.'),
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Image.asset(
-                        AppTextFeildIcons.applepay,
-                        height: 50,
-                        width: 50,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Apple Pay',
-                        style: TextStyle(
-                            color: AppColors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
+                    );
+                  },
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    margin: EdgeInsets.only(left: 20),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.grey.withOpacity(0.2),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Image.asset(
+                          AppTextFeildIcons.applepay,
+                          height: 50,
+                          width: 50,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Apple Pay',
+                          style: TextStyle(
+                              color: AppColors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],
@@ -344,7 +364,7 @@ class PaymentScreen extends StatelessWidget {
                           return null;
                         },
                         onFieldSubmitted: (value) {
-                          log('onFieldSubmitted');
+                          //log('onFieldSubmitted');
                           paymentController.updateCardHolderName();
                           paymentController.cardHolderNameFocusNode.value
                               .unfocus();
@@ -376,7 +396,7 @@ class PaymentScreen extends StatelessWidget {
                           return null;
                         },
                         onFieldSubmitted: (value) {
-                          log('onFieldSubmitted');
+                          //log('onFieldSubmitted');
                           paymentController.updateCardNum();
                           paymentController.cardNumberFocusNode.value.unfocus();
                           paymentController.cardExpiryDateFocusNode.value
@@ -412,7 +432,7 @@ class PaymentScreen extends StatelessWidget {
                                 },
                                 leadingIcon: AppTextFeildIcons.calendarIcon,
                                 onFieldSubmitted: (value) {
-                                  log('onFieldSubmitted');
+                                  //  log('onFieldSubmitted');
                                   paymentController.updateCardExpiryDate();
                                   paymentController
                                       .cardExpiryDateFocusNode.value
@@ -446,7 +466,7 @@ class PaymentScreen extends StatelessWidget {
                                   },
                                   leadingIcon: AppTextFeildIcons.lockIcon,
                                   onFieldSubmitted: (value) {
-                                    log('onFieldSubmitted');
+                                    //  log('onFieldSubmitted');
                                     paymentController.cardCVVFocusNode.value
                                         .unfocus();
                                   }),

@@ -193,8 +193,8 @@ class ItemCard extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       InkWell(
-                                        onTap: () {
-                                          log('Quantity: ${cartController.quantity.value}');
+                                        onTap: () async {
+                                          //     log('Quantity: ${cartController.quantity.value}');
                                           if (cartController.quantity.value >
                                               1) {
                                             cartController.quantity.value--;
@@ -202,8 +202,10 @@ class ItemCard extends StatelessWidget {
                                           } else if (cartController
                                                   .quantity.value ==
                                               1) {
-                                            cartController.removeFromCart(item);
+                                            cartController.quantity.value = 0;
                                             cartController.atc.value = false;
+                                            await cartController
+                                                .removeFromCart(item);
                                           }
                                         },
                                         child: Container(
@@ -227,7 +229,7 @@ class ItemCard extends StatelessWidget {
                                       const Spacer(),
                                       InkWell(
                                         onTap: () {
-                                          log('Quantity: ${cartController.quantity.value}');
+                                          // log('Quantity: ${cartController.quantity.value}');
                                           if (cartController.quantity.value <
                                               10) {
                                             cartController.quantity.value++;
@@ -296,11 +298,13 @@ class ItemCard extends StatelessWidget {
                       }
                       return Obx(() => InkWell(
                             onTap: () {
+                              // favouriteController.toggleFav();
                               if (favouriteController.isFavouriteItem.value ==
                                   false) {
                                 favouriteController.addFavourite(item);
                                 favouriteController.isFavouriteItem.value =
                                     true;
+
                                 Get.snackbar('Added to Favourite'.tr,
                                     'Item added to favourite successfully'.tr,
                                     snackPosition: SnackPosition.TOP,

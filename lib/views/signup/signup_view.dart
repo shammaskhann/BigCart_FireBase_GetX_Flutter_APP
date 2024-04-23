@@ -102,6 +102,9 @@ class SignupScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
                                 //email address
                                 TextFormField(
                                   controller:
@@ -215,9 +218,9 @@ class SignupScreen extends StatelessWidget {
                                         )),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
+                                // const SizedBox(
+                                //   height: 10,
+                                // ),
 
                                 //Login Button
                                 Obx(

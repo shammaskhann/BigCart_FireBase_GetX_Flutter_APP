@@ -31,6 +31,18 @@ class CartController extends GetxController {
     }
   }
 
+  Future<bool> updateCartWithQuantity(
+      Map<String, dynamic> item, int quantity) async {
+    try {
+      await cartServices.updateCart(item, item, quantity);
+      atc.value = true;
+      return true;
+    } catch (e) {
+      atc.value = false;
+      return false;
+    }
+  }
+
   Future<bool> removeFromCart(Map<String, dynamic> item) async {
     try {
       await cartServices.removeFromCart(item);

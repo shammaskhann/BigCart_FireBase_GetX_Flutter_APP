@@ -50,4 +50,17 @@ class FirebaseServices {
       return "";
     }
   }
+
+  Future getUserInfo(String uid) async {
+    final DocumentReference user =
+        FirebaseFirestore.instance.collection('users').doc(uid);
+    try {
+      final DocumentSnapshot snapshot = await user.get();
+      final Map<dynamic, dynamic> values = snapshot.data() as Map;
+      return values;
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
 }

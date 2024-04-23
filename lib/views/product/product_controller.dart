@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import '../../controller/Cart_Contrller/cart_controller.dart';
 
 class ProductController extends GetxController {
-  final Map item;
+  final Map<String, dynamic> item;
+
   ProductController({required this.item});
   RxInt quantity = 1.obs;
   RxBool atc = false.obs;
@@ -18,9 +19,19 @@ class ProductController extends GetxController {
     super.onInit();
     //set busy true while fetching data from server
     isAlreadyInCart(item);
-    log('ProductController onInit');
-    log(isAlreadyInCart(item).toString());
-    log(atc.value.toString());
+    //log('ProductController onInit');
+    //  log(isAlreadyInCart(item).toString());
+    //  log(atc.value.toString());
+  }
+
+  void toggleATC() async {
+    atc.value = true;
+    await isAlreadyInCart(item);
+    update();
+  }
+
+  void updateQuantity() async {
+    await cartController.updateCartWithQuantity(item, quantity.value);
   }
 
   double ratingAvgCalculate(Map item) {
@@ -47,7 +58,8 @@ class ProductController extends GetxController {
         .doc(FirebaseAuth.instance.currentUser?.uid);
     await cartRef.get().then((value) {
       var dataRecieved = value.data();
-      var data = (dataRecieved!=null) ? dataRecieved as Map<String, dynamic> : {};
+      var data =
+          (dataRecieved != null) ? dataRecieved as Map<String, dynamic> : {};
       cart = data['cart'] ?? [];
     });
 
@@ -61,8 +73,8 @@ class ProductController extends GetxController {
         break;
       }
     }
-    log(quantity.value.toString());
-    log(atc.value.toString());
+    // log(quantity.value.toString());
+    //log(atc.value.toString());
     return isAlreadyInCart;
   }
 }
