@@ -1,5 +1,6 @@
 import 'package:big_cart_app/resources/TextStyle/text_styles.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
+import 'package:big_cart_app/utils/scaleSize.dart';
 import 'package:big_cart_app/views/login/widget/appBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -176,16 +177,22 @@ class LoginScreen extends StatelessWidget {
                                         loginController.isRememberMe.value =
                                             value;
                                       })),
-                                  const Text(
+                                  Text(
                                     'Remember me',
-                                    style: AppTextStyles.substitle,
+                                    style: AppTextStyles.substitle.copyWith(
+                                      fontSize: Get.width * 0.03,
+                                    ),
                                   ),
                                   const Spacer(),
                                   TextButton(
                                       onPressed: () {},
                                       child: Text(
                                         'forgot_password'.tr,
-                                        style: AppTextStyles.substitle,
+                                        style: AppTextStyles.substitle.copyWith(
+                                          fontSize: Get.width * 0.03,
+                                        ),
+                                        // textScaler: TextScaler.linear(
+                                        //     ScaleSize.textScaleFactor(context)),
                                       )),
                                 ],
                               ),

@@ -32,7 +32,7 @@ class PaymentScreen extends StatelessWidget {
           children: [
             const Padding(
               padding: EdgeInsets.only(
-                  top: 10.0, bottom: 20.0, left: 20.0, right: 20.0),
+                  top: 00.0, bottom: 10.0, left: 20.0, right: 20.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +179,7 @@ class PaymentScreen extends StatelessWidget {
                           'Paypal',
                           style: TextStyle(
                               color: AppColors.grey,
-                              fontSize: 15,
+                              fontSize: Get.width * 0.03,
                               fontWeight: FontWeight.w500),
                         ),
                       ],
@@ -218,7 +218,7 @@ class PaymentScreen extends StatelessWidget {
                         'Credit Card',
                         style: TextStyle(
                             color: AppColors.grey,
-                            fontSize: 15,
+                            fontSize: Get.width * 0.03,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -266,7 +266,7 @@ class PaymentScreen extends StatelessWidget {
                           'Apple Pay',
                           style: TextStyle(
                               color: AppColors.grey,
-                              fontSize: 15,
+                              fontSize: Get.width * 0.03,
                               fontWeight: FontWeight.w500),
                         ),
                       ],
@@ -276,7 +276,7 @@ class PaymentScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15.0),
+              padding: const EdgeInsets.only(top: 0.0, right: 20, left: 20),
               child: Stack(
                 children: [
                   SvgPicture.asset(AppImages.card),
@@ -288,7 +288,7 @@ class PaymentScreen extends StatelessWidget {
                         paymentController.getCardLastFourDigit(),
                         style: TextStyle(
                             color: AppColors.white,
-                            fontSize: 18,
+                            fontSize: Get.width * 0.04,
                             fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -300,7 +300,7 @@ class PaymentScreen extends StatelessWidget {
                       'Card Holder Name',
                       style: TextStyle(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: Get.width * 0.04,
                           fontWeight: FontWeight.w300),
                     ),
                   ),
@@ -312,7 +312,7 @@ class PaymentScreen extends StatelessWidget {
                         paymentController.cardHolderNameForCard.value,
                         style: TextStyle(
                             color: AppColors.white,
-                            fontSize: 18,
+                            fontSize: Get.width * 0.04,
                             fontWeight: FontWeight.w500),
                       ),
                     ),
@@ -324,7 +324,7 @@ class PaymentScreen extends StatelessWidget {
                       'Expiry Date',
                       style: TextStyle(
                           color: AppColors.white,
-                          fontSize: 18,
+                          fontSize: Get.width * 0.04,
                           fontWeight: FontWeight.w300),
                     ),
                   ),
@@ -336,7 +336,7 @@ class PaymentScreen extends StatelessWidget {
                         paymentController.cardExpiryDateForCard.value,
                         style: TextStyle(
                             color: AppColors.white,
-                            fontSize: 18,
+                            fontSize: Get.width * 0.04,
                             fontWeight: FontWeight.w500),
                       ),
                     ),

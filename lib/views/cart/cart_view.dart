@@ -96,7 +96,7 @@ class CartView extends StatelessWidget {
                                     children: [
                                       Row(
                                         children: [
-                                          const Padding(
+                                          Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 10.0),
                                             child: Text(
@@ -104,7 +104,7 @@ class CartView extends StatelessWidget {
                                               style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   color: AppColors.grey,
-                                                  fontSize: 18,
+                                                  fontSize: Get.width * 0.04,
                                                   fontWeight: FontWeight.w400),
                                             ),
                                           ),
@@ -113,23 +113,25 @@ class CartView extends StatelessWidget {
                                               future:
                                                   cartController.getSubTotal(),
                                               builder: (context, snapshot) {
-                                                if (!snapshot.hasData) {
-                                                  return const Text(
-                                                      'No Item Selected',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Poppins',
-                                                          color: AppColors.grey,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w400));
-                                                }
+                                                // if (!snapshot.hasData) {
+                                                //   return Text(
+                                                //       'No Item Selected',
+                                                //       style: TextStyle(
+                                                //           fontFamily: 'Poppins',
+                                                //           color: AppColors.grey,
+                                                //           fontSize:
+                                                //               Get.width * 0.04,
+                                                //           fontWeight:
+                                                //               FontWeight.w400));
+                                                // }
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.waiting) {
-                                                  return const Text('Loading',
+                                                  return Text('Loading',
                                                       style: TextStyle(
                                                           fontFamily: 'Poppins',
                                                           color: AppColors.grey,
-                                                          fontSize: 18,
+                                                          fontSize:
+                                                              Get.width * 0.04,
                                                           fontWeight:
                                                               FontWeight.w400));
                                                 }
@@ -141,10 +143,11 @@ class CartView extends StatelessWidget {
                                                             right: 10.0),
                                                     child: Text(
                                                       '\$ ${snapshot.data!.toStringAsFixed(2)}',
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                           fontFamily: 'Poppins',
                                                           color: AppColors.grey,
-                                                          fontSize: 18,
+                                                          fontSize:
+                                                              Get.width * 0.04,
                                                           fontWeight:
                                                               FontWeight.w400),
                                                     ),
@@ -157,7 +160,7 @@ class CartView extends StatelessWidget {
                                       ),
                                       Row(
                                         children: [
-                                          const Padding(
+                                          Padding(
                                             padding:
                                                 EdgeInsets.only(left: 10.0),
                                             child: Text(
@@ -165,7 +168,7 @@ class CartView extends StatelessWidget {
                                               style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   color: AppColors.grey,
-                                                  fontSize: 18,
+                                                  fontSize: Get.width * 0.04,
                                                   fontWeight: FontWeight.w400),
                                             ),
                                           ),
@@ -174,23 +177,25 @@ class CartView extends StatelessWidget {
                                               future: cartController
                                                   .getShippingCharges(),
                                               builder: (context, snapshot) {
-                                                if (!snapshot.hasData) {
-                                                  return const Text(
-                                                      'No Item Selected',
-                                                      style: TextStyle(
-                                                          fontFamily: 'Poppins',
-                                                          color: AppColors.grey,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w400));
-                                                }
+                                                // if (!snapshot.hasData) {
+                                                //   return Text(
+                                                //       'No Item Selected',
+                                                //       style: TextStyle(
+                                                //           fontFamily: 'Poppins',
+                                                //           color: AppColors.grey,
+                                                //           fontSize:
+                                                //               Get.width * 0.04,
+                                                //           fontWeight:
+                                                //               FontWeight.w400));
+                                                // }
                                                 if (snapshot.connectionState ==
                                                     ConnectionState.waiting) {
-                                                  return const Text('Loading',
+                                                  return Text('Loading',
                                                       style: TextStyle(
                                                           fontFamily: 'Poppins',
                                                           color: AppColors.grey,
-                                                          fontSize: 18,
+                                                          fontSize:
+                                                              Get.width * 0.04,
                                                           fontWeight:
                                                               FontWeight.w400));
                                                 }
@@ -201,10 +206,11 @@ class CartView extends StatelessWidget {
                                                             right: 10.0),
                                                     child: Text(
                                                       '\$ ${snapshot.data!.toStringAsFixed(2)}',
-                                                      style: const TextStyle(
+                                                      style: TextStyle(
                                                           fontFamily: 'Poppins',
                                                           color: AppColors.grey,
-                                                          fontSize: 18,
+                                                          fontSize:
+                                                              Get.width * 0.04,
                                                           fontWeight:
                                                               FontWeight.w400),
                                                     ),

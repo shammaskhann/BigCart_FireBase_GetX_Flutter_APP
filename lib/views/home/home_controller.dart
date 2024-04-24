@@ -25,7 +25,7 @@ class HomeController extends GetxController {
     if (response.isNotEmpty) {
       response.forEach((key, value) {
         featuredList.add(value);
-        log(value.toString());
+        // log(value.toString());
       });
       return featuredList;
     } else {

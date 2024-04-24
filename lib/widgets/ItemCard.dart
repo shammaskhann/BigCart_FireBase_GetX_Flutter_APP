@@ -63,7 +63,7 @@ class ItemCard extends StatelessWidget {
                         return Stack(
                           children: [
                             CircleAvatar(
-                                radius: 50,
+                                radius: Get.height * 0.05,
                                 backgroundColor:
                                     colorShade(item['colorScheme'])),
                             Positioned(
@@ -72,8 +72,8 @@ class ItemCard extends StatelessWidget {
                               right: 0,
                               child: Image.network(
                                 snapshot.data as String,
-                                height: 90,
-                                width: 90,
+                                height: Get.height * 0.07,
+                                width: Get.height * 0.07,
                               ),
                             ),
                           ],
@@ -155,7 +155,7 @@ class ItemCard extends StatelessWidget {
                             ? Obx(() => InkWell(
                                   onTap: () {
                                     item['quantity'] = 1;
-                                    cartController.addToCart(item);
+                                    cartController.addToCart(item,1);
                                     cartController.quantity.value = 1;
                                     cartController.atc.value = true;
                                   },
@@ -171,16 +171,16 @@ class ItemCard extends StatelessWidget {
                                       ),
                                       const SizedBox(width: 10),
                                       Text('add_to_cart'.tr,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.black,
-                                              fontSize: 18,
+                                              fontSize: Get.height * 0.02,
                                               fontWeight: FontWeight.w600)),
                                       Text('${cartController.quantity.value}',
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.white,
-                                              fontSize: 18,
+                                              fontSize: Get.height * 0.02,
                                               fontWeight: FontWeight.w600)),
                                     ],
                                   ),
@@ -221,10 +221,10 @@ class ItemCard extends StatelessWidget {
                                       Text(
                                           cartController.quantity.value
                                               .toString(),
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                               fontFamily: 'Poppins',
                                               color: AppColors.black,
-                                              fontSize: 18,
+                                              fontSize: Get.height * 0.02,
                                               fontWeight: FontWeight.w600)),
                                       const Spacer(),
                                       InkWell(

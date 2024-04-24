@@ -65,7 +65,7 @@ class TrackOrderScreen extends StatelessWidget {
               );
             } else {
               return Center(
-                child: Text('No Transaction Found'),
+                child: Text('No Order History Founds'),
               );
             }
           }

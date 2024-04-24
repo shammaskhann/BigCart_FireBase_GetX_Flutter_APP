@@ -75,7 +75,7 @@ class TransactionScreen extends StatelessWidget {
               return Center(child: Text('Error: ${snapshot.error}'));
             else {
               return Center(
-                child: Text("No Transaction"),
+                child: Text("No Transaction History Found"),
               );
             }
           }

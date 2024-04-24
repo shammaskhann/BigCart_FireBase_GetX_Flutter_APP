@@ -85,26 +85,27 @@ class FavItemCard extends StatelessWidget {
                     return Stack(
                       children: [
                         CircleAvatar(
-                            radius: 50, backgroundColor: colorShade("red")),
+                            radius: Get.height * 0.05,
+                            backgroundColor: colorShade("red")),
                         Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
                           child: Image.network(
                             snapshot.data as String,
-                            height: 80,
-                            width: 80,
+                            height: Get.width * 0.2,
+                            width: Get.width * 0.2,
                           ),
                         ),
                       ],
                     );
                   }
-                  return const Shimmer(
+                  return Shimmer(
                     gradient: LinearGradient(
                       colors: [Colors.grey, Colors.white],
                     ),
                     child: CircleAvatar(
-                      radius: 50,
+                      radius: Get.height * 0.05,
                     ),
                   );
                 }),
@@ -118,26 +119,26 @@ class FavItemCard extends StatelessWidget {
                 children: [
                   Text(
                     '\$ ${item['price']}',
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.primaryColor,
-                        fontSize: 18,
+                        fontSize: Get.width * 0.04,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
                     item['productName'],
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.black,
-                        fontSize: 24,
+                        fontSize: Get.width * 0.05,
                         fontWeight: FontWeight.w800),
                   ),
                   Text(
                     item['weightPer'],
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: 'Poppins',
                         color: AppColors.grey,
-                        fontSize: 18,
+                        fontSize: Get.width * 0.04,
                         fontWeight: FontWeight.w400),
                   ),
                 ],

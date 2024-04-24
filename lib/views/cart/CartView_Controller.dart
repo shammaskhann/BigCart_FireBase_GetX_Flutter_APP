@@ -24,14 +24,14 @@ class CartViewController extends GetxController {
     }
   }
 
-  Future<bool> addCart(Map<String, dynamic> item) async {
-    try {
-      await cartController.addToCart(item);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
+  // Future<bool> addCart(Map<String, dynamic> item) async {
+  //   try {
+  //     await cartController.addToCart(item, quantity.value);
+  //     return true;
+  //   } catch (e) {
+  //     return false;
+  //   }
+  // }
 
   Future<List> getCart() async {
     List? itemList = [];

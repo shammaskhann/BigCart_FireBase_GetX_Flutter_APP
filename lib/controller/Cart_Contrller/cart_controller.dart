@@ -9,9 +9,9 @@ class CartController extends GetxController {
   RxBool atc = false.obs;
   final user = FirebaseAuth.instance.currentUser;
   CartServices cartServices = CartServices();
-  Future<bool> addToCart(Map<String, dynamic> item) async {
+  Future<bool> addToCart(Map<String, dynamic> item, int quantity) async {
     try {
-      await cartServices.addToCart(item, quantity.value);
+      await cartServices.addToCart(item, quantity);
       atc.value = true;
       return true;
     } catch (e) {

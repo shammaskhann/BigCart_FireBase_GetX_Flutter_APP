@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       fallbackLocale: const Locale('en', 'US'),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
-          toolbarHeight: 80, // Set the toolbarHeight here
+          toolbarHeight: Get.height * 0.08, // Set the toolbarHeight here
           centerTitle: true,
         ),
       ),

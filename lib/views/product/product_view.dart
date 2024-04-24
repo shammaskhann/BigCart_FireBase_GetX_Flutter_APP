@@ -46,12 +46,12 @@ class ProductView extends StatelessWidget {
                       builder: ((context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return const Shimmer(
+                          return Shimmer(
                             gradient: LinearGradient(
                               colors: [Colors.grey, Colors.white],
                             ),
                             child: CircleAvatar(
-                              radius: 100,
+                              radius: Get.height * 0.09,
                             ),
                           );
                         }
@@ -59,35 +59,36 @@ class ProductView extends StatelessWidget {
                           return Stack(
                             children: [
                               CircleAvatar(
-                                  radius: 100,
+                                  radius: Get.height * 0.1,
                                   backgroundColor:
                                       colorShade(item['colorScheme'])),
                               Positioned(
                                 bottom: 0,
                                 left: 0,
                                 right: 0,
+                                top: 0,
                                 child: Image.network(
                                   snapshot.data as String,
-                                  height: 160,
-                                  width: 160,
+                                  height: Get.height * 0.11,
+                                  width: Get.height * 0.11,
                                 ),
                               ),
                             ],
                           );
                         }
-                        return const Shimmer(
+                        return Shimmer(
                           gradient: LinearGradient(
                             colors: [Colors.grey, Colors.white],
                           ),
                           child: CircleAvatar(
-                            radius: 50,
+                            radius: Get.height * 0.09,
                           ),
                         );
                       }),
                     ),
                   ),
                   const SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   AutoSizeText(
                     item['productName'],
@@ -146,8 +147,8 @@ class ProductView extends StatelessWidget {
                                   color: AppColors.priamryButton2,
                                   fontWeight: FontWeight.w600),
                               maxLines: 1,
-                              minFontSize: 22.0,
-                              maxFontSize: 28.0,
+                              minFontSize: 20,
+                              maxFontSize: 25.0,
                             ),
                             AutoSizeText(
                               item['productName'],
@@ -370,7 +371,8 @@ class ProductView extends StatelessWidget {
                                         if (productController.atc.value) {
                                           Get.toNamed(RouteName.cartScreen);
                                         } else {
-                                          cartController.addToCart(item);
+                                          cartController.addToCart(item,
+                                              productController.quantity.value);
                                           // productController.atc.value = true;
                                           getcontroller.toggleATC();
                                         }

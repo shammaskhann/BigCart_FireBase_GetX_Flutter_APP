@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:big_cart_app/resources/Icons/textfield_icons.dart';
+import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
 import 'package:big_cart_app/utils/utils.dart';
 import 'package:big_cart_app/views/home/home_controller.dart';
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
     SearchBarController searchbarcontroller = SearchBarController();
     FloatingSearchBarController controller = FloatingSearchBarController();
     HomeController homeController = Get.put(HomeController());
+    searchbarcontroller.initializeProducts();
     final List categoriesIcon = [
       {
         'name': 'vegetables'.tr,
@@ -175,16 +177,19 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Text('categories'.tr,
-                                      style: AppTextStyles.heading),
+                                      style: AppTextStyles.heading.copyWith(
+                                        fontSize: Get.width * 0.06,
+                                      )),
                                   //const Spacer(),
                                   IconButton(
                                       onPressed: () {
                                         homeController
                                             .navToCategoryExtendedScreen();
                                       },
-                                      icon: const Icon(
+                                      icon: Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         color: AppColors.grey,
+                                        size: Get.width * 0.06,
                                       ))
                                 ],
                               ),
@@ -196,28 +201,30 @@ class HomeScreen extends StatelessWidget {
                                   itemCount: categoriesIcon.length,
                                   itemBuilder: ((context, index) {
                                     return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 15.0),
+                                      padding:
+                                          const EdgeInsets.only(right: 15.0),
                                       child: InkWell(
                                           onTap: categoriesIcon[index]['onTap'],
                                           child: Column(
                                             children: [
                                               CircleAvatar(
-                                                radius: 30,
+                                                radius: Get.width * 0.08,
                                                 backgroundColor:
                                                     categoriesIcon[index]
                                                         ['backgroundColor'],
                                                 child: SvgPicture.asset(
                                                   categoriesIcon[index]['icon'],
-                                                  height: 30,
-                                                  width: 30,
+                                                  height: Get.width * 0.07,
+                                                  width: Get.width * 0.07,
                                                 ),
                                               ),
                                               const SizedBox(height: 5),
                                               Text(
                                                   categoriesIcon[index]['name'],
-                                                  style:
-                                                      AppTextStyles.substitle),
+                                                  style: AppTextStyles.substitle
+                                                      .copyWith(
+                                                    fontSize: Get.width * 0.03,
+                                                  )),
                                             ],
                                           )),
                                     );
@@ -228,8 +235,8 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 5),
+                      padding:
+                          const EdgeInsets.only(left: 15, bottom: 5, right: 5),
                       child: SizedBox(
                         height: 30,
                         width: Get.width,
@@ -238,15 +245,18 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text('Featured products'.tr,
-                                style: AppTextStyles.heading),
+                                style: AppTextStyles.heading.copyWith(
+                                  fontSize: Get.width * 0.06,
+                                )),
                             IconButton(
                                 onPressed: () {
                                   homeController
                                       .navToFeaturedProductExtendView();
                                 },
-                                icon: const Icon(
+                                icon: Icon(
                                   Icons.arrow_forward_ios_rounded,
                                   color: AppColors.grey,
+                                  size: Get.height * 0.03,
                                 ))
                           ],
                         ),
@@ -373,15 +383,19 @@ class HomeScreen extends StatelessWidget {
                                     children: searchbarcontroller.suggestion
                                         .map((suggestion) {
                                       return ListTile(
-                                        title: Text(suggestion),
+                                        title: Text(suggestion['productName']),
                                         onTap: () {
-                                          log(suggestion);
+                                          //log(suggestion);
+                                          Get.toNamed(RouteName.productScreen,
+                                              arguments: suggestion);
                                           controller.query =
                                               suggestion.toString();
                                           // Dismiss the search bar
                                           log(controller.query);
+                                          controller.query = '';
                                           searchbarcontroller
                                               .isSearching.value = false;
+
                                           controller.close();
                                         },
                                       );

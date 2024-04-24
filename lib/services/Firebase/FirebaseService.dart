@@ -63,4 +63,54 @@ class FirebaseServices {
       return null;
     }
   }
+
+  Future updateUserInfo(
+      String uid, String name, String email, String number) async {
+    final DocumentReference user =
+        FirebaseFirestore.instance.collection('users').doc(uid);
+    try {
+      await user.update({
+        'name': name,
+        'email': email,
+        'number': number,
+      });
+      return true;
+    } catch (e) {
+      log(e.toString());
+      return false;
+    }
+  }
+
+  // Future<Map> getAllProducts() async {
+  //   CollectionReference inventory =
+  //       FirebaseFirestore.instance.collection('Inventory');
+  //   Map allItems = {};
+  //   inventory.get().then((QuerySnapshot querySnapshot) {
+  //     querySnapshot.docs.forEach((doc) {
+  //       Map items = doc.data() as Map;
+  //       log(items.toString());
+  //       items.forEach((key, value) {
+  //         allItems[key] = value;
+  //       });
+  //     });
+  //   });
+  //   log('Service : ' + allItems.toString());
+  //   return allItems;
+  //   //it check each document in inventory collection that contains multiple maps of item then it should check each item for key bool isFeatured if its true it add to map and do that for all maps in that docs and return map
+  // }
+  Future<Map> getAllProducts() async {
+    CollectionReference inventory =
+        FirebaseFirestore.instance.collection('Inventory');
+    Map allItems = {};
+    QuerySnapshot querySnapshot = await inventory.get();
+    querySnapshot.docs.forEach((doc) {
+      Map items = doc.data() as Map;
+      //log(items.toString());
+      items.forEach((key, value) {
+        allItems[key] = value;
+      });
+    });
+    //log('Service : ' + allItems.toString());
+    return allItems;
+  }
 }

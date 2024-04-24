@@ -2,6 +2,7 @@ import 'package:big_cart_app/resources/Icons/common_icons.dart';
 import 'package:big_cart_app/resources/Images/images.dart';
 import 'package:big_cart_app/resources/Routes/route_name.dart';
 import 'package:big_cart_app/resources/color/colors.dart';
+import 'package:big_cart_app/services/Firebase/FirebaseService.dart';
 import 'package:big_cart_app/views/profile/profileview_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -13,6 +14,7 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ProfileViewController controller = Get.put(ProfileViewController());
+
     return Scaffold(
         body: Container(
       color: AppColors.white,
@@ -57,17 +59,32 @@ class ProfileView extends StatelessWidget {
                                 children: [
                                   CircleAvatar(
                                     radius: Get.height * 0.06,
-                                    backgroundImage:
-                                        AssetImage(AppImages.profilePic),
+                                    backgroundColor:
+                                        AppColors.grey.withOpacity(0.5),
+                                    child: Center(child: Icon(Icons.person)),
+                                  ),
+                                  FutureBuilder(
+                                    future: controller.getName(),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting) {
+                                        return Text(
+                                          "Loading...",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold),
+                                        );
+                                      }
+                                      return Text(
+                                        snapshot.data ?? "",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    },
                                   ),
                                   Text(
-                                    "Olivia Rodrigo",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "olivia@gmail.com",
+                                    controller.getEmail() ?? "",
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
