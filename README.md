@@ -30,15 +30,22 @@ Welcome to the BigCart repository! This comprehensive ecommerce application is b
 
 ## 🚀 Demo
 
-Check out the live demo: [BigCart Demo](https://shammaskhann.github.io/deploy_inv_mangement/)
+Check out the live demo: [BigCart Demo]
 
 ## Project Screenshots
 
 ![Home View](https://i.postimg.cc/Vk5fbWkZ/Home-View.jpg)
 ![Category View](https://i.postimg.cc/fb9M8WXx/Category-View.jpg)
 ![Favourite View](https://i.postimg.cc/52Gx5QH4/Favourite-View.jpg)
-![Notification Setting View](https://i.postimg.cc/Kv0czHxg/Notification-Setting-View.jpg)
-![Order Success View](https://i.postimg.cc/XJ64mMct/Order-Sucess-View.jpg)
-![Payment Method View](https://i.postimg.cc/NFptKKqw/Payment-Method-View.jpg)
 ![Product Info View](https://i.postimg.cc/wxVgfGtb/Product-Info-Ciew.jpg)
+![Review Section View](https://i.postimg.cc/T1RG2rs9/Review-Sec-View.jpg)
+![Search Bar View](https://i.postimg.cc/153PLrwR/Search-Bar-View.jpg)
+![Shopping Cart](https://i.postimg.cc/htHBQFwh/Shopping-Cart-View.jpg)
+![Shipping Method View](https://i.postimg.cc/rwdTpyfv/Shipping-Method-View.jpg)
+![Shipping Address View](https://i.postimg.cc/qMD006xs/Shipping-Address-View.jpg)
+![Payment Method View](https://i.postimg.cc/NFptKKqw/Payment-Method-View.jpg)
+![Order Success View](https://i.postimg.cc/XJ64mMct/Order-Sucess-View.jpg)
 ![Profile Section View](https://i.postimg.cc/cH70NDFC/Profile-Sec-View.jpg)
+![Notification Setting View](https://i.postimg.cc/Kv0czHxg/Notification-Setting-View.jpg)
+![Transaction History](https://i.postimg.cc/YSYw1nKR/Transaction-History-View.jpg)
+
