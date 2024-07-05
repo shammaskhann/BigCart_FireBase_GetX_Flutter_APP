@@ -26,7 +26,7 @@ Welcome to the BigCart repository! This comprehensive ecommerce application is b
 - **Firebase Authentication**: Manage user authentication with ease.
 - **Firebase Firestore**: Real-time database to store and sync data across all clients.
 - **Firebase Storage**: Store and serve user-generated content like images.
-- **Firebase Cloud Messaging**: Send notifications and messages reliably at no cost.
+
 
 ## 🚀 Demo
 
