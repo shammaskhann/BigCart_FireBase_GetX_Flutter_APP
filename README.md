@@ -1,16 +1,44 @@
-# big_cart_app
+# BigCart (Ecommerce App)
 
-A new Flutter project.
+Welcome to the BigCart repository! This comprehensive ecommerce application is built using Flutter for the front end and Firebase for the backend, providing a robust and seamless shopping experience. It incorporates features such as user authentication, product browsing, order processing, and much more, ensuring a complete solution for online shopping.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **User Authentication**: Secure sign-up and login using Firebase Auth.
+- **Product Browsing**: Browse products by categories and search functionality.
+- **Shopping Cart**: Add products to the cart and proceed to checkout.
+- **Order Management**: Place orders and track order history.
+- **Favorites**: Add products to a wishlist for future reference.
+- **Notifications**: Receive notifications for order updates and promotional offers.
+- **Profile Management**: Manage user profile details.
+- **Reviews and Ratings**: Add and view product reviews and ratings.
+- **Shipping and Payment**: Manage shipping addresses and payment methods.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Frontend (Flutter)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Flutter**: A UI toolkit for building natively compiled applications for mobile, web, and desktop from a single codebase.
+- **GetX**: A state management solution for Flutter, providing high performance and a simplified development experience.
+
+### Backend (Firebase)
+
+- **Firebase Authentication**: Manage user authentication with ease.
+- **Firebase Firestore**: Real-time database to store and sync data across all clients.
+- **Firebase Storage**: Store and serve user-generated content like images.
+- **Firebase Cloud Messaging**: Send notifications and messages reliably at no cost.
+
+## 🚀 Demo
+
+Check out the live demo: [BigCart Demo](https://shammaskhann.github.io/deploy_inv_mangement/)
+
+## Project Screenshots
+
+![Home View](https://i.postimg.cc/Vk5fbWkZ/Home-View.jpg)
+![Category View](https://i.postimg.cc/fb9M8WXx/Category-View.jpg)
+![Favourite View](https://i.postimg.cc/52Gx5QH4/Favourite-View.jpg)
+![Notification Setting View](https://i.postimg.cc/Kv0czHxg/Notification-Setting-View.jpg)
+![Order Success View](https://i.postimg.cc/XJ64mMct/Order-Sucess-View.jpg)
+![Payment Method View](https://i.postimg.cc/NFptKKqw/Payment-Method-View.jpg)
+![Product Info View](https://i.postimg.cc/wxVgfGtb/Product-Info-Ciew.jpg)
+![Profile Section View](https://i.postimg.cc/cH70NDFC/Profile-Sec-View.jpg)
