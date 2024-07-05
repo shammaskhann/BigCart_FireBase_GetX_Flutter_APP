@@ -38,8 +38,6 @@ Check out the live demo: [BigCart Demo]
 ![Category View](https://i.postimg.cc/fb9M8WXx/Category-View.jpg)
 ![Favourite View](https://i.postimg.cc/52Gx5QH4/Favourite-View.jpg)
 ![Product Info View](https://i.postimg.cc/wxVgfGtb/Product-Info-Ciew.jpg)
-![Review Section View](https://i.postimg.cc/T1RG2rs9/Review-Sec-View.jpg)
-![Search Bar View](https://i.postimg.cc/153PLrwR/Search-Bar-View.jpg)
 ![Shopping Cart](https://i.postimg.cc/htHBQFwh/Shopping-Cart-View.jpg)
 ![Shipping Method View](https://i.postimg.cc/rwdTpyfv/Shipping-Method-View.jpg)
 ![Shipping Address View](https://i.postimg.cc/qMD006xs/Shipping-Address-View.jpg)
@@ -48,4 +46,6 @@ Check out the live demo: [BigCart Demo]
 ![Profile Section View](https://i.postimg.cc/cH70NDFC/Profile-Sec-View.jpg)
 ![Notification Setting View](https://i.postimg.cc/Kv0czHxg/Notification-Setting-View.jpg)
 ![Transaction History](https://i.postimg.cc/YSYw1nKR/Transaction-History-View.jpg)
+![Review Section View](https://i.postimg.cc/T1RG2rs9/Review-Sec-View.jpg)
+![Search Bar View](https://i.postimg.cc/153PLrwR/Search-Bar-View.jpg)
 
