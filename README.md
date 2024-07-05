@@ -46,6 +46,4 @@ Check out the live demo: [BigCart Demo]
 ![Profile Section View](https://i.postimg.cc/cH70NDFC/Profile-Sec-View.jpg)
 ![Notification Setting View](https://i.postimg.cc/Kv0czHxg/Notification-Setting-View.jpg)
 ![Transaction History](https://i.postimg.cc/YSYw1nKR/Transaction-History-View.jpg)
-![Review Section View](https://i.postimg.cc/T1RG2rs9/Review-Sec-View.jpg)
-![Search Bar View](https://i.postimg.cc/153PLrwR/Search-Bar-View.jpg)
 
